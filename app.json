@@ -1,0 +1,7 @@
+{
+  "name": "eldorado",
+  "displayName": "eldorado",
+  "config": {
+    "api": "APIURL"
+  }
+}
