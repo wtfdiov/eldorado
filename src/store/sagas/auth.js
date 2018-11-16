@@ -44,10 +44,11 @@ export function* updateTokenSaga(action) {
 
   try {
     const updateToken = yield axios.post(`${config.api}/users/auth/tokens`, {
+      currentUser: action.oldToken
+    }, {
       headers: {
         Authorization: `Bearer ${action.oldToken}`
       },
-      currentUser: action.oldToken
     });
 
     yield put(actions.updateTokenOnStorage(updateToken.data));
@@ -56,7 +57,7 @@ export function* updateTokenSaga(action) {
 
   } catch(error) {
     yield put(actions.clearAuthData());
-    alert('Falha ao buscar sua sessão, faça login novamente.');
+    alert(`Falha ao buscar sua sessão, faça login novamente. ${error}`);
   }
 
 }

@@ -2,6 +2,6 @@
   "name": "eldorado",
   "displayName": "eldorado",
   "config": {
-    "api": "APIURL"
+    "api": "https://wallet.niobiocash.money/api/v1"
   }
 }

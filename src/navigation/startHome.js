@@ -20,10 +20,9 @@ export default () => {
                 name: 'eldorado.screens.Home',
                 options: {
                   bottomTab: {
-                    text: 'Dashboard',
                     icon: assets[0],
-                    iconColor: '#2c3e50',
-                    selectedIconColor: '#27ae60',
+                    iconColor: '#009432',
+                    selectedIconColor: 'white',
                     testID: 'HOME_TAB_BUTTON'
                   },
                   topBar: {
@@ -37,10 +36,9 @@ export default () => {
                 name: 'eldorado.screens.Send',
                 options: {
                   bottomTab: {
-                    text: 'Enviar',
                     icon: assets[1],
-                    iconColor: '#2c3e50',
-                    selectedIconColor: '#27ae60',
+                    iconColor: '#009432',
+                    selectedIconColor: 'white',
                     testID: 'SEND_TAB_BUTTON'
                   }
                 }
@@ -52,36 +50,53 @@ export default () => {
                   {
                     component: {
                       name: 'eldorado.screens.Transactions.All',
-                    },
-                    options: {
-                      topTab:{
-                        title: 'tab 1'
+                      options: {
+                        topTab:{
+                          title: 'tab 1'
+                        }
                       }
-                    }
+                    },
+                    
+                  },
+                  {
+                    component: {
+                      name: 'eldorado.screens.Transactions.Received',
+                      options: {
+                        topTab:{
+                          title: 'tab 2'
+                        }
+                      }
+                    },
+                    
                   },
                   {
                     component: {
                       name: 'eldorado.screens.Transactions.Sent',
-                    },
-                    options: {
-                      topTab:{
-                        title: 'tab 2'
+                      options: {
+                        topTab:{
+                          title: 'tab 2'
+                        }
                       }
-                    }
+                    },
+                    
                   }
                 ],
                 options: {
                   bottomTab: {
-                    text: 'Transactions',
                     icon: assets[2],
-                    iconColor: '#2c3e50',
-                    selectedIconColor: '#27ae60',
+                    iconColor: '#009432',
+                    selectedIconColor: 'white',
                     testID: 'TRANSACTIONS_TAB_BUTTON'
                   }
                 }
               },
             }
           ],
+          options: {
+            bottomTabs: {
+              backgroundColor: '#3ae374'
+            }
+          }
         },
       }
     });

@@ -14,7 +14,7 @@ class Details extends Component {
   render () {
     return this.state.transaction ? (
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => Linking.openURL(`${this.state.transaction.hash}`)}>
+        <TouchableOpacity onPress={() => Linking.openURL(`http://explorer.niobiocash.com/?hash=${this.state.transaction.hash}#blockchain_transaction`)}>
           <Text>Click on me</Text>
         </TouchableOpacity>
       </View>
