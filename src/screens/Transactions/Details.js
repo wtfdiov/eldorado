@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, TouchableOpacity, ActivityIndicator, Linking, View, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, Linking, View, Text } from 'react-native';
+
+import { config } from '../../../app.json';
 
 class Details extends Component {
 
@@ -12,16 +14,11 @@ class Details extends Component {
   }
 
   render () {
-    return this.state.transaction ? (
+    return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => Linking.openURL(`http://explorer.niobiocash.com/?hash=${this.state.transaction.hash}#blockchain_transaction`)}>
+        <TouchableOpacity onPress={() => Linking.openURL(config.explorerHash.replace('@{hash}', this.state.transaction.transactionHash))}>
           <Text>Click on me</Text>
         </TouchableOpacity>
-      </View>
-    ) : (
-      <View style={styles.container}>
-        <ActivityIndicator color="green" />
-        <Text>Carregando informações sobre a transação.</Text>
       </View>
     );
   }

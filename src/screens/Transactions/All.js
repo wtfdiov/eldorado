@@ -9,6 +9,11 @@ import TransactionItem from '../../components/Transactions/Item';
 
 class TransactionsAllScreen extends Component {
 
+  constructor(props) {
+    super(props);
+    this.openModal = this.openModal.bind(this);
+  }
+
   componentDidMount () {
     this.props.onLoad();
   }

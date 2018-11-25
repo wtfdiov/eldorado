@@ -1,7 +1,15 @@
 {
-  "name": "eldorado",
-  "displayName": "eldorado",
+  "name": "NBRApp",
+  "displayName": "NBRApp",
   "config": {
-    "api": "https://wallet.niobiocash.money/api/v1"
+    "api": "https://wallet.niobiocash.money/api/v1",
+    "symbol": "NBR",
+    "name": "Nióbio Cash",
+    "decimals": 8,
+    "defaultUnit": 100000000,
+    "defaultCurrency": "USD",
+    "minimumFee": 10000,
+    "defaultLocale": "en-us",
+    "explorerHash":"http://explorer.niobiocash.com/?hash=@{hash}#blockchain_transaction"
   }
 }

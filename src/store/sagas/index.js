@@ -2,7 +2,8 @@ import { takeLatest } from 'redux-saga/effects';
 
 import * as actionTypes from '../actionTypes';
 import { tryAuthSaga, logoutSaga, tryAutoLoginSaga, clearAuthDataSaga, updateTokenOnStorageSaga, updateTokenSaga } from './auth';
-import { fetchTransactionsSaga } from './transactions';
+import { fetchTransactionsSaga, newTransactionSaga } from './transactions';
+import { fetchWalletsSaga } from './wallets';
 
 export function* watchAuth() {
   yield takeLatest(actionTypes.AUTH_TRY_AUTO, tryAutoLoginSaga);
@@ -15,4 +16,9 @@ export function* watchAuth() {
 
 export function* watchTransactions() {
   yield takeLatest(actionTypes.TRANSACTIONS_FETCH, fetchTransactionsSaga);
+  yield takeLatest(actionTypes.TRANSACTIONS_NEW, newTransactionSaga)
+}
+
+export function* watchWallets() {
+  yield takeLatest(actionTypes.WALLETS_FETCH, fetchWalletsSaga);
 }

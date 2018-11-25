@@ -7,6 +7,11 @@ import TransactionItem from '../../components/Transactions/Item';
 
 class ReceivedTransactionsScreen extends Component {
 
+  constructor(props) {
+    super(props);
+    this.openModal = this.openModal.bind(this);
+  }
+
   openModal = (transactionId) => {
     Navigation.push('main', {
       component: {
@@ -62,7 +67,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    transactions: state.transactions.transactions.filter(transaction => transaction.to.amount >= 0)
+    transactions: state.transactions.transactions.filter(transaction => transaction.amount >= 0)
   }
 }
 

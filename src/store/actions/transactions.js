@@ -12,3 +12,10 @@ export const fetchAllTransactions = () => {
     type: actionTypes.TRANSACTIONS_FETCH
   }
 }
+
+export const newTransaction = (transaction) => {
+  return {
+    type: actionTypes.TRANSACTIONS_NEW,
+    transaction
+  }
+}

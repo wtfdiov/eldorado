@@ -11,6 +11,11 @@ export {
 
 export {
   fetchAllTransactions,
-  storeTransactions
+  storeTransactions,
+  newTransaction
 } from './transactions';
-  
+
+export {
+  fetchWallets,
+  storeWallets
+} from './wallets';

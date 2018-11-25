@@ -1,4 +1,4 @@
-package com.eldorado;
+package mobile.niobiocash.money;
 
 import android.app.Application;
 

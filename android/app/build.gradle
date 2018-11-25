@@ -99,12 +99,12 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.eldorado"
+        applicationId "mobile.niobiocash.money"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
-        versionCode 1
-        versionName "1.0"
+        versionCode 000001
+        versionName "0.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
