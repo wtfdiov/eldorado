@@ -13,91 +13,105 @@ export default () => {
 
     Navigation.setRoot({
       root: {
-        bottomTabs: {
+        stack: {
+          id: 'main',
           children: [
             {
-              component: {
-                name: 'eldorado.screens.Home',
-                options: {
-                  bottomTab: {
-                    icon: assets[0],
-                    iconColor: '#009432',
-                    selectedIconColor: 'white',
-                    testID: 'HOME_TAB_BUTTON'
-                  },
-                  topBar: {
-                    visible: false,
-                  }
-                }
-              },
-            },
-            {
-              component: {
-                name: 'eldorado.screens.Send',
-                options: {
-                  bottomTab: {
-                    icon: assets[1],
-                    iconColor: '#009432',
-                    selectedIconColor: 'white',
-                    testID: 'SEND_TAB_BUTTON'
-                  }
-                }
-              }
-            },
-            {
-              topTabs: {
+              bottomTabs: {
                 children: [
                   {
                     component: {
-                      name: 'eldorado.screens.Transactions.All',
+                      name: 'eldorado.screens.Home',
                       options: {
-                        topTab:{
-                          title: 'tab 1'
+                        bottomTab: {
+                          icon: assets[0],
+                          iconColor: '#009432',
+                          selectedIconColor: 'white',
+                          testID: 'HOME_TAB_BUTTON'
+                        },
+                        topBar: {
+                          visible: false,
                         }
                       }
                     },
-                    
                   },
                   {
                     component: {
-                      name: 'eldorado.screens.Transactions.Received',
+                      name: 'eldorado.screens.Send',
                       options: {
-                        topTab:{
-                          title: 'tab 2'
+                        bottomTab: {
+                          icon: assets[1],
+                          iconColor: '#009432',
+                          selectedIconColor: 'white',
+                          testID: 'SEND_TAB_BUTTON'
+                        },
+                        topBar: {
+                          visible: false,
+                          drawBehind: true,
                         }
                       }
-                    },
-                    
+                    }
                   },
                   {
-                    component: {
-                      name: 'eldorado.screens.Transactions.Sent',
+                    topTabs: {
+                      children: [
+                        {
+                          component: {
+                            name: 'eldorado.screens.Transactions.All',
+                            options: {
+                              topTab:{
+                                title: 'tab 1'
+                              }
+                            }
+                          },
+                          
+                        },
+                        {
+                          component: {
+                            name: 'eldorado.screens.Transactions.Received',
+                            options: {
+                              topTab:{
+                                title: 'tab 2'
+                              }
+                            }
+                          },
+                          
+                        },
+                        {
+                          component: {
+                            name: 'eldorado.screens.Transactions.Sent',
+                            options: {
+                              topTab:{
+                                title: 'tab 2'
+                              }
+                            }
+                          },
+                          
+                        }
+                      ],
                       options: {
-                        topTab:{
-                          title: 'tab 2'
+                        bottomTab: {
+                          icon: assets[2],
+                          iconColor: '#009432',
+                          selectedIconColor: 'white',
+                          testID: 'TRANSACTIONS_TAB_BUTTON'
+                        },
+                        topBar: {
+                          visible: false,
                         }
                       }
                     },
-                    
                   }
                 ],
                 options: {
-                  bottomTab: {
-                    icon: assets[2],
-                    iconColor: '#009432',
-                    selectedIconColor: 'white',
-                    testID: 'TRANSACTIONS_TAB_BUTTON'
+                  bottomTabs: {
+                    backgroundColor: '#3ae374'
                   }
                 }
               },
             }
-          ],
-          options: {
-            bottomTabs: {
-              backgroundColor: '#3ae374'
-            }
-          }
-        },
+          ]
+        }
       }
     });
 

@@ -7,7 +7,7 @@ import AddressBox from '../common/AddressBox';
 import NBR from '../common/DisplayValue/NBR';
 
 const transactionItem = (props) => (
-  <TouchableOpacity onPress={() => props.onTouch(props.transaction.id)}>
+  <TouchableOpacity onPress={() => props.onTouch(props.transaction.id)} style={{alignSelf: 'center', flexDirection: 'row', flex: 1}}>
     <Card bgColor="white">
       <AddressBox address={props.transaction.from} />
       <AddressBox address={props.transaction.to.address} />

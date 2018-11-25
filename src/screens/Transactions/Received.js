@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navigation } from 'react-native-navigation';
-import { Text, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, Text, ScrollView, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 
 import TransactionItem from '../../components/Transactions/Item';
@@ -8,12 +8,26 @@ import TransactionItem from '../../components/Transactions/Item';
 class ReceivedTransactionsScreen extends Component {
 
   openModal = (transactionId) => {
-    Navigation.push(this.props.componentId, {
-      screen: 'eldorado.screens.Transactions.Details',
-      title: "Detalhes",
-      passProps: {
-        transactionId
-      },
+    Navigation.push('main', {
+      component: {
+        name: 'eldorado.screens.Transactions.Details',
+        passProps: {
+          transactionId
+        },
+        options: {
+          topBar: {
+            background: {
+              color: '#3ae374'
+            },
+            title: {
+              text: 'Details'
+            },
+            backButton: {
+              showTitle: false
+            }
+          },
+        }
+      }
     });
   }
 
@@ -25,7 +39,7 @@ class ReceivedTransactionsScreen extends Component {
     }
 
     return (
-      <ScrollView>
+      <ScrollView style={styles.container}>
         <FlatList 
           data={this.props.transactions}
           keyExtractor={this._keyExtractor}
@@ -38,6 +52,13 @@ class ReceivedTransactionsScreen extends Component {
   }
 
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: '100%',
+  }
+});
 
 const mapStateToProps = state => {
   return {
