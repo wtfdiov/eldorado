@@ -118,7 +118,7 @@ android {
         }
     }
     signingConfigs {
-        config {
+        release {
             keyAlias keystoreProperties['alias']
             keyPassword keystoreProperties['keypassword']
             storeFile file(keystoreProperties['file'])
@@ -141,6 +141,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
