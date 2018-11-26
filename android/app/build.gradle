@@ -94,6 +94,14 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+//Signing
+def keystorePropertiesFile = rootProject.file("release.keystore.properties")
+
+def keystoreProperties = new Properties()
+
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -107,6 +115,14 @@ android {
         versionName "0.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
+        }
+    }
+    signingConfigs {
+        config {
+            keyAlias keystoreProperties['alias']
+            keyPassword keystoreProperties['keypassword']
+            storeFile file(keystoreProperties['file'])
+            storePassword keystoreProperties['storepassword']
         }
     }
     compileOptions {
