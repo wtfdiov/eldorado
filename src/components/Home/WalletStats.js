@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { config } from '../../../app.json';
 
 import Card from '../common/Card';
 import IconWithInfo from '../common/IconWithInfo';
@@ -22,7 +23,7 @@ class WalletStats extends Component {
   }
 
   componentDidMount () {
-    axios.get('https://wallet-qa.niobiocash.money/api/v1/addresses/balance', {
+    axios.get(`${config.api}/addresses/balance`, {
       headers: {
         Authorization: `Bearer ${this.props.authToken}`
       }

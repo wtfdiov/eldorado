@@ -6,15 +6,18 @@ import Card from '../common/Card';
 import AddressBox from '../common/AddressBox';
 import NBR from '../common/DisplayValue/NBR';
 
+import componentStyle from '../style';
+import GridItem from '../common/TGridItem';
+
 const transactionItem = (props) => (
   <TouchableOpacity onPress={() => props.onTouch(props.transaction.id)} style={{alignSelf: 'center', flexDirection: 'row', flex: 1}}>
-    <Card bgColor="white">
-      <AddressBox address={props.transaction.from} />
+    <GridItem bgColor="white">
+      <AddressBox address={props.transaction.from} style={[componentStyle.label, componentStyle.strong, componentStyle.smallText]}/>
       <AddressBox address={props.transaction.to.address} />
       <NBR value={props.transaction.amount} />
       <Moment element={Text} parse="YYYY-MM-DD HH:mm" fromNow> {props.transaction.createdAt} </Moment>
       <Moment element={Text} parse="YYYY-MM-DD HH:mm" date={props.transaction.createdAt} />
-    </Card>
+    </GridItem>
   </TouchableOpacity>
 );
 
