@@ -17,5 +17,7 @@ export {
 
 export {
   fetchWallets,
-  storeWallets
+  storeWallets,
+  fetchWalletsBalance,
+  fetchWalletsBalanceSuccess
 } from './wallets';

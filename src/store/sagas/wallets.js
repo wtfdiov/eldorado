@@ -19,3 +19,19 @@ export function* fetchWalletsSaga() {
     alert(`Problem fetching addresses ${error}`)
   }
 }
+
+export function* fetchWalletsBalanceSaga() {
+  const state = yield select();
+
+  try {
+    const response = yield axios.get(`${config.api}/addresses/balance`, {
+      headers: {
+        Authorization: `Bearer ${state.auth.token}`
+      }
+    });
+
+    yield put(actions.fetchWalletsBalanceSuccess(response.data));
+  } catch (error) {
+    alert(`Problem fetching wallets ballance ${error}`)
+  }
+}

@@ -33,10 +33,12 @@ class ConvertNBR extends Component {
     .then(({ data }) => data.price.toFixed(this.props.decimals || roundToken(data.price)))
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    this.convert(this.config.symbol, this.props.to, this.props.amount / this.config.defaultUnit)
-    .then(convertedValue => this.setState({value: convertedValue}))
-    .catch(error => console.log(`Problem trying to convert ${from} to ${to}.`, error));
+  componentDidUpdate(prevProps) {
+    if (prevProps.amount !== this.props.amount) {
+      this.convert(this.config.symbol, this.props.to, this.props.amount / this.config.defaultUnit)
+      .then(convertedValue => this.setState({value: convertedValue}))
+      .catch(error => console.log(`Problem trying to convert ${from} to ${to}.`, error));
+    }
   }
     
   render () {

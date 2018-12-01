@@ -12,3 +12,16 @@ export const storeWallets = (wallets) => {
     wallets
   }
 }
+
+export const fetchWalletsBalance = () => {
+  return {
+    type: actionTypes.WALLETS_FETCH_BALLANCE,
+  }
+}
+
+export const fetchWalletsBalanceSuccess = (balance) => {
+  return {
+    type: actionTypes.WALLETS_FETCH_BALLANCE_SUCCESS,
+    balance
+  }
+}

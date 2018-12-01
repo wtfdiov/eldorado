@@ -1,13 +1,12 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
+import shortifyAddress from '../../../helpers/shortfyAddress';
+
 const addressBox = (props) => (
   <View>
     <Text>
-      {props.address
-        ? `${props.address.substring(0, 15)}...${props.address.substring(props.address.length - 15, props.address.length)}`
-        : 'Anonymous'
-      }
+      {shortifyAddress(props.address)}
     </Text>
   </View>
 );

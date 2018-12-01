@@ -1,39 +1,15 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import axios from 'axios';
-import { config } from '../../../app.json';
 
 import Card from '../common/Card';
 import IconWithInfo from '../common/IconWithInfo';
 import NBR from '../common/DisplayValue/NBR';
 import ConvertNBR from '../common/DisplayValue/ConvertNBR';
 
+
 class WalletStats extends Component {
   
   constructor(props) {
     super(props);
-
-    this.state = {
-      available: .0,
-      locked: .0,
-      total: .0,
-      value: .0,
-      valueBTC: .0,
-    }
-  }
-
-  componentDidMount () {
-    axios.get(`${config.api}/addresses/balance`, {
-      headers: {
-        Authorization: `Bearer ${this.props.authToken}`
-      }
-    })
-    .then(({data}) => {
-      this.setState({available: data.available});
-      this.setState({locked: data.locked});
-      this.setState({total: data.total});
-    })
-    .catch(error => console.log(error))
   }
 
   render () {
@@ -45,7 +21,7 @@ class WalletStats extends Component {
           displayIcon="ios-shuffle"
           iconColor="darkgray"
           size="48"
-          info={<NBR value={this.state.available} />}
+          info={<NBR value={this.props.ballance.available} />}
         />
 
         <IconWithInfo 
@@ -54,7 +30,7 @@ class WalletStats extends Component {
           displayIcon="ios-lock"
           iconColor="darkgray"
           size="48"
-          info={<NBR value={this.state.locked} />}
+          info={<NBR value={this.props.ballance.locked} />}
         />
 
         <IconWithInfo 
@@ -64,7 +40,7 @@ class WalletStats extends Component {
           iconColor="darkgray"
           size="48"
           decimals="2"
-          info={<ConvertNBR to="USD" amount={this.state.total} />}
+          info={<ConvertNBR to="USD" amount={this.props.ballance.total} />}
         />
 
         <IconWithInfo 
@@ -75,7 +51,7 @@ class WalletStats extends Component {
           size="48"
           decimals="2"
           last
-          info={<ConvertNBR to="BTC" amount={this.state.total} />}
+          info={<ConvertNBR to="BTC" amount={this.props.ballance.total} />}
         />
 
       </Card>
@@ -83,8 +59,4 @@ class WalletStats extends Component {
   }
 }
 
-const mapStateToProps = state => { 
-  return { authToken: state.auth.token };
-};
-
-export default connect(mapStateToProps, null)(WalletStats);
+export default WalletStats;

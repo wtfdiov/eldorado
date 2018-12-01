@@ -1,5 +1,6 @@
-import React from 'react';
-import { Text } from 'react-native';
+import React, { Fragment } from 'react';
+import { View, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons'
 
 import { roundToken } from '../../../helpers/roundToken';
 
@@ -23,6 +24,18 @@ const parseValue = (value, isFixed) => {
   }
 }
 
-const nbr = (props) => <Text> {parseValue(props.value, props.isFixed)} </Text>;
+const nbr = (props) =>{
+  return (
+    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+      <Text style={{
+        color: props.value > 0 ? 'green' : 'red'
+      }}>
+        {parseValue(props.value, props.isFixed)}
+      </Text>
+      {props.transaction && <Fragment><Text> </Text><Icon name={props.value > 0 ? 'ios-arrow-up' : 'ios-arrow-down'} size={16} color={props.value > 0 ? 'green' : 'red'} /></Fragment>}
+    </View>
+  )
+}
+  
 
 export default nbr;
