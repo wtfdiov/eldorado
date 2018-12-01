@@ -325,4 +325,11 @@ export default StyleSheet.create({
     padding: 10,
     marginBottom: 5
   },
+  transactionPill: {
+    backgroundColor: '#3ae374',
+    borderRadius: 30,
+    padding: 5,
+    marginRight: 5,
+    marginBottom: 10,
+  },
 })

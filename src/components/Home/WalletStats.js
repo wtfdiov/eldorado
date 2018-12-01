@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { View } from 'react-native';
 
-import Card from '../common/Card';
 import IconWithInfo from '../common/IconWithInfo';
 import NBR from '../common/DisplayValue/NBR';
 import ConvertNBR from '../common/DisplayValue/ConvertNBR';
 
+import componentStyles from '../style';
 
 class WalletStats extends Component {
   
@@ -14,47 +15,43 @@ class WalletStats extends Component {
 
   render () {
     return (
-      <Card bgColor="white">
+      <View style={componentStyles.profileMetricsContainer}>
         <IconWithInfo 
           title="BALANCE"
-          titleColor="darkgreen"
-          displayIcon="ios-shuffle"
-          iconColor="darkgray"
-          size="48"
+          titleColor="#3E863D"
+          displayIcon="ios-wallet"
+          iconColor="#adb5bd"
+          size={48}
           info={<NBR value={this.props.ballance.available} />}
         />
 
         <IconWithInfo 
           title="LOCKED"
-          titleColor="red"
+          titleColor="#dc3545"
+          iconColor="#adb5bd"
           displayIcon="ios-lock"
-          iconColor="darkgray"
-          size="48"
+          size={48}
           info={<NBR value={this.props.ballance.locked} />}
         />
 
         <IconWithInfo 
           title="VALUE (USD)"
-          titleColor="green"
-          displayIcon="ios-cash"
-          iconColor="darkgray"
-          size="48"
-          decimals="2"
+          titleColor="#23BF08"
+          displayIcon="logo-usd"
+          iconColor="#adb5bd"
+          size={48}
           info={<ConvertNBR to="USD" amount={this.props.ballance.total} />}
         />
 
         <IconWithInfo 
           title="VALUE (BTC)"
-          titleColor="purple"
+          titleColor="#6f42c1"
           displayIcon="logo-bitcoin"
-          iconColor="darkgray"
-          size="48"
-          decimals="2"
-          last
+          iconColor="#adb5bd"
+          size={48}
           info={<ConvertNBR to="BTC" amount={this.props.ballance.total} />}
         />
-
-      </Card>
+      </View>
     );
   }
 }

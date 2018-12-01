@@ -3,10 +3,12 @@ import { View, Text } from 'react-native';
 
 import shortifyAddress from '../../../helpers/shortfyAddress';
 
-const addressBox = (props) => (
+import componentStyle from '../../style';
+
+const addressBox = ({ address, cNum = 6 }) => (
   <View>
-    <Text>
-      {shortifyAddress(props.address)}
+    <Text style={[componentStyle.label, componentStyle.strong, {fontSize: 14}]}>
+      {shortifyAddress(address, cNum)}
     </Text>
   </View>
 );

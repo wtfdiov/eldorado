@@ -16,24 +16,23 @@ const transactionItem = (props) => (
   <TouchableOpacity onPress={() => props.onTouch(props.transaction.id)} style={{alignSelf: 'center', flexDirection: 'row', flex: 1}}>
     <GridItem bgColor="white">
       <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginVertical: 5}}>
-        <Text style={[componentStyle.label, componentStyle.strong, {fontSize: 14}]}>{shortifyAddress(props.transaction.from, 6)}</Text>
+        <AddressBox address={props.transaction.from} />
         <Icon name="ios-arrow-round-forward" size={32} />
-        <Text style={[componentStyle.label, componentStyle.strong, {fontSize: 14}]}>{shortifyAddress(props.transaction.to.address, 6)}</Text>
+        <AddressBox address={props.transaction.to.address} />
       </View>
       <View style={{
         flexDirection: 'row',
         justifyContent: 'space-around'
       }}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <Icon name="ios-cash" size={21} color={props.transaction.amount > 0 ? 'green' : 'red'}/>
-        <Text> </Text>
-        <NBR transaction value={props.transaction.amount} />
-      </View>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <Icon name="ios-calendar" size={21} />
-        <Text> </Text>
-        <Moment element={Text} format="D MMM YYYY HH:mm">{props.transaction.createdAt}</Moment>
-      </View>
+        <Icon name={props.transaction.status === 2 ? 'ios-checkmark-circle': 'ios-time'} color={props.transaction.status === 2 ?  '#3E863D' : '#F49917'} size={18} />
+
+        <NBR transaction symbol value={props.transaction.amount} />
+
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Icon name="ios-calendar" size={18} />
+          <Text> </Text>
+          <Moment element={Text} format="D MMM YYYY HH:mm">{props.transaction.createdAt}</Moment>
+        </View>
       </View>
     </GridItem>
   </TouchableOpacity>

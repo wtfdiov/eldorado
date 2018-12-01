@@ -11,6 +11,7 @@ import { fetchWallets, newTransaction } from '../../store/actions';
 import { config } from '../../../app.json';
 
 import shortifyAddress from '../../helpers/shortfyAddress';
+import BlocksInfo from '../../components/common/BlocksInfo';
 class SendScreen extends Component {
 
   constructor(props) {
@@ -103,7 +104,13 @@ class SendScreen extends Component {
           <Input placeholder='Destination' onChangeText={(toAddress) => this.setState({toAddress})} value={this.state.toAddress} spellCheck={false} />
         </Item>
 
-        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around', marginVertical: 20}}>
+        {this.state.fromAddress
+        ?  (
+          <BlocksInfo available={this.props.wallets.find(wallet => wallet.address === this.state.fromAddress).balance.available} locked={this.props.wallets.find(wallet => wallet.address === this.state.fromAddress).balance.locked} />
+        )
+        : null}
+
+        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around', marginBottom: 10}}>
           <View style={{flex: 2, paddingRigth: 10}}>
             <Item regular>
               <Label style={{backgroundColor: '#e6fbe6', color: '#acdcac', height: '100%', paddingTop: 10, paddingHorizontal: 5}}>Amount</Label>

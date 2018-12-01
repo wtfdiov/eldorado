@@ -25,14 +25,24 @@ const parseValue = (value, isFixed) => {
 }
 
 const nbr = (props) =>{
+  txtColor = {color: props.color} || {};
+  txtSize = {fontSize: props.size} || {};
   return (
-    <View style={{flexDirection: 'row', alignItems: 'center'}}>
-      <Text style={{
-        color: props.value > 0 ? 'green' : 'red'
-      }}>
-        {parseValue(props.value, props.isFixed)}
-      </Text>
-      {props.transaction && <Fragment><Text> </Text><Icon name={props.value > 0 ? 'ios-arrow-up' : 'ios-arrow-down'} size={16} color={props.value > 0 ? 'green' : 'red'} /></Fragment>}
+    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end'}}>
+      {props.transaction && <Fragment><Icon name={props.value > 0 ? 'ios-arrow-up' : 'ios-arrow-down'} size={16} color={props.value > 0 ? '#3E863D' : '#dc3545'} /><Text> </Text></Fragment>}
+      {props.transaction
+      ? (
+        <Text style={{
+          color: props.value > 0 ? '#3E863D' : '#dc3545'
+        }}>
+          {parseValue(props.value, props.isFixed)} {props.symbol && <Text style={{fontWeight: 'bold'}}>NBR</Text>}
+        </Text>
+      )
+      : (
+        <Text style={[txtColor, txtSize]}>
+          {parseValue(props.value, props.isFixed)} {props.symbol && <Text style={{fontWeight: 'bold'}}>NBR</Text>}
+        </Text>
+      )}
     </View>
   )
 }
