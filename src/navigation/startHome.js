@@ -105,7 +105,7 @@ export default () => {
                 ],
                 options: {
                   bottomTabs: {
-                    backgroundColor: '#3ae374'
+                    backgroundColor: '#60b145'
                   }
                 }
               },

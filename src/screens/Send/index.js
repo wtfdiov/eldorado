@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, Text, Picker, View } from 'react-native';
+import { StyleSheet, ScrollView, Text, Picker, View, Slider } from 'react-native';
 import { Label, Input, Item, Button } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
-
-import RadioGroup from 'react-native-radio-buttons-group';
 
 import { connect } from 'react-redux';
 import { fetchWallets, newTransaction } from '../../store/actions';
@@ -22,24 +20,7 @@ class SendScreen extends Component {
       amount: 0,
       fee: 0.0001,
       paymentId: '',
-      anonymity: [
-        {
-            label: '0',
-        },
-        {
-            label: '1',
-            selected: true
-        },
-        {
-            label: '2',
-        },
-        {
-            label: '3',
-        },
-        {
-            label: '4',
-        },
-    ]
+      anonymity: 1
     }
     this.initialState = this.state 
   }
@@ -73,7 +54,7 @@ class SendScreen extends Component {
         amount: parseFloat(this.state.amount * config.defaultUnit),
       },
       extra: {
-        anonymity: parseInt(this.state.anonymity.find(a => a.selected === true).value),
+        anonymity: this.state.anonymity,
         paymentId: this.state.paymentId
       }
     }
@@ -95,7 +76,7 @@ class SendScreen extends Component {
           onValueChange={(fromAddress) => this.setState({fromAddress})}
         >
           {this.props.wallets && this.props.wallets.map(wallet => (
-            <Picker.Item key={wallet.id} label={shortifyAddress(wallet.address)} value={wallet.address} />
+            <Picker.Item key={wallet.id} label={`${shortifyAddress(wallet.address, 10)} (${wallet.balance.available})`} value={wallet.address} />
           ))}
         </Picker>
 
@@ -106,7 +87,14 @@ class SendScreen extends Component {
 
         {this.state.fromAddress
         ?  (
-          <BlocksInfo available={this.props.wallets.find(wallet => wallet.address === this.state.fromAddress).balance.available} locked={this.props.wallets.find(wallet => wallet.address === this.state.fromAddress).balance.locked} />
+          <BlocksInfo
+            available={this.props.wallets.find(
+                wallet => wallet.address === this.state.fromAddress
+              ).balance.available}
+            locked={this.props.wallets.find(
+                wallet => wallet.address === this.state.fromAddress
+              ).balance.locked}
+          />
         )
         : null}
 
@@ -131,8 +119,20 @@ class SendScreen extends Component {
           <Input placeholder='PaymentId' onChangeText={(paymentId) => this.setState({paymentId})} value={this.state.paymentId} />
         </Item>
 
-        <View style={{marginVertical: 20}}>
-          <RadioGroup radioButtons={this.state.anonymity} onPress={anonymity => this.setState({ anonymity })} flexDirection="row" />
+        <View style={{flexDirection: 'row', marginVertical: 30}}>
+          <Text>Anonymity</Text>
+          <Slider
+            minimumValue={0}
+            maximumValue={6}
+            step={1}
+            onSlidingComplete={anonymity => this.setState({ anonymity })}
+            value={this.state.anonymity}
+            style={{
+              flex: 1
+            }}
+            thumbTintColor="#60b145"
+          />
+          <Text>{this.state.anonymity}</Text>
         </View>
 
         <Button success block disabled={this.validateForm()} onPress={() => this.createTransaction()}><Text> SEND </Text></Button>

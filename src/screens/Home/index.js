@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, View } from 'react-native';
+import { StyleSheet, ScrollView, View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 
 import { fetchWalletsBalance } from '../../store/actions';
 
 import WalletStats from '../../components/Home/WalletStats';
+import TransactionList from '../../components/Transactions/List';
 
 class HomeScreen extends Component {
 
@@ -22,6 +23,14 @@ class HomeScreen extends Component {
         <View style={styles.container}>
           <WalletStats ballance={this.props.ballance} />
         </View>
+
+        <TransactionList 
+          data={this.props.transactions}
+          truncate={3}
+          customStyle={{
+            marginTop: 20
+          }}
+        />
       </ScrollView>
     );
   }
@@ -38,7 +47,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => { 
   return {
     wallets: state.wallets.wallets,
-    ballance: state.wallets.balance
+    ballance: state.wallets.balance,
+    transactions: state.transactions.transactions
   };
 };
 
