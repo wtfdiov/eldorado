@@ -10,6 +10,7 @@ import { config } from '../../../app.json';
 
 import shortifyAddress from '../../helpers/shortfyAddress';
 import BlocksInfo from '../../components/common/BlocksInfo';
+import formatNBR from '../../helpers/formatNBR';
 class SendScreen extends Component {
 
   constructor(props) {
@@ -76,7 +77,7 @@ class SendScreen extends Component {
           onValueChange={(fromAddress) => this.setState({fromAddress})}
         >
           {this.props.wallets && this.props.wallets.map(wallet => (
-            <Picker.Item key={wallet.id} label={`${shortifyAddress(wallet.address, 10)} (${wallet.balance.available})`} value={wallet.address} />
+            <Picker.Item key={wallet.id} label={`${shortifyAddress(wallet.address, 10)} (${formatNBR(wallet.balance.available)})`} value={wallet.address} />
           ))}
         </Picker>
 

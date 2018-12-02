@@ -4,12 +4,9 @@ import Moment from 'react-moment';
 
 import Icon from 'react-native-vector-icons/Ionicons'
 
-import shortifyAddress from '../../helpers/shortfyAddress';
-import Card from '../common/Card';
 import AddressBox from '../common/AddressBox';
 import NBR from '../common/DisplayValue/NBR';
 
-import componentStyle from '../style';
 import GridItem from '../common/TGridItem';
 
 const transactionItem = (props) => (
