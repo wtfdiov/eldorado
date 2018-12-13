@@ -8,6 +8,7 @@ import LoadingScreen from './Loading';
 import AuthScreen from './Auth';
 import HomeScreen from './Home';
 import SendScreen from './Send';
+import ReceiveScreen from './Receive';
 import AllTransactionsScreen from './Transactions/All';
 import SentTransactionsScreen from './Transactions/Sent';
 import ReceivedTransationsScreen from './Transactions/Received';
@@ -20,6 +21,7 @@ export function registerScreens() {
   Navigation.registerComponentWithRedux('eldorado.screens.Auth', () => AuthScreen, Provider, store);
   Navigation.registerComponentWithRedux('eldorado.screens.Home', () => HomeScreen, Provider, store);
   Navigation.registerComponentWithRedux('eldorado.screens.Send', () => SendScreen, Provider, store);
+  Navigation.registerComponentWithRedux('eldorado.screens.Receive', () => ReceiveScreen, Provider, store);
   Navigation.registerComponentWithRedux('eldorado.screens.Transactions.All', () => AllTransactionsScreen, Provider, store);
   Navigation.registerComponentWithRedux('eldorado.screens.Transactions.Sent', () => SentTransactionsScreen, Provider, store);
   Navigation.registerComponentWithRedux('eldorado.screens.Transactions.Received', () => ReceivedTransationsScreen, Provider, store);

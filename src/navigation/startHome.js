@@ -8,6 +8,7 @@ export default () => {
     Icon.getImageSource('ios-send', 34),
     Icon.getImageSource('ios-repeat', 34),
     Icon.getImageSource('ios-contacts', 34),
+    Icon.getImageSource('md-qr-scanner', 34)
   ])
   .then(assets => {
 
@@ -44,6 +45,23 @@ export default () => {
                           iconColor: '#009432',
                           selectedIconColor: 'white',
                           testID: 'SEND_TAB_BUTTON'
+                        },
+                        topBar: {
+                          visible: false,
+                          drawBehind: true,
+                        }
+                      }
+                    }
+                  },
+                  {
+                    component: {
+                      name: 'eldorado.screens.Receive',
+                      options: {
+                        bottomTab: {
+                          icon: assets[4],
+                          iconColor: '#009432',
+                          selectedIconColor: 'white',
+                          testID: 'RECEIVE_TAB_BUTTON'
                         },
                         topBar: {
                           visible: false,
