@@ -7,6 +7,13 @@ export const tryAuth = (formData) => {
   }
 }
 
+export const signUp = (formData) => {
+  return {
+    type: actionTypes.AUTH_SIGN_UP,
+    formData
+  }
+}
+
 export const updateToken = (oldToken) => {
   return {
     type: actionTypes.AUTH_UPDATE_TOKEN,

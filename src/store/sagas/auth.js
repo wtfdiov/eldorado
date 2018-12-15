@@ -8,6 +8,28 @@ import startHome from '../../navigation/startHome';
 
 import * as actions from '../actions';
 
+export function* signUpSaga(action) {
+  yield put(actions.toggleAuthLoading());
+
+  try {
+    const response = yield axios.post(`${config.api}/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      name: action.formData.name,
+      email: action.formData.email,
+      password: action.formData.password,
+      passwordConfirm: action.formData.passwordConfirm
+    });
+
+  } catch (error) {
+    return alert(`${error}`)
+  } finally {
+    yield put(actions.toggleAuthLoading());
+  }
+}
+
 export function* tryAuthSaga(action) {
   yield put(actions.toggleAuthLoading());
 

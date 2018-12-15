@@ -6,6 +6,8 @@ import { Provider } from 'react-redux';
 
 import LoadingScreen from './Loading';
 import AuthScreen from './Auth';
+import RegisterScreen from './Auth/register';
+import ForgotScreen from './Auth/forgot';
 import HomeScreen from './Home';
 import SendScreen from './Send';
 import ReceiveScreen from './Receive';
@@ -19,6 +21,8 @@ const store = configureStore();
 export function registerScreens() {
   Navigation.registerComponentWithRedux('eldorado.screens.Loading', () => LoadingScreen, Provider, store);
   Navigation.registerComponentWithRedux('eldorado.screens.Auth', () => AuthScreen, Provider, store);
+  Navigation.registerComponentWithRedux('eldorado.screens.Register', () => RegisterScreen, Provider, store);
+  Navigation.registerComponentWithRedux('eldorado.screens.Forgot', () => ForgotScreen, Provider, store);
   Navigation.registerComponentWithRedux('eldorado.screens.Home', () => HomeScreen, Provider, store);
   Navigation.registerComponentWithRedux('eldorado.screens.Send', () => SendScreen, Provider, store);
   Navigation.registerComponentWithRedux('eldorado.screens.Receive', () => ReceiveScreen, Provider, store);

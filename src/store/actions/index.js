@@ -1,4 +1,5 @@
 export {
+  signUp,
   tryAuth,
   updateToken,
   updateTokenOnStorage,
