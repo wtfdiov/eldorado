@@ -1,5 +1,6 @@
 import { config } from '../../../app.json';
 import axios from 'axios';
+import { delay } from 'redux-saga';
 import { put, call } from 'redux-saga/effects';
 import { AsyncStorage } from 'react-native';
 
@@ -48,6 +49,7 @@ export function* tryAuthSaga(action) {
     yield put(actions.updateTokenOnStorage(response.data));
 
     yield put(actions.toggleAuthLoading());
+    yield put(actions.startDataSync());
     yield call(startHome);
 
   } catch (error) {
@@ -75,6 +77,7 @@ export function* updateTokenSaga(action) {
 
     yield put(actions.updateTokenOnStorage(updateToken.data));
     yield put(actions.updateAuthData(updateToken.data));
+    yield put(actions.startDataSync());
     yield call(startHome);
 
   } catch(error) {
@@ -118,7 +121,18 @@ export function* tryAutoLoginSaga() {
   }
 }
 
+export function* getData() {
+  try {
+    while (true) {
+      yield put(actions.fetchWallets());
+      yield put(actions.fetchAllTransactions());
+      yield call(delay, config.updateMs)
+    }
+  } finally {}
+}
+
 export function* logoutSaga() {
   yield put(actions.clearAuthData());
+  yield put(actions.stopDataSync());
   yield call(startAuth);
 }

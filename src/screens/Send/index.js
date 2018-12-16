@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, ScrollView, Text, Picker, View, Slider } from 'react-native';
 import { Label, Input, Item, Button } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
+import uuidv1 from 'uuid/v1';
 
 import { connect } from 'react-redux';
 import { fetchWallets, newTransaction } from '../../store/actions';
@@ -9,8 +10,12 @@ import { fetchWallets, newTransaction } from '../../store/actions';
 import { config } from '../../../app.json';
 
 import shortifyAddress from '../../helpers/shortfyAddress';
-import BlocksInfo from '../../components/common/BlocksInfo';
+import { stringToHex } from '../../helpers/hexTool';
 import formatNBR from '../../helpers/formatNBR';
+
+import WalletPicker from '../../components/common/WalletPicker';
+import BlocksInfo from '../../components/common/BlocksInfo';
+
 class SendScreen extends Component {
 
   constructor(props) {
@@ -23,17 +28,18 @@ class SendScreen extends Component {
       paymentId: '',
       anonymity: 1
     }
-    this.initialState = this.state 
-  }
-
-  componentDidMount() {
-    this.props.fetchWallets();
+    this.initialState = this.state
+    this.setAddress = this.setAddress.bind(this)
   }
 
   componentDidUpdate() {
     if (!this.state.fromAddress && this.props.wallets.length) {
       this.setState({fromAddress: this.props.wallets[0].address})
     }
+  }
+
+  setAddress = (fromAddress) => {
+    this.setState({fromAddress})
   }
 
   validateForm() {
@@ -56,7 +62,7 @@ class SendScreen extends Component {
       },
       extra: {
         anonymity: this.state.anonymity,
-        paymentId: this.state.paymentId
+        paymentId: stringToHex(this.state.paymentId)
       }
     }
     this.props.newTransaction(transaction);
@@ -71,6 +77,7 @@ class SendScreen extends Component {
     return (
       <ScrollView style={styles.container}>
         <Text> Select the wallet to get the NBR from </Text>
+
         <Picker
           selectedValue={this.state.fromAddress}
           style={{ height: 50, width: '100%' }}
@@ -115,10 +122,15 @@ class SendScreen extends Component {
           </View>
         </View>
 
-        <Item regular style={{paddingLeft: 10}}>
-          <Icon name="ios-pricetag" size={21} />
-          <Input placeholder='PaymentId' onChangeText={(paymentId) => this.setState({paymentId})} value={this.state.paymentId} />
-        </Item>
+        <View style={{
+          flexDirection: 'row',
+        }}>
+          <Item regular style={{flex: 1, paddingLeft: 10}}>
+            <Icon name="ios-pricetag" size={21} />
+            <Input placeholder='PaymentId' onChangeText={(paymentId) => this.setState({paymentId})} value={this.state.paymentId} />
+          </Item>
+          <Button rounded success onPress={() => this.setState({paymentId: uuidv1().toString().replace(/-/g, '')})} style={{padding: 15, marginLeft: 5}}><Icon name="md-add" color="white" size={21} /></Button>
+        </View>
 
         <View style={{flexDirection: 'row', marginVertical: 30}}>
           <Text>Anonymity</Text>
@@ -157,7 +169,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchWallets: () => dispatch(fetchWallets()),
     newTransaction: (transaction) => dispatch(newTransaction(transaction))
   }
 }

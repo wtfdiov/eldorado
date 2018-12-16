@@ -22,11 +22,6 @@ export default (screen, props = null) => {
                   orientation: ['portrait']
                 },
                 topBar: {
-                  drawBehind: true,
-                  elevation: 0,
-                  background: {
-                    color: 'transparent'
-                  },
                   rightButtons: [
                     {
                       icon: icons[0],

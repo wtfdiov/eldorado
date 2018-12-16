@@ -10,6 +10,18 @@ import componentStyle from '../../components/style';
 
 class RegisterScreen extends PureComponent {
 
+  static options (passProps) {
+    return {
+      topBar: {
+        drawBehind: true,
+        elevation: 0,
+        background: {
+          color: 'transparent'
+        },
+      }
+    }
+  }
+
   constructor(props) {
     super(props);
     this.state = {

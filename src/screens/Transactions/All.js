@@ -12,10 +12,6 @@ class TransactionsAllScreen extends Component {
     super(props);
   }
 
-  componentDidMount () {
-    this.props.onLoad();
-  }
-
   render () {
 
     return (
@@ -44,7 +40,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLoad: () => dispatch(fetchAllTransactions())
   }
 };
 

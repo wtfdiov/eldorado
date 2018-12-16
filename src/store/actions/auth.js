@@ -58,3 +58,15 @@ export const clearAuthData = () => {
     type: actionTypes.AUTH_CLEAR_DATA
   }
 }
+
+export const startDataSync = () => {
+  return {
+    type: actionTypes.START_DATA_SYNC
+  }
+}
+
+export const stopDataSync = () => {
+  return {
+    type: actionTypes.STOP_DATA_SYNC
+  }
+}

@@ -4,6 +4,7 @@ import { StyleSheet, Linking, View, Text } from 'react-native';
 
 import { config } from '../../../app.json';
 import formatNBR from '../../helpers/formatNBR';
+import { stringFromHex } from '../../helpers/hexTool';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Container, Content, Card, CardItem } from 'native-base';
@@ -52,7 +53,7 @@ class Details extends Component {
               <Text>To</Text><AddressBox address={to.address} truncate={14} />
             </CardItem>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
-              <Text>PaymentId</Text><Text>{extra.paymentId ? extra.paymentId.toString() : 'N/A'}</Text>
+              <Text>PaymentId</Text><Text>{extra.paymentId ? stringFromHex(extra.paymentId) : 'N/A'}</Text>
             </CardItem>
             <CardItem bordered button onPress={() => Linking.openURL(config.explorerHash.replace('@{hash}', transactionHash))} style={{justifyContent: 'space-between'}}>
               <Text>Hash</Text><View style={{flexDirection: 'row'}}><AddressBox address={transactionHash} truncate={14} /><Text> </Text><Icon name="ios-search" size={14} color="#60b145" style={{marginTop: 3}} /></View>

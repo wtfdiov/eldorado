@@ -6,7 +6,7 @@ import authReducer from './reducers/auth';
 import transactionsReducer from './reducers/transactions';
 import walletsReducer from './reducers/wallets';
 
-import { watchAuth, watchTransactions, watchWallets } from './sagas';
+import { watchAuth, watchTransactions, watchWallets, watchData } from './sagas';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -25,6 +25,7 @@ const configureStore = () => {
   sagaMiddleware.run(watchAuth);
   sagaMiddleware.run(watchTransactions);
   sagaMiddleware.run(watchWallets);
+  sagaMiddleware.run(watchData);
   return store;
 };
 

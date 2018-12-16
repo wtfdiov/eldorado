@@ -10,6 +10,7 @@
     "defaultCurrency": "USD",
     "minimumFee": 10000,
     "defaultLocale": "en-us",
-    "explorerHash":"http://explorer.niobiocash.com/?hash=@{hash}#blockchain_transaction"
+    "explorerHash":"http://explorer.niobiocash.com/?hash=@{hash}#blockchain_transaction",
+    "updateMs": 45000
   }
 }
