@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Linking, View, Text } from 'react-native';
+import i18n from '../../../i18n';
 
 import { config } from '../../../app.json';
 import formatNBR from '../../helpers/formatNBR';
@@ -16,6 +17,24 @@ import ConvertNBR from '../../components/common/DisplayValue/ConvertNBR';
 import DisplayStatus from '../../components/common/DisplayStatus'
 
 class Details extends Component {
+
+  static options(passProps) {
+    return {
+      topBar: {
+        buttonColor: '#FFFFFF',
+        background: {
+          color: '#3ae374'
+        },
+        title: {
+          text: i18n.t('transactions.details.title'),
+          color: 'white'
+        },
+        backButton: {
+          showTitle: false
+        }
+      },
+    }
+  }
 
   constructor(props) {
     super(props);
@@ -40,41 +59,38 @@ class Details extends Component {
         <Content>
 
         <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
-          <Pills icon={this.state.transaction.status === 2 ? 'ios-checkmark-circle' : 'ios-clock'} text={this.state.transaction.status === 2 ? 'Confirmed' : 'Awaiting'} />
+          <Pills icon={this.state.transaction.status === 2 ? 'ios-checkmark-circle' : 'ios-clock'} text={this.state.transaction.status === 2 ? i18n.t('common.confirmed') : i18n.t('common.waitingConfirmation')} />
           <Pills icon="ios-cash" text={`${formatNBR(amount)}`} />
           <Pills icon="md-trending-down" text={`${formatNBR(fee)}`} />
         </View>
 
         <Card>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
-              <Text>From</Text><AddressBox address={from} truncate={14} />
+              <Text>{i18n.t('common.from')}</Text><AddressBox address={from} truncate={14} />
             </CardItem>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
-              <Text>To</Text><AddressBox address={to.address} truncate={14} />
+              <Text>{i18n.t('common.to')}</Text><AddressBox address={to.address} truncate={14} />
             </CardItem>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
-              <Text>PaymentId</Text><Text>{extra.paymentId ? stringFromHex(extra.paymentId) : 'N/A'}</Text>
+              <Text>{i18n.t('common.paymentId')}</Text><Text>{extra.paymentId ? stringFromHex(extra.paymentId) : 'N/A'}</Text>
             </CardItem>
             <CardItem bordered button onPress={() => Linking.openURL(config.explorerHash.replace('@{hash}', transactionHash))} style={{justifyContent: 'space-between'}}>
-              <Text>Hash</Text><View style={{flexDirection: 'row'}}><AddressBox address={transactionHash} truncate={14} /><Text> </Text><Icon name="ios-search" size={14} color="#60b145" style={{marginTop: 3}} /></View>
+              <Text>{i18n.t('common.hash')}</Text><View style={{flexDirection: 'row'}}><AddressBox address={transactionHash} truncate={14} /><Text> </Text><Icon name="ios-search" size={14} color="#60b145" style={{marginTop: 3}} /></View>
             </CardItem>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
-              <Text>Amount</Text><NBR value={amount} transaction symbol/>
+              <Text>{i18n.t('common.amount')}</Text><NBR value={amount} transaction symbol/>
             </CardItem>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
-              <Text>Fee</Text><NBR value={fee} />
+              <Text>{i18n.t('common.fee')}</Text><NBR value={fee} />
             </CardItem>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
-              <Text>Anonymity</Text><Text>{extra.anonymity ? extra.anonymity.toString() : '0'}</Text>
+              <Text>{i18n.t('common.anonymity')}</Text><Text>{extra.anonymity ? extra.anonymity.toString() : '0'}</Text>
             </CardItem>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
-              <Text>Status</Text><DisplayStatus status={status} />
+              <Text>{i18n.t('common.status')}</Text><DisplayStatus status={status} />
             </CardItem>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
-              <Text>Created at</Text><Moment element={Text} format="LLLL">{createdAt}</Moment>
-            </CardItem>
-            <CardItem bordered style={{justifyContent: 'space-between'}}>
-              <Text>USD</Text><ConvertNBR to="USD" amount={amount} />
+              <Text>{i18n.t('common.createdAt')}</Text><Moment element={Text} format="LLLL">{createdAt}</Moment>
             </CardItem>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
               <Text>BTC</Text><ConvertNBR to="BTC" amount={amount} />

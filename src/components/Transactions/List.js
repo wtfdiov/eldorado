@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FlatList, Text } from 'react-native';
 import { Navigation } from 'react-native-navigation';
+import i18n from '../../../i18n';
 
 import TransactionItem from './Item';
 
@@ -17,19 +18,6 @@ class TransactionList extends Component {
         passProps: {
           transactionId
         },
-        options: {
-          topBar: {
-            background: {
-              color: '#3ae374'
-            },
-            title: {
-              text: 'Details'
-            },
-            backButton: {
-              showTitle: false
-            }
-          },
-        }
       }
     });
   }
@@ -39,7 +27,7 @@ class TransactionList extends Component {
   render() {
     if (Object.keys(this.props.data).length === 0) {
       return (
-        <Text>There is no transactions to be seen here.</Text>
+        <Text style={{alignSelf: 'center', textAlign: 'center', margin: 10}}>{i18n.t('common.components.transactionsList.noTransactions')}</Text>
       );
     }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Picker, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons';
+import i18n from '../../../../i18n';
 
 import formatNBR from '../../../helpers/formatNBR';
 
@@ -35,7 +36,7 @@ class WalletPicker extends Component {
         ))}
       </Picker>
         :
-        <Text>No wallets</Text>
+        <Text>{i18n.t('common.components.walletPicker.noWallets')}</Text>
         }
       </View>
     );

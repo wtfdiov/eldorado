@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import i18n from '../../../i18n';
 
 import IconWithInfo from '../common/IconWithInfo';
 import NBR from '../common/DisplayValue/NBR';
@@ -17,7 +18,7 @@ class WalletStats extends Component {
     return (
       <View style={componentStyles.profileMetricsContainer}>
         <IconWithInfo 
-          title="BALANCE"
+          title={i18n.t('common.components.walletStats.balance')}
           titleColor="#3E863D"
           displayIcon="ios-wallet"
           iconColor="#adb5bd"
@@ -26,7 +27,7 @@ class WalletStats extends Component {
         />
 
         <IconWithInfo 
-          title="LOCKED"
+          title={i18n.t('common.components.walletStats.locked')}
           titleColor="#dc3545"
           iconColor="#adb5bd"
           displayIcon="ios-lock"
@@ -35,7 +36,7 @@ class WalletStats extends Component {
         />
 
         <IconWithInfo 
-          title="VALUE (USD)"
+          title={i18n.t('common.components.walletStats.valueUSD')}
           titleColor="#23BF08"
           displayIcon="logo-usd"
           iconColor="#adb5bd"
@@ -44,7 +45,7 @@ class WalletStats extends Component {
         />
 
         <IconWithInfo 
-          title="VALUE (BTC)"
+          title={i18n.t('common.components.walletStats.valueBTC')}
           titleColor="#6f42c1"
           displayIcon="logo-bitcoin"
           iconColor="#adb5bd"

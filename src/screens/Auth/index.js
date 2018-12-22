@@ -3,6 +3,7 @@ import { StyleSheet, Dimensions, View, Text, ImageBackground, Image } from 'reac
 import { connect } from 'react-redux';
 import { Button, Input, Item } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons'
+import i18n from '../../../i18n';
 
 import { tryAuth } from '../../store/actions/index';
 import openModal from '../../navigation/openModal';
@@ -42,7 +43,7 @@ class AuthScreen extends Component {
 
         <View style={styles.formContainer}>
 
-          <Text style={styles.labelEmail}>Enter your email</Text>
+          <Text style={styles.labelEmail}>{i18n.t('login.emailInputLabel')}</Text>
           <Item regular style={styles.textEmail}>
             <Input
               autoCorrect={false}
@@ -53,7 +54,7 @@ class AuthScreen extends Component {
               underlineColorAndroid="transparent" />
           </Item>
 
-          <Text style={styles.labelPassword}>Enter your password</Text>
+          <Text style={styles.labelPassword}>{i18n.t('login.passwordInputLabel')}</Text>
           <Item regular style={styles.textPassword}>
             <Input
               autoCorrect={false}
@@ -62,7 +63,7 @@ class AuthScreen extends Component {
               secureTextEntry />
           </Item>
 
-          <Text style={styles.label2FA}>2FA</Text>
+          <Text style={styles.label2FA}>{i18n.t('login.2FAInputLabel')}</Text>
           <Item regular style={styles.text2FA}>
             <Input
               autoCorrect={false}
@@ -84,7 +85,7 @@ class AuthScreen extends Component {
             <Text style={{
               color: '#FFFFFF',
               fontSize: 16
-            }}>SIGN IN</Text>
+            }}>{i18n.t('login.signInBtnLabel')}</Text>
           </Button>
 
         </View>
@@ -93,7 +94,7 @@ class AuthScreen extends Component {
           <View>
             <Button transparent light onPress={() => openModal('eldorado.screens.Register')}>
               <Icon color="#FFFFFF" name="ios-person-add" size={18} />
-              <Text style={{color: '#FFFFFF'}}  > Create an account</Text>
+              <Text style={{color: '#FFFFFF'}}  > {i18n.t('login.signUpBtnLabel')}</Text>
             </Button>
           </View>
           <View style={{borderRightWidth: 1, borderColor: '#FFFFFF', height: 40}}>
@@ -101,7 +102,7 @@ class AuthScreen extends Component {
           <View>
             <Button transparent light onPress={() => openModal('eldorado.screens.Forgot')}>
               <Icon color="#FFFFFF" name="ios-key" size={18} />
-              <Text style={{color: '#FFFFFF' }}> Reset password</Text>
+              <Text style={{color: '#FFFFFF' }}> {i18n.t('login.resetPasswordBtnLabel')}</Text>
             </Button>
           </View>
         </View>

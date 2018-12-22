@@ -3,6 +3,7 @@ import { StyleSheet, ScrollView, Text, Picker, View, ActivityIndicator } from 'r
 import { Button } from 'native-base';
 import QRCode from 'react-qr-code';
 import Icon from 'react-native-vector-icons/Ionicons';
+import i18n from '../../../i18n';
 
 import { connect } from 'react-redux';
 
@@ -36,10 +37,10 @@ class SendScreen extends Component {
           ))}
         </Picker>
 
-        {this.state.address ? <QRCode value={this.state.address} fgColor="#60b145" /> : <ActivityIndicator size="large" color="#60b145" />}
+        {this.state.address ? <QRCode value={this.state.address} fgColor="#000" /> : <ActivityIndicator size="large" color="#60b145" />}
 
-    <Text> Share this QRCode to receive NBR in this wallet! </Text>
-        <Button success iconLeft style={{padding: 10, alignSelf: 'center'}}><Icon name="md-share" size={18} color="white" /><Text style={{color: 'white', fontWeight: '600'}}> SHARE</Text></Button>
+    <Text style={{textAlign: 'center'}}> {i18n.t('receive.walletQRDesc')} </Text>
+        <Button success iconLeft style={{padding: 10, alignSelf: 'center'}}><Icon name="md-share" size={18} color="white" /><Text style={{color: 'white', fontWeight: '600'}}> {i18n.t('receive.shareBtnLabel')}</Text></Button>
       </ScrollView>
     );
   }

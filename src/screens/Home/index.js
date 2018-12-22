@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, View, FlatList } from 'react-native';
+import { Platform, Linking, StyleSheet, ScrollView, View } from 'react-native';
+
 import { connect } from 'react-redux';
 
 import { fetchWalletsBalance } from '../../store/actions';
@@ -15,6 +16,21 @@ class HomeScreen extends Component {
 
   componentDidMount() {
     this.props.getBallance();
+    if (Platform.OS === 'android') {
+      Linking.getInitialURL().then(url => {
+        console.tron.log(url);
+      });
+    } else {
+      Linking.addEventListener('url', this.handleOpenURL);
+    }
+  }
+    
+  componentWillUnmount() {
+    Linking.removeEventListener('url', this.handleOpenURL);
+  }
+  
+  handleOpenURL = (event) => {
+    console.tron.log(event);
   }
 
   render () {

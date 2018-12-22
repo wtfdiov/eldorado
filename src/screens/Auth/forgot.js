@@ -3,6 +3,7 @@ import { StyleSheet, Dimensions, ScrollView, View, Text } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { Label, Input, Item, Button } from 'native-base';
 import axios from 'axios';
+import i18n from '../../../i18n';
 
 import { config } from '../../../app.json';
 
@@ -41,7 +42,7 @@ class ForgotScreen extends PureComponent {
       email: this.state.email,
       type: 'reset-password'
     })
-      .then(resp => alert('Password reset', `We have sent you an email with instructions to reset your password`))
+      .then(resp => alert(i18n.t('resetPassword.title'), i18n.t('resetPassword.requestMessages.resetPasswordSuccess')))
       .catch(error => alert(error.message));
   }
 
@@ -60,9 +61,9 @@ class ForgotScreen extends PureComponent {
             alignItems: 'center',
             paddingHorizontal: 20
         }}>
-          <Text>If you do not remember your password, here you can reset it typing your email in the field below.</Text>
+          <Text>{i18n.t('resetPassword.desc')}</Text>
           <Item regular>
-            <Label style={styles.labels}>Email</Label>
+            <Label style={styles.labels}>{i18n.t('resetPassword.emailInputLabel')}</Label>
             <Input onChangeText={(email) => this.setState({email})} value={this.state.email.toString()} />
           </Item>
 
@@ -75,7 +76,7 @@ class ForgotScreen extends PureComponent {
             <Text style={{
               color: '#FFFFFF',
               fontSize: 16
-            }}>RESET PASSWORD</Text> 
+            }}>{i18n.t('resetPassword.resetPasswordBtnLabel')}</Text> 
           </Button>
         </ScrollView>
       </View>

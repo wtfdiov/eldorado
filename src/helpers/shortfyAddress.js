@@ -1,6 +1,8 @@
+import i18n from '../../i18n';
+
 export default (address, truncate = 4) => {
     if(!address) {
-      return '      Anonymous      '
+      return `      ${i18n.t('common.anonymous')}      `
     }
     try {
       return `${address.substring(0, truncate)}...${address.substring(address.length - truncate, address.length)}`

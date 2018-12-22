@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { StyleSheet, ScrollView, View, Text, Dimensions, ActivityIndicator } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { Label, Input, Item, Button } from 'native-base';
+import i18n from '../../../i18n';
 
 import { connect } from 'react-redux';
 import { signUp } from '../../store/actions/index';
@@ -58,21 +59,21 @@ class RegisterScreen extends PureComponent {
             alignItems: 'center',
             paddingHorizontal: 20
         }}>
-          <Text>Sign-up for NBR Wallet, is free and only takes a minute!</Text>
+          <Text>{i18n.t('signUp.desc')}</Text>
           <Item regular>
-            <Label style={styles.labels}>Name</Label>
+            <Label style={styles.labels}>{i18n.t('signUp.nameInputLabel')}</Label>
             <Input onChangeText={(name) => this.setState({name})} value={this.state.name.toString()} />
           </Item>
           <Item regular>
-            <Label style={styles.labels}>Email</Label>
+            <Label style={styles.labels}>{i18n.t('signUp.emailInputLabel')}</Label>
             <Input onChangeText={(email) => this.setState({email})} value={this.state.email.toString()} />
           </Item>
           <Item regular>
-            <Label style={styles.labels}>Password</Label>
+            <Label style={styles.labels}>{i18n.t('signUp.passwordInputLabel')}</Label>
             <Input onChangeText={(password) => this.setState({password})} value={this.state.password.toString()} />
           </Item>
           <Item regular>
-            <Label style={styles.labels}>Confirm</Label>
+            <Label style={styles.labels}>{i18n.t('signUp.confirmPasswordInputLabel')}</Label>
             <Input onChangeText={(passwordConfirm) => this.setState({passwordConfirm})} value={this.state.passwordConfirm.toString()} />
           </Item>
 
@@ -89,9 +90,9 @@ class RegisterScreen extends PureComponent {
             <Text style={{
               color: '#FFFFFF',
               fontSize: 16
-            }}>SIGN UP</Text>
+            }}>{i18n.t('signUp.signUpBtnLabel')}</Text>
             }
-            
+
           </Button>
         </ScrollView>
       </View>

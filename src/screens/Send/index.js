@@ -3,9 +3,10 @@ import { StyleSheet, ScrollView, Text, Picker, View, Slider } from 'react-native
 import { Label, Input, Item, Button } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 import uuidv1 from 'uuid/v1';
+import i18n from '../../../i18n';
 
 import { connect } from 'react-redux';
-import { fetchWallets, newTransaction } from '../../store/actions';
+import { newTransaction } from '../../store/actions';
 
 import { config } from '../../../app.json';
 
@@ -13,7 +14,6 @@ import shortifyAddress from '../../helpers/shortfyAddress';
 import { stringToHex } from '../../helpers/hexTool';
 import formatNBR from '../../helpers/formatNBR';
 
-import WalletPicker from '../../components/common/WalletPicker';
 import BlocksInfo from '../../components/common/BlocksInfo';
 
 class SendScreen extends Component {
@@ -76,7 +76,7 @@ class SendScreen extends Component {
   render () {
     return (
       <ScrollView style={styles.container}>
-        <Text> Select the wallet to get the NBR from </Text>
+        <Text> {i18n.t('send.selectWalletLabel')} </Text>
 
         <Picker
           selectedValue={this.state.fromAddress}
@@ -90,7 +90,7 @@ class SendScreen extends Component {
 
         <Item regular style={{paddingLeft: 10}}>
           <Icon name="ios-wallet" size={21} />
-          <Input placeholder='Destination' onChangeText={(toAddress) => this.setState({toAddress})} value={this.state.toAddress} spellCheck={false} />
+          <Input placeholder={i18n.t('send.destinationInputLabel')} onChangeText={(toAddress) => this.setState({toAddress})} value={this.state.toAddress} spellCheck={false} />
         </Item>
 
         {this.state.fromAddress
@@ -104,20 +104,20 @@ class SendScreen extends Component {
               ).balance.locked}
           />
         )
-        : null}
+        : <Text style={{ alignSelf: 'center', margin: 10 }}>{i18n.t('send.selectAnWallet')}</Text>}
 
         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around', marginBottom: 10}}>
           <View style={{flex: 2, paddingRigth: 10}}>
             <Item regular>
-              <Label style={{backgroundColor: '#e6fbe6', color: '#acdcac', height: '100%', paddingTop: 10, paddingHorizontal: 5}}>Amount</Label>
               <Input onChangeText={(amount) => this.setState({amount})} value={this.state.amount.toString()} keyboardType="number-pad" />
+              <Label style={{backgroundColor: '#e6fbe6', fontSize: 12, color: '#acdcac', height: '100%', textAlignVertical: 'center', paddingHorizontal: 5}}>{i18n.t('common.amount')}</Label>
             </Item>
           </View>
         
           <View style={{flex: 2, paddingLeft: 10}}>
             <Item regular>
-              <Label style={{backgroundColor: '#e6fbe6', color: '#acdcac', height: '100%', paddingTop: 10, paddingHorizontal: 5}}>Fee</Label>
               <Input onChangeText={(fee) => this.setState({fee})} value={this.state.fee.toString()} keyboardType="number-pad" />
+              <Label style={{backgroundColor: '#e6fbe6', fontSize: 12, color: '#acdcac', height: '100%', textAlignVertical: 'center', alignContent: 'center', paddingHorizontal: 5}}>{i18n.t('common.fee')}</Label>
             </Item>
           </View>
         </View>
@@ -127,13 +127,13 @@ class SendScreen extends Component {
         }}>
           <Item regular style={{flex: 1, paddingLeft: 10}}>
             <Icon name="ios-pricetag" size={21} />
-            <Input placeholder='PaymentId' onChangeText={(paymentId) => this.setState({paymentId})} value={this.state.paymentId} />
+            <Input placeholder={i18n.t('common.paymentId')} onChangeText={(paymentId) => this.setState({paymentId})} value={this.state.paymentId} />
           </Item>
           <Button rounded success onPress={() => this.setState({paymentId: uuidv1().toString().replace(/-/g, '')})} style={{padding: 15, marginLeft: 5}}><Icon name="md-add" color="white" size={21} /></Button>
         </View>
 
         <View style={{flexDirection: 'row', marginVertical: 30}}>
-          <Text>Anonymity</Text>
+          <Text>{i18n.t('common.anonymity')}</Text>
           <Slider
             minimumValue={0}
             maximumValue={6}
@@ -148,7 +148,7 @@ class SendScreen extends Component {
           <Text>{this.state.anonymity}</Text>
         </View>
 
-        <Button success block disabled={this.validateForm()} onPress={() => this.createTransaction()}><Text> SEND </Text></Button>
+        <Button success block disabled={this.validateForm()} onPress={() => this.createTransaction()}><Text> {i18n.t('send.sendBtnLabel')} </Text></Button>
       </ScrollView>
     );
   }

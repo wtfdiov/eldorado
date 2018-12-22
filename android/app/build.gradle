@@ -111,8 +111,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
-        versionCode 000003
-        versionName "0.3"
+        versionCode 000004
+        versionName "0.4"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -176,6 +176,7 @@ dependencies {
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation project(':react-native-navigation')
     implementation project(':react-native-vector-icons')
+    implementation project(':react-native-languages')
 }
 
 // Run this once to be able to run the application with BUCK
