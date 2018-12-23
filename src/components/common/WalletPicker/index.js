@@ -12,7 +12,7 @@ class WalletPicker extends Component {
       <View style={[{
         flex: 1,
         flexDirection: 'row',
-        backgroundColor: '#60b145',
+        backgroundColor: '#006e6e',
         justifyContent: 'center',
         alignItems: 'center'
       }]}>

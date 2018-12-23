@@ -1,86 +1,88 @@
-{
-    "login": {
-        "title": "Entrar",
-        "emailInputLabel": "Insira seu email",
-        "passwordInputLabel": "Insira sua senha",
-        "2FAInputLabel": "Código 2FA (Se estiver ativado)",
-        "signInBtnLabel": "ENTRAR",
-        "signUpBtnLabel": "Criar nova conta",
-        "resetPasswordBtnLabel": "Redefinir senha"
-    },
-    "signUp": {
-        "title": "Cadastro",
-        "desc": "Cadastre-se na NBR Wallet, é grátis e leva só um minuto!",
-        "nameInputLabel": "Nome",
-        "emailInputLabel": "Email",
-        "passwordInputLabel": "Senha",
-        "confirmPasswordInputLabel": "Confirmar senha",
-        "signUpBtnLabel": "CADASTRAR"
-    },
-    "resetPassword": {
-        "title": "Redefinir senha",
-        "desc": "Se você não lembra a sua senha, aqui você consegue redefinir, inserindo seu email no campo abaixo.",
-        "emailInputLabel": "Email",
-        "resetPasswordBtnLabel": "REDEFINIR SENHA",
-        "requestMessages": {
-            "resetPasswordSuccess": "Enviamos as instruções para redefinir sua senha no email informado."
-        }
-    },
-    "home": {
-        "title": "Minha carteira",
-        "logOutBtnLabel": "SAIR",
-        "configBtnLabel": "CONFIGURAR"
-    },
-    "send": {
-        "title": "Enviar NBR",
-        "selectWalletLabel": "Selecione a carteira que o NBR será retirado",
-        "destinationInputLabel": "Destino",
-        "selectAnWallet": "Selecione uma carteira",
-        "sendBtnLabel": "ENVIAR"
-    },
-    "receive": {
-        "title": "Receber NBR",
-        "walletQRDesc": "Compartilhe esse código para receber NBR nessa carteira!",
-        "shareBtnLabel": "COMPARTILHAR"
-    },
-    "transactions": {
-        "title": "Transações",
-        "details": {
-            "title": "Detalhes"
-        }
-    },
-    "common": {
-        "loading": "Carregando",
-        "from": "De",
-        "to": "Para",
-        "amount": "Qtd.",
-        "date": "Data",
-        "waitingConfirmation": "Aguardando",
-        "confirmed": "Confirmada",
-        "fee": "Taxa",
-        "hash": "Hash",
-        "paymentId": "ID de Pagamento",
-        "anonymity": "Anonimato",
-        "status": "Status",
-        "createdAt": "Criado em",
-        "na": "'N/A",
-        "save": "Salvar",
-        "cancel": "Cancelar",
-        "ok": "Ok",
-        "anonymous": "Anônimo",
-        "components": {
-            "walletPicker": {
-                "noWallets": "Sem carteiras"
-            },
-            "walletStats": {
-                "balance": "SALDO",
-                "locked": "BLOQUEADO",
-                "valueUSD": "VALOR (USD)",
-                "valueBTC": "VALOR (BTC)"
-            },
-            "transactionsList": {
-                "noTransactions": "Não há transações a serem exibidas aqui."
-            }
-        }
-    }
+{ 
+    "login": { 
+        "title": "Entrar", 
+        "emailInputLabel": "Insira seu email", 
+        "passwordInputLabel": "Senha", 
+        "2FAInputLabel": "Código 2FA (Se estiver ativado)", 
+        "signInBtnLabel": "ENTRAR", 
+        "signUpBtnLabel": "Criar nova conta", 
+        "resetPasswordBtnLabel": "Redefinir senha" 
+    }, 
+    "signUp": { 
+        "title": "Cadastro", 
+        "desc": "Cadastre-se na NBR Wallet, é grátis e leva só um minuto!", 
+        "nameInputLabel": "Nome", 
+        "emailInputLabel": "Email", 
+        "passwordInputLabel": "Senha", 
+        "confirmPasswordInputLabel": "Confirmar senha", 
+        "signUpBtnLabel": "CADASTRAR" 
+    }, 
+    "resetPassword": { 
+        "title": "Redefinir senha", 
+        "desc": "Para redefinir sua senha, insira seu email no campo abaixo.", 
+        "emailInputLabel": "Email", 
+        "resetPasswordBtnLabel": "REDEFINIR SENHA", 
+        "requestMessages": { 
+            "resetPasswordSuccess": "Enviamos as instruções para redefinir sua senha no email cadastrado." 
+        } 
+    }, 
+    "home": { 
+        "title": "Minha carteira", 
+        "logOutBtnLabel": "SAIR", 
+        "configBtnLabel": "CONFIGURAR" 
+    }, 
+    "send": { 
+        "title": "Enviar NBR", 
+        "selectWalletLabel": "Selecione a carteira de retirada", 
+        "destinationInputLabel": "Carteira de destino", 
+        "selectAnWallet": "Selecione uma carteira", 
+        "sendBtnLabel": "ENVIAR" 
+    }, 
+    "receive": { 
+        "title": "Receber NBR", 
+        "walletQRDesc": "Compartilhe esse código para receber NBR em sua carteira!", 
+        "shareBtnLabel": "COMPARTILHAR", 
+        "shareDialogTitle": "NBR Mobile Wallet", 
+        "shareDefaultMessage": "Essa é a minha carteira NBR, você pode me enviar pagamentos através dela." 
+    }, 
+    "transactions": { 
+        "title": "Transações", 
+        "details": { 
+            "title": "Detalhes" 
+        } 
+    }, 
+    "common": { 
+        "loading": "Carregando", 
+        "from": "De", 
+        "to": "Para", 
+        "amount": "Quantidade", 
+        "date": "Data", 
+        "waitingConfirmation": "Aguardando", 
+        "confirmed": "Confirmada", 
+        "fee": "Taxa", 
+        "hash": "Hash", 
+        "paymentId": "ID de Pagamento", 
+        "anonymity": "Nível de anonimato", 
+        "status": "Status", 
+        "createdAt": "Criado em", 
+        "na": "'N/A", 
+        "save": "Salvar", 
+        "cancel": "Cancelar", 
+        "ok": "Ok", 
+        "anonymous": "Anônimo", 
+        "components": { 
+            "walletPicker": { 
+                "noWallets": "Sem carteiras" 
+            }, 
+            "walletStats": { 
+                "balance": "SALDO", 
+                "locked": "BLOQUEADO", 
+                "valueUSD": "USD", 
+                "valueBTC": "BTC" 
+            }, 
+            "transactionsList": { 
+                "noTransactions": "Não há transações a serem exibidas." 
+            } 
+        } 
+    } 
 }

@@ -110,14 +110,14 @@ class SendScreen extends Component {
           <View style={{flex: 2, paddingRigth: 10}}>
             <Item regular>
               <Input onChangeText={(amount) => this.setState({amount})} value={this.state.amount.toString()} keyboardType="number-pad" />
-              <Label style={{backgroundColor: '#e6fbe6', fontSize: 12, color: '#acdcac', height: '100%', textAlignVertical: 'center', paddingHorizontal: 5}}>{i18n.t('common.amount')}</Label>
+              <Label style={{backgroundColor: '#c6f2f2', fontSize: 12, color: '#65b4b4', height: '100%', textAlignVertical: 'center', paddingHorizontal: 5}}>{i18n.t('common.amount')}</Label>
             </Item>
           </View>
         
           <View style={{flex: 2, paddingLeft: 10}}>
             <Item regular>
               <Input onChangeText={(fee) => this.setState({fee})} value={this.state.fee.toString()} keyboardType="number-pad" />
-              <Label style={{backgroundColor: '#e6fbe6', fontSize: 12, color: '#acdcac', height: '100%', textAlignVertical: 'center', alignContent: 'center', paddingHorizontal: 5}}>{i18n.t('common.fee')}</Label>
+              <Label style={{backgroundColor: '#c6f2f2', fontSize: 12, color: '#65b4b4', height: '100%', textAlignVertical: 'center', alignContent: 'center', paddingHorizontal: 5}}>{i18n.t('common.fee')}</Label>
             </Item>
           </View>
         </View>
@@ -129,7 +129,7 @@ class SendScreen extends Component {
             <Icon name="ios-pricetag" size={21} />
             <Input placeholder={i18n.t('common.paymentId')} onChangeText={(paymentId) => this.setState({paymentId})} value={this.state.paymentId} />
           </Item>
-          <Button rounded success onPress={() => this.setState({paymentId: uuidv1().toString().replace(/-/g, '')})} style={{padding: 15, marginLeft: 5}}><Icon name="md-add" color="white" size={21} /></Button>
+          <Button rounded onPress={() => this.setState({paymentId: uuidv1().toString().replace(/-/g, '')})} style={{padding: 15, marginLeft: 5, backgroundColor: '#006e6e'}}><Icon name="md-add" color="white" size={21} /></Button>
         </View>
 
         <View style={{flexDirection: 'row', marginVertical: 30}}>
@@ -143,7 +143,7 @@ class SendScreen extends Component {
             style={{
               flex: 1
             }}
-            thumbTintColor="#60b145"
+            thumbTintColor="#006e6e"
           />
           <Text>{this.state.anonymity}</Text>
         </View>

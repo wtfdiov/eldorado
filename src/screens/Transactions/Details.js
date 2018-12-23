@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Linking, View, Text } from 'react-native';
+import RNLanguages from 'react-native-languages';
 import i18n from '../../../i18n';
 
 import { config } from '../../../app.json';
@@ -10,6 +11,7 @@ import { stringFromHex } from '../../helpers/hexTool';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Container, Content, Card, CardItem } from 'native-base';
 import Moment from 'react-moment';
+import 'moment/locale/pt-br';
 import Pills from '../../components/common/TPills';
 import AddressBox from '../../components/common/AddressBox';
 import NBR from '../../components/common/DisplayValue/NBR';
@@ -23,7 +25,7 @@ class Details extends Component {
       topBar: {
         buttonColor: '#FFFFFF',
         background: {
-          color: '#3ae374'
+          color: '#006e6e'
         },
         title: {
           text: i18n.t('transactions.details.title'),
@@ -75,7 +77,7 @@ class Details extends Component {
               <Text>{i18n.t('common.paymentId')}</Text><Text>{extra.paymentId ? stringFromHex(extra.paymentId) : 'N/A'}</Text>
             </CardItem>
             <CardItem bordered button onPress={() => Linking.openURL(config.explorerHash.replace('@{hash}', transactionHash))} style={{justifyContent: 'space-between'}}>
-              <Text>{i18n.t('common.hash')}</Text><View style={{flexDirection: 'row'}}><AddressBox address={transactionHash} truncate={14} /><Text> </Text><Icon name="ios-search" size={14} color="#60b145" style={{marginTop: 3}} /></View>
+              <Text>{i18n.t('common.hash')}</Text><View style={{flexDirection: 'row'}}><AddressBox address={transactionHash} truncate={14} /><Text> </Text><Icon name="ios-search" size={14} color="#006e6e" style={{marginTop: 3}} /></View>
             </CardItem>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
               <Text>{i18n.t('common.amount')}</Text><NBR value={amount} transaction symbol/>
@@ -90,7 +92,7 @@ class Details extends Component {
               <Text>{i18n.t('common.status')}</Text><DisplayStatus status={status} />
             </CardItem>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
-              <Text>{i18n.t('common.createdAt')}</Text><Moment element={Text} format="LLLL">{createdAt}</Moment>
+              <Text>{i18n.t('common.createdAt')}</Text><Text style={{fontSize: 12}}><Moment locale={RNLanguages.language} element={Text} format="LLLL">{createdAt}</Moment></Text>
             </CardItem>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
               <Text>BTC</Text><ConvertNBR to="BTC" amount={amount} />

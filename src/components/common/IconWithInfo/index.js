@@ -22,7 +22,7 @@ class IconWithInfo extends Component {
       <View style={[componentStyle.profileMetrics, componentStyle.shadow, componentStyle.centreItems, {flexDirection: 'row', padding: 10, justifyContent: 'space-between'}]}>
         <Icon name={displayIcon} color={iconColor} size={parseInt(size)} />
         <View>
-        <Text style={{color: titleColor}}>
+        <Text style={{color: titleColor, alignSelf: 'flex-end'}}>
         {title}
         </Text>
         {info}

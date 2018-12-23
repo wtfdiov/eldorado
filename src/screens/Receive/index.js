@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, Text, Picker, View, ActivityIndicator } from 'react-native';
+import { Share, StyleSheet, ScrollView, Text, Picker, View, ActivityIndicator } from 'react-native';
 import { Button } from 'native-base';
 import QRCode from 'react-qr-code';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -24,6 +24,16 @@ class SendScreen extends Component {
     }
   }
 
+  shareHandler = () => {
+    Share.share({
+      message: `niobiocash://${this.state.address}`,
+      url: `niobiocash://${this.state.address}`,
+      title: i18n.t('receive.shareDialogTitle')
+    }, {
+      dialogTitle: i18n.t('receive.shareDialogTitle'),
+    })
+  }
+
   render () {
     return (
       <ScrollView contentContainerStyle={styles.container}>
@@ -37,10 +47,10 @@ class SendScreen extends Component {
           ))}
         </Picker>
 
-        {this.state.address ? <QRCode value={this.state.address} fgColor="#000" /> : <ActivityIndicator size="large" color="#60b145" />}
+        {this.state.address ? <QRCode value={this.state.address} fgColor="#000" /> : <ActivityIndicator size="large" color="#006e6e" />}
 
     <Text style={{textAlign: 'center'}}> {i18n.t('receive.walletQRDesc')} </Text>
-        <Button success iconLeft style={{padding: 10, alignSelf: 'center'}}><Icon name="md-share" size={18} color="white" /><Text style={{color: 'white', fontWeight: '600'}}> {i18n.t('receive.shareBtnLabel')}</Text></Button>
+        <Button iconLeft onPress={this.shareHandler} disabled={!this.state.address} style={{padding: 10, alignSelf: 'center', backgroundColor: '#006e6e'}}><Icon name="md-share" size={18} color="white" /><Text style={{color: 'white', fontWeight: '600'}}> {i18n.t('receive.shareBtnLabel')}</Text></Button>
       </ScrollView>
     );
   }

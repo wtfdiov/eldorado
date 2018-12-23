@@ -26,7 +26,7 @@ export default () => {
                       options: {
                         bottomTab: {
                           icon: assets[0],
-                          iconColor: '#009432',
+                          iconColor: '#000f0f',
                           selectedIconColor: 'white',
                           testID: 'HOME_TAB_BUTTON'
                         },
@@ -42,7 +42,7 @@ export default () => {
                       options: {
                         bottomTab: {
                           icon: assets[1],
-                          iconColor: '#009432',
+                          iconColor: '#000f0f',
                           selectedIconColor: 'white',
                           testID: 'SEND_TAB_BUTTON'
                         },
@@ -59,7 +59,7 @@ export default () => {
                       options: {
                         bottomTab: {
                           icon: assets[4],
-                          iconColor: '#009432',
+                          iconColor: '#000f0f',
                           selectedIconColor: 'white',
                           testID: 'RECEIVE_TAB_BUTTON'
                         },
@@ -110,7 +110,7 @@ export default () => {
                       options: {
                         bottomTab: {
                           icon: assets[2],
-                          iconColor: '#009432',
+                          iconColor: '#000f0f',
                           selectedIconColor: 'white',
                           testID: 'TRANSACTIONS_TAB_BUTTON'
                         },
@@ -123,7 +123,7 @@ export default () => {
                 ],
                 options: {
                   bottomTabs: {
-                    backgroundColor: '#60b145'
+                    backgroundColor: '#006e6e'
                   }
                 }
               },

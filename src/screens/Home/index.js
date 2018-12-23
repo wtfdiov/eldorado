@@ -16,9 +16,13 @@ class HomeScreen extends Component {
 
   componentDidMount() {
     this.props.getBallance();
+    
     if (Platform.OS === 'android') {
       Linking.getInitialURL().then(url => {
-        console.tron.log(url);
+        if (url) {
+          console.tron.log(url);
+          Linking.openURL(url)
+        }
       });
     } else {
       Linking.addEventListener('url', this.handleOpenURL);
