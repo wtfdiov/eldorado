@@ -20,8 +20,7 @@ class HomeScreen extends Component {
     if (Platform.OS === 'android') {
       Linking.getInitialURL().then(url => {
         if (url) {
-          console.tron.log(url);
-          Linking.openURL(url)
+          this.handleOpenURL(url);
         }
       });
     } else {
@@ -34,7 +33,7 @@ class HomeScreen extends Component {
   }
   
   handleOpenURL = (event) => {
-    console.tron.log(event);
+    return null
   }
 
   render () {
