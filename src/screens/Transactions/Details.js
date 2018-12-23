@@ -10,8 +10,8 @@ import { stringFromHex } from '../../helpers/hexTool';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Container, Content, Card, CardItem } from 'native-base';
-import Moment from 'react-moment';
 import 'moment/locale/pt-br';
+import Moment from 'react-moment';
 import Pills from '../../components/common/TPills';
 import AddressBox from '../../components/common/AddressBox';
 import NBR from '../../components/common/DisplayValue/NBR';
@@ -92,7 +92,7 @@ class Details extends Component {
               <Text>{i18n.t('common.status')}</Text><DisplayStatus status={status} />
             </CardItem>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
-              <Text>{i18n.t('common.createdAt')}</Text><Text style={{fontSize: 12}}><Moment locale={RNLanguages.language} element={Text} format="LLLL">{createdAt}</Moment></Text>
+              <Text>{i18n.t('common.createdAt')}</Text><Text style={{fontSize: 12}}><Moment locale={RNLanguages.language.toLowerCase()} element={Text} format="LLLL">{createdAt}</Moment></Text>
             </CardItem>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
               <Text>BTC</Text><ConvertNBR to="BTC" amount={amount} />

@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import RNLanguages from 'react-native-languages';
-import Moment from 'react-moment';
 import 'moment/locale/pt-br';
+import Moment from 'react-moment';
 
 import Icon from 'react-native-vector-icons/Ionicons'
 
@@ -30,7 +30,7 @@ const transactionItem = (props) => (
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Icon name="ios-calendar" size={18} />
           <Text> </Text>
-          <Moment locale={RNLanguages.language} element={Text} format="D MMM YYYY HH:mm">{props.transaction.createdAt}</Moment>
+          <Moment locale={RNLanguages.language.toLowerCase()} element={Text} format="D MMM YYYY HH:mm">{props.transaction.createdAt}</Moment>
         </View>
       </View>
     </GridItem>
