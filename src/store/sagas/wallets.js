@@ -38,3 +38,38 @@ export function* fetchWalletsBalanceSaga() {
     alert(`Problem fetching wallets ballance ${error}`)
   }
 }
+
+export function* createWalletSaga() {
+  const state = yield select();
+
+  try {
+    const response = yield axios.post(`${config.api}/addresses`, {},
+    {
+      headers: {
+        Authorization: `Bearer ${state.auth.token}`
+      }
+    });
+
+    yield put(actions.fetchWallets());
+    yield put(actions.selectWallet(response.address));
+  } catch (error) {
+    alert(`Problem creating new wallet ${error}`)
+  }
+}
+
+export function* deleteWalletSaga(action) {
+  const state = yield select();
+
+  try {
+    const response = yield axios.delete(`${config.api}/addresses/${action.address}`,
+    {
+      headers: {
+        Authorization: `Bearer ${state.auth.token}`
+      }
+    });
+    yield put(actions.selectWallet(null));
+    yield put(actions.fetchWallets());
+  } catch (error) {
+    alert(`Problem removing wallet ${error}`)
+  }
+}

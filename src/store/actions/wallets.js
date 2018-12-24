@@ -38,3 +38,16 @@ export const fetchWalletsBalanceSuccess = (balance) => {
     balance
   }
 }
+
+export const createWallet = () => {
+  return {
+    type: actionTypes.WALLETS_CREATE_NEW,
+  }
+}
+
+export const deleteWallet = (address) => {
+  return {
+    type: actionTypes.WALLETS_DELETE,
+    address
+  }
+}

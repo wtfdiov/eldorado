@@ -24,5 +24,7 @@ export {
   storeWallets,
   selectWallet,
   fetchWalletsBalance,
-  fetchWalletsBalanceSuccess
+  fetchWalletsBalanceSuccess,
+  createWallet,
+  deleteWallet
 } from './wallets';

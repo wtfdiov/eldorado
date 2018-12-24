@@ -33,14 +33,15 @@
     }, 
     "send": { 
         "title": "Enviar NBR", 
-        "selectWalletLabel": "Selecione a carteira de retirada", 
+        "selectWalletLabel": "Carteira de retirada",
         "destinationInputLabel": "Carteira de destino", 
         "selectAnWallet": "Selecione uma carteira", 
         "sendBtnLabel": "ENVIAR" 
     }, 
     "receive": { 
-        "title": "Receber NBR", 
-        "walletQRDesc": "Compartilhe esse código para receber NBR em sua carteira!", 
+        "title": "Receber NBR",
+        "noWalletMsg": "Selecione uma carteira para compartilhar",
+        "walletQRDesc": "Compartilhe esse código para receber NBR em sua carteira!",
         "shareBtnLabel": "COMPARTILHAR", 
         "shareDialogTitle": "NBR Mobile Wallet", 
         "shareDefaultMessage": "Essa é a minha carteira NBR, você pode me enviar pagamentos através dela." 
@@ -65,7 +66,7 @@
         "anonymity": "Nível de anonimato", 
         "status": "Status", 
         "createdAt": "Criado em", 
-        "na": "'N/A", 
+        "na": "N/A", 
         "save": "Salvar", 
         "cancel": "Cancelar", 
         "ok": "Ok", 

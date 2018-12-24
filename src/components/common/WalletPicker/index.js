@@ -7,7 +7,7 @@ import i18n from '../../../../i18n';
 
 import { connect } from 'react-redux';
 
-import { selectWallet } from '../../../store/actions';
+import { selectWallet, createWallet, deleteWallet } from '../../../store/actions';
 
 import logo from '../../../assets/logo-nbr.png';
 
@@ -52,7 +52,7 @@ class WalletPicker extends Component {
         />
       </View>
       <View style={{flexDirection: 'row', justifyContent: 'space-around', paddingHorizontal: 5}}>
-            <Button transparent light onPress={() => null}>
+            <Button transparent light onPress={() => this.props.onNewWallet()}>
               <Icon color={primaryColor} name="md-add" size={24} />
               <Text style={{color: primaryColor }}> {i18n.t('common.components.walletPicker.newWalletBtnLabel')}</Text>
             </Button>
@@ -82,7 +82,7 @@ class WalletPicker extends Component {
             {this.props.selected && !this.props.wallets.find(wallet => wallet.address === this.props.selected).balance.available && !this.props.wallets.find(wallet => wallet.address === this.props.selected).balance.locked
             ?
             (
-              <Button transparent light onPress={() => null}>
+              <Button transparent light onPress={() => this.props.onDeleteWallet(this.props.selected)}>
                 <Icon color={primaryColor} name="ios-trash" size={24} />
               </Button>
             )
@@ -108,6 +108,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onSelect: (wallet) => dispatch(selectWallet(wallet)),
+    onNewWallet: () => dispatch(createWallet()),
+    onDeleteWallet: (address) => dispatch(deleteWallet(address))
   }
 }
 

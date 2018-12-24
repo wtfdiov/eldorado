@@ -21,7 +21,6 @@ class SendScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fromAddress: '',
       toAddress: '',
       amount: 0,
       fee: 0.0001,
@@ -29,22 +28,11 @@ class SendScreen extends Component {
       anonymity: 1
     }
     this.initialState = this.state
-    this.setAddress = this.setAddress.bind(this)
-  }
-
-  componentDidUpdate() {
-    if (!this.state.fromAddress && this.props.wallets.length) {
-      this.setState({fromAddress: this.props.wallets[0].address})
-    }
-  }
-
-  setAddress = (fromAddress) => {
-    this.setState({fromAddress})
   }
 
   validateForm() {
     return (
-      !this.state.fromAddress
+      !this.props.selected
       || !this.state.toAddress
       || !this.state.amount
       || !this.state.fee
@@ -53,8 +41,8 @@ class SendScreen extends Component {
 
   createTransaction() {
     const transaction = {
-      changeAddress: this.state.fromAddress.toString(),
-      from: this.state.fromAddress.toString(),
+      changeAddress: this.props.selected,
+      from: this.props.selected,
       fee: parseFloat(this.state.fee * config.defaultUnit),
       to: {
         address: this.state.toAddress.toString(),
@@ -76,32 +64,19 @@ class SendScreen extends Component {
   render () {
     return (
       <ScrollView style={styles.container}>
-        <Text> {i18n.t('send.selectWalletLabel')} </Text>
-
-        <Picker
-          selectedValue={this.state.fromAddress}
-          style={{ height: 50, width: '100%' }}
-          onValueChange={(fromAddress) => this.setState({fromAddress})}
-        >
-          {this.props.wallets && this.props.wallets.map(wallet => (
-            <Picker.Item key={wallet.id} label={`${shortifyAddress(wallet.address, 10)} (${formatNBR(wallet.balance.available)})`} value={wallet.address} />
-          ))}
-        </Picker>
+        <Text>{i18n.t('send.selectWalletLabel')}</Text>
+        <Text style={{fontSize: 10, textAlign: 'center', marginBottom: 10}}>{this.props.selected ? this.props.selected : i18n.t('common.na')}</Text>
 
         <Item regular style={{paddingLeft: 10}}>
           <Icon name="ios-wallet" size={21} />
           <Input placeholder={i18n.t('send.destinationInputLabel')} onChangeText={(toAddress) => this.setState({toAddress})} value={this.state.toAddress} spellCheck={false} />
         </Item>
 
-        {this.state.fromAddress
+        {this.props.selected
         ?  (
           <BlocksInfo
-            available={this.props.wallets.find(
-                wallet => wallet.address === this.state.fromAddress
-              ).balance.available}
-            locked={this.props.wallets.find(
-                wallet => wallet.address === this.state.fromAddress
-              ).balance.locked}
+            available={this.props.selectedBalance.available}
+            locked={this.props.selectedBalance.locked}
           />
         )
         : <Text style={{ alignSelf: 'center', margin: 10 }}>{i18n.t('send.selectAnWallet')}</Text>}
@@ -163,7 +138,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    wallets: state.wallets.wallets
+    wallets: state.wallets.wallets,
+    selected: state.wallets.selected,
+    selectedBalance: state.wallets.selectedBalance
   }
 }
 

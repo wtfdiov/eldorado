@@ -3,7 +3,7 @@ import { take, takeLatest, fork, cancel } from 'redux-saga/effects';
 import * as actionTypes from '../actionTypes';
 import { signUpSaga, tryAuthSaga, logoutSaga, tryAutoLoginSaga, clearAuthDataSaga, updateTokenOnStorageSaga, updateTokenSaga, getData } from './auth';
 import { fetchTransactionsSaga, newTransactionSaga } from './transactions';
-import { fetchWalletsSaga, fetchWalletsBalanceSaga } from './wallets';
+import { fetchWalletsSaga, fetchWalletsBalanceSaga, createWalletSaga, deleteWalletSaga } from './wallets';
 
 export function* watchAuth() {
   yield takeLatest(actionTypes.AUTH_SIGN_UP, signUpSaga);
@@ -23,6 +23,8 @@ export function* watchTransactions() {
 export function* watchWallets() {
   yield takeLatest(actionTypes.WALLETS_FETCH, fetchWalletsSaga);
   yield takeLatest(actionTypes.WALLETS_FETCH_BALLANCE, fetchWalletsBalanceSaga);
+  yield takeLatest(actionTypes.WALLETS_CREATE_NEW, createWalletSaga);
+  yield takeLatest(actionTypes.WALLETS_DELETE, deleteWalletSaga);
 }
 
 export function* watchData() {
