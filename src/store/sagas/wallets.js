@@ -7,6 +7,7 @@ import * as actions from '../actions';
 export function* fetchWalletsSaga() {
   const state = yield select();
 
+  yield put(actions.toggleWalletsLoading());
   try {
     const response = yield axios.get(`${config.api}/addresses`, {
       headers: {
@@ -17,6 +18,8 @@ export function* fetchWalletsSaga() {
     yield put(actions.storeWallets(response.data));
   } catch (error) {
     alert(`Problem fetching addresses ${error}`)
+  } finally {
+    yield put(actions.toggleWalletsLoading());
   }
 }
 

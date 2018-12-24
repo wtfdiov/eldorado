@@ -19,6 +19,7 @@ export default () => {
           children: [
             {
               bottomTabs: {
+                id: 'mainTabs',
                 children: [
                   {
                     component: {
@@ -38,6 +39,7 @@ export default () => {
                   },
                   {
                     component: {
+                      id: 'SEND_TAB',
                       name: 'eldorado.screens.Send',
                       options: {
                         bottomTab: {

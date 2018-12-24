@@ -1,14 +1,27 @@
 import React, { Component } from 'react';
-import { Platform, Linking, StyleSheet, ScrollView, View } from 'react-native';
+import { Platform, Linking, StyleSheet, ScrollView, View, Text } from 'react-native';
+import { Button } from 'native-base';
+import Icon from 'react-native-vector-icons/Ionicons'
+import i18n from '../../../i18n';
 
 import { connect } from 'react-redux';
 
-import { fetchWalletsBalance } from '../../store/actions';
+import { fetchWalletsBalance, logout } from '../../store/actions';
 
+import WalletPicker from '../../components/common/WalletPicker';
 import WalletStats from '../../components/Home/WalletStats';
 import TransactionList from '../../components/Transactions/List';
 
 class HomeScreen extends Component {
+
+  static options(passProps) {
+    return {
+      topBar: {
+        visible: false,
+        drawBehind: true,
+      }
+    }
+  }
 
   constructor(props) {
     super(props);
@@ -40,16 +53,26 @@ class HomeScreen extends Component {
     return (
       <ScrollView style={{flex: 1}}>
         <View style={styles.container}>
-          <WalletStats ballance={this.props.ballance} />
-        </View>
 
-        <TransactionList 
-          data={this.props.transactions}
-          truncate={3}
-          customStyle={{
-            marginTop: 20
-          }}
-        />
+          <WalletPicker />
+
+          <WalletStats balance={this.props.selected ? this.props.selectedBalance : this.props.balance} />
+
+          <TransactionList 
+            data={this.props.transactions}
+            truncate={3}
+            customStyle={{
+              marginTop: 20
+            }}
+          />
+
+          <View style={{flexDirection: 'row', width: '100%', justifyContent: 'flex-end',paddingHorizontal: 10}}>
+            <Button transparent light onPress={() => this.props.logOut()}>
+              <Icon color="#e4e4e4" name="md-log-out" size={18} />
+              <Text style={{color: '#e4e4e4' }}> {i18n.t('home.logOutBtnLabel')}</Text>
+            </Button>
+          </View>
+        </View>
       </ScrollView>
     );
   }
@@ -66,14 +89,17 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => { 
   return {
     wallets: state.wallets.wallets,
-    ballance: state.wallets.balance,
+    balance: state.wallets.balance,
+    selected: state.wallets.selected,
+    selectedBalance: state.wallets.selectedBalance,
     transactions: state.transactions.transactions
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBallance: () => dispatch(fetchWalletsBalance())
+    getBallance: () => dispatch(fetchWalletsBalance()),
+    logOut: () => dispatch(logout())
   }
 }
 

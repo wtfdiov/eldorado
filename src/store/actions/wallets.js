@@ -1,5 +1,11 @@
 import * as actionTypes from '../actionTypes';
 
+export const toggleWalletsLoading = () => {
+  return {
+    type: actionTypes.WALLETS_TOGGLE_LOADING,
+  };
+}
+
 export const fetchWallets = () => {
   return {
     type: actionTypes.WALLETS_FETCH,
@@ -10,6 +16,13 @@ export const storeWallets = (wallets) => {
   return {
     type: actionTypes.WALLETS_STORE,
     wallets
+  }
+}
+
+export const selectWallet = (wallet) => {
+  return {
+    type: actionTypes.WALLETS_SELECT,
+    wallet
   }
 }
 

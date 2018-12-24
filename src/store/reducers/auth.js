@@ -6,7 +6,8 @@ const initialState = {
   name: '',
   role: '',
   token: '',
-  expirationDate: ''
+  expirationDate: '',
+  loading: false
 }
 
 const reducer = (state = initialState, action) => {

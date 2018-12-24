@@ -72,7 +72,8 @@
         "anonymous": "Anônimo", 
         "components": { 
             "walletPicker": { 
-                "noWallets": "Sem carteiras" 
+                "noWallets": "Sem carteiras",
+                "newWalletBtnLabel": "Nova carteira"
             }, 
             "walletStats": { 
                 "balance": "SALDO", 

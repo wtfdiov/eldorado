@@ -95,8 +95,8 @@ export function* updateTokenOnStorageSaga(action) {
 }
 
 export function* clearAuthDataSaga() {
-  AsyncStorage.removeItem('@nbr:auth:token');
-  AsyncStorage.removeItem('@nbr:auth:expirationDate');
+  AsyncStorage.removeItem('@eldorado:auth:token');
+  AsyncStorage.removeItem('@eldorado:auth:expirationDate');
 }
 
 export function* tryAutoLoginSaga() {

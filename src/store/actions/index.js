@@ -19,8 +19,10 @@ export {
 } from './transactions';
 
 export {
+  toggleWalletsLoading,
   fetchWallets,
   storeWallets,
+  selectWallet,
   fetchWalletsBalance,
   fetchWalletsBalanceSuccess
 } from './wallets';

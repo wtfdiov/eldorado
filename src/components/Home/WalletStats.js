@@ -23,7 +23,7 @@ class WalletStats extends Component {
           displayIcon="ios-wallet"
           iconColor="#adb5bd"
           size={48}
-          info={<NBR value={this.props.ballance.available} />}
+          info={<NBR value={this.props.balance.available} />}
         />
 
         <IconWithInfo 
@@ -32,7 +32,7 @@ class WalletStats extends Component {
           iconColor="#adb5bd"
           displayIcon="ios-lock"
           size={48}
-          info={<NBR value={this.props.ballance.locked} />}
+          info={<NBR value={this.props.balance.locked} />}
         />
 
         <IconWithInfo 
@@ -41,7 +41,7 @@ class WalletStats extends Component {
           displayIcon="logo-usd"
           iconColor="#adb5bd"
           size={48}
-          info={<ConvertNBR to="USD" amount={this.props.ballance.total} />}
+          info={<ConvertNBR to="USD" amount={this.props.balance.total} />}
         />
 
         <IconWithInfo 
@@ -50,7 +50,7 @@ class WalletStats extends Component {
           displayIcon="logo-bitcoin"
           iconColor="#adb5bd"
           size={48}
-          info={<ConvertNBR to="BTC" amount={this.props.ballance.total} />}
+          info={<ConvertNBR to="BTC" amount={this.props.balance.total} />}
         />
       </View>
     );
