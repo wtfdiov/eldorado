@@ -59,7 +59,13 @@ class HomeScreen extends Component {
           <WalletStats balance={this.props.selected ? this.props.selectedBalance : this.props.balance} />
 
           <TransactionList 
-            data={this.props.transactions}
+            data={
+              this.props.selected
+              ?
+                this.props.transactions.filter(transaction => transaction.from === this.props.selected || transaction.to.address === this.props.selected)
+              :
+                this.props.transactions
+            }
             truncate={3}
             customStyle={{
               marginTop: 20

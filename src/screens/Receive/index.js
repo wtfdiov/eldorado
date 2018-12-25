@@ -15,8 +15,8 @@ class SendScreen extends Component {
 
   shareHandler = () => {
     Share.share({
-      message: `${this.state.address}`,
-      url: `${this.state.address}`,
+      message: `${this.props.selected}`,
+      url: `${this.props.selected}`,
       title: i18n.t('receive.shareDialogTitle')
     }, {
       dialogTitle: i18n.t('receive.shareDialogTitle'),
