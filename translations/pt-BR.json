@@ -14,7 +14,7 @@
         "nameInputLabel": "Nome", 
         "emailInputLabel": "Email", 
         "passwordInputLabel": "Senha", 
-        "confirmPasswordInputLabel": "Confirmar senha", 
+        "confirmPasswordInputLabel": "Confirmar", 
         "signUpBtnLabel": "CADASTRAR" 
     }, 
     "resetPassword": { 

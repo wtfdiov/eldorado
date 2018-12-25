@@ -1,4 +1,5 @@
 import { config } from '../../../app.json';
+import { Alert } from 'react-native';
 import axios from 'axios';
 import { put, select } from 'redux-saga/effects';
 
@@ -16,7 +17,7 @@ export function* fetchTransactionsSaga() {
 
     yield put(actions.storeTransactions(response.data));
   } catch (error) {
-    alert(`Problema ao buscar as transações ${error}`)
+    Alert.alert('Listar transações', `Problema ao buscar as transações ${error}`)
   }
 }
 
@@ -32,29 +33,29 @@ export function* newTransactionSaga(action) {
         Authorization: `Bearer ${state.auth.token}`
       },
     });
-    alert('Transaction was successfull!')
+    Alert.alert('Nova transação', 'Transação registrada com sucesso!')
   } catch (error) {
     switch (error.response.data.error) {
       case 'ADDRESS_NOT_FOUND':
-        alert('addnotfound')
+        Alert.alert('Nova transação', `${error.response.data.message}`)
         break
       case 'ERROR_TRANSACTION_BAD_ADDRESS':
-        alert('badaddress')
+        Alert.alert('Nova transação', `${error.response.data.message}`)
         break
       case 'ERROR_TRANSACTION_WRONG_AMOUNT':
-        alert('wrongamount')
+        Alert.alert('Nova transação', `${error.response.data.message}`)
         break
       case 'ERROR_TRANSACTION_SMALL_FEE':
-        alert('smallfee')
+        Alert.alert('Nova transação', `${error.response.data.message}`)
         break
       default:
         switch (error.response.status) {
           case 409:
           case 422:
-            alert('invalid')
+            Alert.alert('Nova transação', `${error.response.data.message}`)
             break
           default:
-            alert('crit')
+            Alert.alert('Nova transação', `${error.response.data.message}`)
             break
         }
         break

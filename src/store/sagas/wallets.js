@@ -1,4 +1,5 @@
 import { config } from '../../../app.json';
+import { Alert } from 'react-native';
 import axios from 'axios';
 import { put, select } from 'redux-saga/effects';
 
@@ -20,7 +21,7 @@ export function* fetchWalletsSaga() {
       yield put(actions.selectWallet(response.data[0].address));
     }
   } catch (error) {
-    alert(`Problem fetching addresses ${error}`)
+    Alert.alert('Carteira', `Problema ao buscar os endereços: ${error.response.data.message}`);
   } finally {
     yield put(actions.toggleWalletsLoading());
   }
@@ -38,7 +39,7 @@ export function* fetchWalletsBalanceSaga() {
 
     yield put(actions.fetchWalletsBalanceSuccess(response.data));
   } catch (error) {
-    alert(`Problem fetching wallets ballance ${error}`)
+    Alert.alert('Carteira', `Problema ao buscar o saldo das carteiras ${error.response.data.message}`);
   }
 }
 
@@ -56,7 +57,7 @@ export function* createWalletSaga() {
     yield put(actions.fetchWallets());
     yield put(actions.selectWallet(response.address));
   } catch (error) {
-    alert(`Problem creating new wallet ${error}`)
+    Alert.alert('Carteira', `Problema ao criar uma nova carteira ${error.response.data.message}`)
   }
 }
 
@@ -73,6 +74,6 @@ export function* deleteWalletSaga(action) {
     yield put(actions.selectWallet(null));
     yield put(actions.fetchWallets());
   } catch (error) {
-    alert(`Problem removing wallet ${error}`)
+    Alert.alert('Carteira', `Problema ao excluir a carteira ${error.response.data.message}`);
   }
 }

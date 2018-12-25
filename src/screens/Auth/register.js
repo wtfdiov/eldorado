@@ -30,7 +30,8 @@ class RegisterScreen extends PureComponent {
         email: '',
         password: '',
         passwordConfirm: ''
-    }
+    };
+    this.initialState = this.state
     Navigation.events().bindComponent(this);
   }
 
@@ -42,6 +43,11 @@ class RegisterScreen extends PureComponent {
 
   registerHandler = () => {
     this.props.onRegister(this.state);
+    this.resetForm();
+  }
+
+  resetForm() {
+    this.setState(this.initialState)
   }
 
   render() {
@@ -70,11 +76,11 @@ class RegisterScreen extends PureComponent {
           </Item>
           <Item regular>
             <Label style={styles.labels}>{i18n.t('signUp.passwordInputLabel')}</Label>
-            <Input onChangeText={(password) => this.setState({password})} value={this.state.password.toString()} />
+            <Input autoCorrect={false} secureTextEntry onChangeText={(password) => this.setState({password})} value={this.state.password.toString()} />
           </Item>
           <Item regular>
             <Label style={styles.labels}>{i18n.t('signUp.confirmPasswordInputLabel')}</Label>
-            <Input onChangeText={(passwordConfirm) => this.setState({passwordConfirm})} value={this.state.passwordConfirm.toString()} />
+            <Input autoCorrect={false} secureTextEntry onChangeText={(passwordConfirm) => this.setState({passwordConfirm})} value={this.state.passwordConfirm.toString()} />
           </Item>
 
           <Button

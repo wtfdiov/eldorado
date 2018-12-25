@@ -1,4 +1,5 @@
 import { config } from '../../../app.json';
+import { Alert } from 'react-native';
 import axios from 'axios';
 import { delay } from 'redux-saga';
 import { put, call } from 'redux-saga/effects';
@@ -24,8 +25,9 @@ export function* signUpSaga(action) {
       passwordConfirm: action.formData.passwordConfirm
     });
 
+    return Alert.alert('Criação de contas', 'Sua conta foi cadastrada com sucesso!');
   } catch (error) {
-    return alert(`${error}`)
+    return Alert.alert('Criação de contas', `Ocorreu um problema ao cadastrar sua conta: ${error.response.data.message}`);
   } finally {
     yield put(actions.toggleAuthLoading());
   }
@@ -60,7 +62,7 @@ export function* tryAuthSaga(action) {
       yield call(startAuth);
     }
 
-    return alert(`Ocorreu um problema ao autenticar: ${error}`)
+    return Alert.alert('Formulário de login', `Ocorreu um problema ao autenticar: ${error.response.data.message}`)
   }
 }
 
@@ -82,7 +84,7 @@ export function* updateTokenSaga(action) {
 
   } catch(error) {
     yield put(actions.clearAuthData());
-    alert(`Falha ao buscar sua sessão, faça login novamente. ${error}`);
+    Alert.alert('Login automático', `Falha ao buscar sua sessão, faça login novamente. ${error.response.data.message}`);
   }
 
 }
