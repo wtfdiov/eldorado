@@ -10,6 +10,7 @@ import { newTransaction } from '../../store/actions';
 
 import { config } from '../../../app.json';
 
+import openQRScanner from '../../navigation/qrScanner';
 import shortifyAddress from '../../helpers/shortfyAddress';
 import { stringToHex } from '../../helpers/hexTool';
 import formatNBR from '../../helpers/formatNBR';
@@ -28,6 +29,7 @@ class SendScreen extends Component {
       anonymity: 1
     }
     this.initialState = this.state
+    this.setDestination = this.setDestination.bind(this);
   }
 
   validateForm() {
@@ -61,16 +63,23 @@ class SendScreen extends Component {
     this.setState(this.initialState)
   }
 
+  setDestination = (toAddress) => {
+    this.setState({ toAddress })
+  }
+
   render () {
     return (
       <ScrollView style={styles.container}>
         <Text>{i18n.t('send.selectWalletLabel')}</Text>
         <Text style={{fontSize: 10, textAlign: 'center', marginBottom: 10}}>{this.props.selected ? this.props.selected : i18n.t('common.na')}</Text>
-
-        <Item regular style={{paddingLeft: 10}}>
-          <Icon name="ios-wallet" size={21} />
-          <Input placeholder={i18n.t('send.destinationInputLabel')} onChangeText={(toAddress) => this.setState({toAddress})} value={this.state.toAddress} spellCheck={false} />
-        </Item>
+        
+        <View style={{ flexDirection: 'row' }}>
+          <Item regular style={{flex: 1, paddingLeft: 10}}>
+            <Icon name="ios-wallet" size={21} />
+            <Input placeholder={i18n.t('send.destinationInputLabel')} onChangeText={(toAddress) => this.setState({toAddress})} value={this.state.toAddress} spellCheck={false} />
+          </Item>
+          <Button rounded onPress={() => openQRScanner({setAddress: this.setDestination})} style={{padding: 15, marginLeft: 5, backgroundColor: '#006e6e'}}><Icon name="md-qr-scanner" color="white" size={21} /></Button>
+        </View>
 
         {this.props.selected
         ?  (

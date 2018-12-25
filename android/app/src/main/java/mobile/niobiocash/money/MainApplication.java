@@ -16,6 +16,8 @@ import com.oblador.vectoricons.VectorIconsPackage;
 
 import com.reactcommunity.rnlanguages.RNLanguagesPackage;
 
+import org.reactnative.camera.RNCameraPackage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,7 +44,8 @@ public class MainApplication extends NavigationApplication {
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
       new VectorIconsPackage(),
-      new RNLanguagesPackage()
+      new RNLanguagesPackage(),
+      new RNCameraPackage()
     );
   }
 

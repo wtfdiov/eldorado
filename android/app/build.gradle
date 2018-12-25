@@ -177,6 +177,13 @@ dependencies {
     implementation project(':react-native-navigation')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-languages')
+    implementation (project(':react-native-camera')) {
+        exclude group: "com.google.android.gms"
+        implementation 'com.android.support:exifinterface:25.+'
+        implementation ('com.google.android.gms:play-services-vision:12.0.1') {
+            force = true
+        }
+    }
 }
 
 // Run this once to be able to run the application with BUCK
