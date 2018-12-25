@@ -56,6 +56,8 @@ class Details extends Component {
       fee,
       createdAt
     } = this.state.transaction;
+
+    const locale = config.locales.includes(RNLanguages.language.toLowerCase())
     return (
       <Container>
         <Content>
@@ -92,7 +94,7 @@ class Details extends Component {
               <Text>{i18n.t('common.status')}</Text><DisplayStatus status={status} />
             </CardItem>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
-              <Text>{i18n.t('common.createdAt')}</Text><Text style={{fontSize: 12}}><Moment locale={RNLanguages.language.toLowerCase()} element={Text} format="LLLL">{createdAt}</Moment></Text>
+              <Text>{i18n.t('common.createdAt')}</Text><Text style={{fontSize: 12}}><Moment locale={locale ? RNLanguages.language.toLowerCase() : 'pt-br'} element={Text} format="LLLL">{createdAt}</Moment></Text>
             </CardItem>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
               <Text>BTC</Text><ConvertNBR to="BTC" amount={amount} />
