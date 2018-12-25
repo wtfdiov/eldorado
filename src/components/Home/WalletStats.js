@@ -15,6 +15,7 @@ class WalletStats extends Component {
   }
 
   render () {
+    const selectedTotal = this.props.balance.available + this.props.balance.locked
     return (
       <View style={componentStyles.profileMetricsContainer}>
         <IconWithInfo 
@@ -26,7 +27,7 @@ class WalletStats extends Component {
           info={<NBR value={this.props.balance.available} />}
         />
 
-        <IconWithInfo 
+        <IconWithInfo
           title={i18n.t('common.components.walletStats.locked')}
           titleColor="#dc3545"
           iconColor="#adb5bd"
@@ -35,22 +36,22 @@ class WalletStats extends Component {
           info={<NBR value={this.props.balance.locked} />}
         />
 
-        <IconWithInfo 
+        <IconWithInfo
           title={i18n.t('common.components.walletStats.valueUSD')}
           titleColor="#23BF08"
           displayIcon="logo-usd"
           iconColor="#adb5bd"
           size={48}
-          info={<ConvertNBR to="USD" amount={this.props.balance.total} />}
+          info={<ConvertNBR to="USD" amount={this.props.selected ? selectedTotal : this.props.balance.total} />}
         />
 
-        <IconWithInfo 
+        <IconWithInfo
           title={i18n.t('common.components.walletStats.valueBTC')}
           titleColor="#6f42c1"
           displayIcon="logo-bitcoin"
           iconColor="#adb5bd"
           size={48}
-          info={<ConvertNBR to="BTC" amount={this.props.balance.total} />}
+          info={<ConvertNBR to="BTC" amount={this.props.selected ? selectedTotal : this.props.balance.total} />}
         />
       </View>
     );

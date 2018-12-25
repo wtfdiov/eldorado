@@ -16,6 +16,9 @@ export function* fetchWalletsSaga() {
     });
 
     yield put(actions.storeWallets(response.data));
+    if (response.data.length && response.data.length === 1) {
+      yield put(actions.selectWallet(response.data[0].address));
+    }
   } catch (error) {
     alert(`Problem fetching addresses ${error}`)
   } finally {

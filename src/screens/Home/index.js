@@ -29,7 +29,7 @@ class HomeScreen extends Component {
 
   componentDidMount() {
     this.props.getBallance();
-    
+
     if (Platform.OS === 'android') {
       Linking.getInitialURL().then(url => {
         if (url) {
@@ -40,11 +40,11 @@ class HomeScreen extends Component {
       Linking.addEventListener('url', this.handleOpenURL);
     }
   }
-    
+
   componentWillUnmount() {
     Linking.removeEventListener('url', this.handleOpenURL);
   }
-  
+
   handleOpenURL = (event) => {
     return null
   }
@@ -56,7 +56,13 @@ class HomeScreen extends Component {
 
           <WalletPicker />
 
-          <WalletStats balance={this.props.selected ? this.props.selectedBalance : this.props.balance} />
+          <WalletStats
+            selected={this.props.selected}
+            balance={this.props.selected ?
+              this.props.selectedBalance :
+              this.props.balance
+            }
+          />
 
           <TransactionList 
             data={
