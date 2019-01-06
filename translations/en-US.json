@@ -1,0 +1,90 @@
+{ 
+    "login": { 
+        "title": "Login", 
+        "emailInputLabel": "Type your email", 
+        "passwordInputLabel": "Password", 
+        "2FAInputLabel": "2FA Code (If activated)", 
+        "signInBtnLabel": "LOGIN", 
+        "signUpBtnLabel": "New account", 
+        "resetPasswordBtnLabel": "Reset password" 
+    }, 
+    "signUp": { 
+        "title": "Sign Up", 
+        "desc": "Sign Up for NBR Wallet, it`s free and only takes a minute!", 
+        "nameInputLabel": "Name", 
+        "emailInputLabel": "Email", 
+        "passwordInputLabel": "Password", 
+        "confirmPasswordInputLabel": "Confirm", 
+        "signUpBtnLabel": "SIGN UP" 
+    }, 
+    "resetPassword": { 
+        "title": "Reset password", 
+        "desc": "To reset your password, type your email in the field below.", 
+        "emailInputLabel": "Email", 
+        "resetPasswordBtnLabel": "RESET PASSWORD", 
+        "requestMessages": { 
+            "resetPasswordSuccess": "We have sent you an email with the instructions to reset your password." 
+        } 
+    }, 
+    "home": { 
+        "title": "My wallet", 
+        "logOutBtnLabel": "LOGOUT", 
+        "configBtnLabel": "CONFIGS" 
+    }, 
+    "send": { 
+        "title": "Send NBR", 
+        "selectWalletLabel": "Withdraw address",
+        "destinationInputLabel": "Destination address", 
+        "selectAnWallet": "Select a wallet", 
+        "sendBtnLabel": "SEND" 
+    }, 
+    "receive": { 
+        "title": "Receive NBR",
+        "noWalletMsg": "Select an address to share",
+        "walletQRDesc": "Share this code to receive NBR into your wallet!",
+        "shareBtnLabel": "SHARE", 
+        "shareDialogTitle": "NBR Mobile Wallet", 
+        "shareDefaultMessage": "This is my NBR wallet, you can send me NBR through it." 
+    }, 
+    "transactions": { 
+        "title": "Transactions", 
+        "details": { 
+            "title": "Details" 
+        } 
+    }, 
+    "common": { 
+        "loading": "Loading", 
+        "from": "From", 
+        "to": "To", 
+        "amount": "Amount", 
+        "date": "Date", 
+        "waitingConfirmation": "Waiting", 
+        "confirmed": "Confirmed", 
+        "fee": "Fee", 
+        "hash": "Hash", 
+        "paymentId": "Payment ID", 
+        "anonymity": "Anonymity", 
+        "status": "Status", 
+        "createdAt": "Created at", 
+        "na": "N/A", 
+        "save": "Save", 
+        "cancel": "Cancel", 
+        "ok": "Ok", 
+        "anonymous": "Anonymous", 
+        "components": { 
+            "walletPicker": { 
+                "noWallets": "No wallets",
+                "newWalletBtnLabel": "New wallet"
+            }, 
+            "walletStats": { 
+                "balance": "BALANCE", 
+                "locked": "LOCKED", 
+                "valueUSD": "USD", 
+                "valueBTC": "BTC" 
+            }, 
+            "transactionsList": { 
+                "noTransactions": "There are no transactions to be seen." 
+            } 
+        } 
+    } 
+}
