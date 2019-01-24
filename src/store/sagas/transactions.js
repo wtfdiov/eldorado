@@ -2,6 +2,7 @@ import { config } from '../../../app.json';
 import { Alert } from 'react-native';
 import axios from 'axios';
 import { put, select } from 'redux-saga/effects';
+import i18n from '../../../i18n';
 
 import * as actions from '../actions';
 
@@ -23,7 +24,7 @@ export function* fetchTransactionsSaga() {
 
 export function* newTransactionSaga(action) {
   const state = yield select();
-
+  const title = i18n.t('send.title');
   try {
     const transaction = yield axios.post(`${config.api}/transactions`, 
     JSON.parse(JSON.stringify(action.transaction))
@@ -33,29 +34,32 @@ export function* newTransactionSaga(action) {
         Authorization: `Bearer ${state.auth.token}`
       },
     });
-    Alert.alert('Nova transação', 'Transação registrada com sucesso!')
+    Alert.alert(title, i18n.t('send.requestMessages.success'))
   } catch (error) {
     switch (error.response.data.error) {
       case 'ADDRESS_NOT_FOUND':
-        Alert.alert('Nova transação', `${error.response.data.message}`)
+        Alert.alert(title, i18n.t('send.requestMessages.error.addressNotFound'))
         break
       case 'ERROR_TRANSACTION_BAD_ADDRESS':
-        Alert.alert('Nova transação', `${error.response.data.message}`)
+        Alert.alert(title, i18n.t('send.requestMessages.error.badAddress'))
         break
       case 'ERROR_TRANSACTION_WRONG_AMOUNT':
-        Alert.alert('Nova transação', `${error.response.data.message}`)
+        Alert.alert(title, i18n.t('send.requestMessages.error.wrongAmount'))
         break
       case 'ERROR_TRANSACTION_SMALL_FEE':
-        Alert.alert('Nova transação', `${error.response.data.message}`)
+        Alert.alert(title, i18n.t('send.requestMessages.error.smallFee'))
+        break
+      case 'ECONNRESET':
+        Alert.alert(title, i18n.t('send.requestMessages.error.critical'))
         break
       default:
         switch (error.response.status) {
           case 409:
           case 422:
-            Alert.alert('Nova transação', `${error.response.data.message}`)
+            Alert.alert(title, i18n.t('send.requestMessages.error.conflict'))
             break
           default:
-            Alert.alert('Nova transação', `${error.response.data.message}`)
+            Alert.alert(title, i18n.t('send.requestMessages.error.critical'))
             break
         }
         break

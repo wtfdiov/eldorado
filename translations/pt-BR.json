@@ -36,7 +36,18 @@
         "selectWalletLabel": "Carteira de retirada",
         "destinationInputLabel": "Carteira de destino", 
         "selectAnWallet": "Selecione uma carteira", 
-        "sendBtnLabel": "ENVIAR" 
+        "sendBtnLabel": "ENVIAR",
+        "requestMessages": {
+            "error": {
+                "addressNotFound": "O endereço de origem não foi encontrado.",
+                "badAddress": "O endereço de destino não foi encontrado.",
+                "wrongAmount": "Você não possui saldo suficiente para essa transação",
+                "smallFee": "A taxa da transação é inferior a taxa mínima.",
+                "critical": "Ocorreu um problema inesperado no servidor, tente novamente mais tarde.",
+                "conflict": "Tivemos um problema ao processar sua requisição, verifique os dados enviados."
+            },
+            "success": "Transação registrada com sucesso!"
+        }
     }, 
     "receive": { 
         "title": "Receber NBR",
@@ -50,7 +61,7 @@
         "title": "Transações", 
         "details": { 
             "title": "Detalhes" 
-        } 
+        }
     }, 
     "common": { 
         "loading": "Carregando", 

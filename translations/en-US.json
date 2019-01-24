@@ -36,7 +36,18 @@
         "selectWalletLabel": "Withdraw address",
         "destinationInputLabel": "Destination address", 
         "selectAnWallet": "Select a wallet", 
-        "sendBtnLabel": "SEND" 
+        "sendBtnLabel": "SEND",
+        "requestMessages": {
+            "error": {
+                "addressNotFound": "Origin address was not found.",
+                "badAddress": "Destination address not found.",
+                "wrongAmount": "Insufficient amount for this transaction",
+                "smallFee": "Insufficient fee amount.",
+                "critical": "There is a problem in ours servers, try again later.",
+                "conflict": "We had a problem processing your request, check your data."
+            },
+            "success": "Transaction was sent!"
+        }
     }, 
     "receive": { 
         "title": "Receive NBR",
