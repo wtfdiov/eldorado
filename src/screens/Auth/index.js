@@ -58,6 +58,7 @@ class AuthScreen extends Component {
           <Item regular style={styles.textPassword}>
             <Input
               autoCorrect={false}
+              autoCapitalize="none"
               onChangeText={password => this.setState({password })}
               value={this.state.password}
               secureTextEntry />

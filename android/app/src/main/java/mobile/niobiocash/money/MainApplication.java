@@ -20,6 +20,8 @@ import org.reactnative.camera.RNCameraPackage;
 
 import io.invertase.firebase.RNFirebasePackage;
 
+import com.reactnativecommunity.slider.ReactSliderPackage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -48,7 +50,8 @@ public class MainApplication extends NavigationApplication {
       new VectorIconsPackage(),
       new RNLanguagesPackage(),
       new RNCameraPackage(),
-      new RNFirebasePackage()
+      new RNFirebasePackage(),
+      new ReactSliderPackage()
     );
   }
 

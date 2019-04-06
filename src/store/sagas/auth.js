@@ -3,6 +3,7 @@ import { Alert } from 'react-native';
 import axios from 'axios';
 import { put, call, delay } from 'redux-saga/effects';
 import { AsyncStorage } from 'react-native';
+import i18n from '../../../i18n';
 
 import startAuth from '../../navigation/startAuth';
 import startHome from '../../navigation/startHome';
@@ -24,9 +25,9 @@ export function* signUpSaga(action) {
       passwordConfirm: action.formData.passwordConfirm
     });
 
-    return Alert.alert('Criação de contas', 'Sua conta foi cadastrada com sucesso!');
+    return Alert.alert(i18n.t('signUp.title'), i18n.t('signUp.requestMessages.success.created'));
   } catch (error) {
-    return Alert.alert('Criação de contas', `Ocorreu um problema ao cadastrar sua conta: ${error.response.data.message}`);
+    return Alert.alert(i18n.t('signUp.title'), `${i18n.t('signUp.requestMessages.error.generic')}: ${error.response.data.message}`);
   } finally {
     yield put(actions.toggleAuthLoading());
   }
@@ -61,7 +62,7 @@ export function* tryAuthSaga(action) {
       yield call(startAuth);
     }
 
-    return Alert.alert('Formulário de login', `Ocorreu um problema ao autenticar: ${error.response.data.message}`)
+    return Alert.alert(i18n.t('login.title'), `${i18n.t('login.requestMessages.error.generic')}: ${error.response.data.message}`)
   }
 }
 
@@ -83,7 +84,7 @@ export function* updateTokenSaga(action) {
 
   } catch(error) {
     yield put(actions.clearAuthData());
-    Alert.alert('Login automático', `Falha ao buscar sua sessão, faça login novamente. ${error.response.data.message}`);
+    Alert.alert(i18n.t('login.title'), `${i18n.t('login.requestMessages.error.refreshToken')} ${error.response.data.message}`);
   }
 
 }

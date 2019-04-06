@@ -9,6 +9,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/slider": "^1.0.4",
     "axios": "^0.18.0",
     "buffer": "^5.2.1",
     "i18n-js": "^3.2.1",

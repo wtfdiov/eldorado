@@ -1,41 +1,55 @@
-{ 
-    "login": { 
-        "title": "Entrar", 
-        "emailInputLabel": "Insira seu email", 
-        "passwordInputLabel": "Senha", 
-        "2FAInputLabel": "Código 2FA (Se estiver ativado)", 
-        "signInBtnLabel": "ENTRAR", 
-        "signUpBtnLabel": "Criar nova conta", 
-        "resetPasswordBtnLabel": "Redefinir senha" 
-    }, 
-    "signUp": { 
-        "title": "Cadastro", 
-        "desc": "Cadastre-se na NBR Wallet, é grátis e leva só um minuto!", 
-        "nameInputLabel": "Nome", 
-        "emailInputLabel": "Email", 
-        "passwordInputLabel": "Senha", 
-        "confirmPasswordInputLabel": "Confirmar", 
-        "signUpBtnLabel": "CADASTRAR" 
-    }, 
-    "resetPassword": { 
-        "title": "Redefinir senha", 
-        "desc": "Para redefinir sua senha, insira seu email no campo abaixo.", 
-        "emailInputLabel": "Email", 
-        "resetPasswordBtnLabel": "REDEFINIR SENHA", 
-        "requestMessages": { 
-            "resetPasswordSuccess": "Enviamos as instruções para redefinir sua senha no email cadastrado." 
-        } 
-    }, 
-    "home": { 
-        "title": "Minha carteira", 
-        "logOutBtnLabel": "SAIR", 
-        "configBtnLabel": "CONFIGURAR" 
-    }, 
-    "send": { 
-        "title": "Enviar NBR", 
+{
+    "login": {
+        "title": "Login",
+        "emailInputLabel": "Insira seu email",
+        "passwordInputLabel": "Senha",
+        "2FAInputLabel": "Código 2FA (Se estiver ativado)",
+        "signInBtnLabel": "ENTRAR",
+        "signUpBtnLabel": "Criar nova conta",
+        "resetPasswordBtnLabel": "Redefinir senha",
+        "requestMessages": {
+            "error": {
+              "generic": "Ocorreu um problema ao autenticar",
+              "refreshToken": "Falha ao buscar sua sessão, faça login novamente."
+            }
+        }
+    },
+    "signUp": {
+        "title": "Cadastro",
+        "desc": "Cadastre-se na NBR Wallet, é grátis e leva só um minuto!",
+        "nameInputLabel": "Nome",
+        "emailInputLabel": "Email",
+        "passwordInputLabel": "Senha",
+        "confirmPasswordInputLabel": "Confirmar",
+        "signUpBtnLabel": "CADASTRAR",
+        "requestMessages": {
+          "success": {
+            "created": "Sua conta foi cadastrada com sucesso!"
+          },
+          "error": {
+            "generic": "Ocorreu um problema ao cadastrar sua conta"
+          }
+        }
+    },
+    "resetPassword": {
+        "title": "Redefinir senha",
+        "desc": "Para redefinir sua senha, insira seu email no campo abaixo.",
+        "emailInputLabel": "Email",
+        "resetPasswordBtnLabel": "REDEFINIR SENHA",
+        "requestMessages": {
+            "resetPasswordSuccess": "Enviamos as instruções para redefinir sua senha no email cadastrado."
+        }
+    },
+    "home": {
+        "title": "Minha carteira",
+        "logOutBtnLabel": "SAIR",
+        "configBtnLabel": "CONFIGURAR"
+    },
+    "send": {
+        "title": "Enviar NBR",
         "selectWalletLabel": "Carteira de retirada",
-        "destinationInputLabel": "Carteira de destino", 
-        "selectAnWallet": "Selecione uma carteira", 
+        "destinationInputLabel": "Carteira de destino",
+        "selectAnWallet": "Selecione uma carteira",
         "sendBtnLabel": "ENVIAR",
         "requestMessages": {
             "error": {
@@ -48,54 +62,70 @@
             },
             "success": "Transação registrada com sucesso!"
         }
-    }, 
-    "receive": { 
+    },
+    "receive": {
         "title": "Receber NBR",
         "noWalletMsg": "Selecione uma carteira para compartilhar",
         "walletQRDesc": "Compartilhe esse código para receber NBR em sua carteira!",
-        "shareBtnLabel": "COMPARTILHAR", 
-        "shareDialogTitle": "NBR Mobile Wallet", 
-        "shareDefaultMessage": "Essa é a minha carteira NBR, você pode me enviar pagamentos através dela." 
-    }, 
-    "transactions": { 
-        "title": "Transações", 
-        "details": { 
-            "title": "Detalhes" 
+        "shareBtnLabel": "COMPARTILHAR",
+        "shareDialogTitle": "NBR Mobile Wallet",
+        "shareDefaultMessage": "Essa é a minha carteira NBR, você pode me enviar pagamentos através dela."
+    },
+    "transactions": {
+        "title": "Transações",
+        "details": {
+            "title": "Detalhes"
+        },
+        "requestMessages": {
+          "error": {
+            "generic": "Problema ao buscar as transações"
+          }
         }
-    }, 
-    "common": { 
-        "loading": "Carregando", 
-        "from": "De", 
-        "to": "Para", 
-        "amount": "Quantidade", 
-        "date": "Data", 
-        "waitingConfirmation": "Aguardando", 
-        "confirmed": "Confirmada", 
-        "fee": "Taxa", 
-        "hash": "Hash", 
-        "paymentId": "ID de Pagamento", 
-        "anonymity": "Nível de anonimato", 
-        "status": "Status", 
-        "createdAt": "Criado em", 
-        "na": "N/A", 
-        "save": "Salvar", 
-        "cancel": "Cancelar", 
-        "ok": "Ok", 
-        "anonymous": "Anônimo", 
-        "components": { 
-            "walletPicker": { 
+    },
+    "wallets": {
+      "title": "Carteira",
+      "requestMessages": {
+        "error": {
+          "address": "Problema ao buscar os endereços de carteiras",
+          "balance": "Problema ao buscar o saldo das carteiras",
+          "create": "Problema ao criar um novo endereço, tente novamente mais tarde",
+          "delete": "Problema ao excluir o endereço, tente novamente mais tarde"
+        }
+      }
+    },
+    "common": {
+        "loading": "Carregando",
+        "from": "De",
+        "to": "Para",
+        "amount": "Quantidade",
+        "date": "Data",
+        "waitingConfirmation": "Aguardando",
+        "confirmed": "Confirmada",
+        "fee": "Taxa",
+        "hash": "Hash",
+        "paymentId": "ID de Pagamento",
+        "anonymity": "Nível de anonimato",
+        "status": "Status",
+        "createdAt": "Criado em",
+        "na": "N/A",
+        "save": "Salvar",
+        "cancel": "Cancelar",
+        "ok": "Ok",
+        "anonymous": "Anônimo",
+        "components": {
+            "walletPicker": {
                 "noWallets": "Sem carteiras",
                 "newWalletBtnLabel": "Nova carteira"
-            }, 
-            "walletStats": { 
-                "balance": "SALDO", 
-                "locked": "BLOQUEADO", 
-                "valueUSD": "USD", 
-                "valueBTC": "BTC" 
-            }, 
-            "transactionsList": { 
-                "noTransactions": "Não há transações a serem exibidas." 
-            } 
-        } 
-    } 
+            },
+            "walletStats": {
+                "balance": "SALDO",
+                "locked": "BLOQUEADO",
+                "valueUSD": "USD",
+                "valueBTC": "BTC"
+            },
+            "transactionsList": {
+                "noTransactions": "Não há transações a serem exibidas."
+            }
+        }
+    }
 }

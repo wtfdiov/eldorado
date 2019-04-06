@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, Text, Picker, View, Slider } from 'react-native';
+import { StyleSheet, ScrollView, Text, View } from 'react-native';
 import { Label, Input, Item, Button } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 import uuidv1 from 'uuid/v1';
 import i18n from '../../../i18n';
+import Slider from '@react-native-community/slider';
 
 import { connect } from 'react-redux';
 import { newTransaction } from '../../store/actions';
@@ -72,7 +73,7 @@ class SendScreen extends Component {
       <ScrollView style={styles.container}>
         <Text>{i18n.t('send.selectWalletLabel')}</Text>
         <Text style={{fontSize: 10, textAlign: 'center', marginBottom: 10}}>{this.props.selected ? this.props.selected : i18n.t('common.na')}</Text>
-        
+
         <View style={{ flexDirection: 'row' }}>
           <Item regular style={{flex: 1, paddingLeft: 10}}>
             <Icon name="ios-wallet" size={21} />
@@ -97,7 +98,7 @@ class SendScreen extends Component {
               <Label style={{backgroundColor: '#c6f2f2', fontSize: 12, color: '#65b4b4', height: '100%', textAlignVertical: 'center', paddingHorizontal: 5}}>{i18n.t('common.amount')}</Label>
             </Item>
           </View>
-        
+
           <View style={{flex: 2, paddingLeft: 10}}>
             <Item regular>
               <Input onChangeText={(fee) => this.setState({fee})} value={this.state.fee.toString()} keyboardType="number-pad" />

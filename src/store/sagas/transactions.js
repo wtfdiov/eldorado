@@ -18,7 +18,7 @@ export function* fetchTransactionsSaga() {
 
     yield put(actions.storeTransactions(response.data));
   } catch (error) {
-    Alert.alert('Listar transações', `Problema ao buscar as transações ${error}`)
+    Alert.alert(i18n.t('transactions.title'), `${i18n.t('transactions.requestMessages.error.generic')}: ${error}`)
   }
 }
 
@@ -26,7 +26,7 @@ export function* newTransactionSaga(action) {
   const state = yield select();
   const title = i18n.t('send.title');
   try {
-    const transaction = yield axios.post(`${config.api}/transactions`, 
+    const transaction = yield axios.post(`${config.api}/transactions`,
     JSON.parse(JSON.stringify(action.transaction))
     ,
     {

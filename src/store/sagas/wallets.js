@@ -21,7 +21,7 @@ export function* fetchWalletsSaga() {
       yield put(actions.selectWallet(response.data[0].address));
     }
   } catch (error) {
-    Alert.alert('Carteira', `Problema ao buscar os endereços: ${error.response.data.message}`);
+    Alert.alert(i18n.t('wallets.title'), `${i18n.t('wallets.requestMessages.error.address')}: ${error.response.data.message}`);
   } finally {
     yield put(actions.toggleWalletsLoading());
   }
@@ -39,7 +39,7 @@ export function* fetchWalletsBalanceSaga() {
 
     yield put(actions.fetchWalletsBalanceSuccess(response.data));
   } catch (error) {
-    Alert.alert('Carteira', `Problema ao buscar o saldo das carteiras ${error.response.data.message}`);
+    Alert.alert(i18n.t('wallets.title'), `${i18n.t('wallets.requestMessages.error.balance')}: ${error.response.data.message}`);
   }
 }
 
@@ -57,7 +57,7 @@ export function* createWalletSaga() {
     yield put(actions.fetchWallets());
     yield put(actions.selectWallet(response.address));
   } catch (error) {
-    Alert.alert('Carteira', `Problema ao criar uma nova carteira ${error.response.data.message}`)
+    Alert.alert(i18n.t('wallets.title'), `${i18n.t('wallets.requestMessages.error.create')}: ${error.response.data.message}`)
   }
 }
 
@@ -74,6 +74,6 @@ export function* deleteWalletSaga(action) {
     yield put(actions.selectWallet(null));
     yield put(actions.fetchWallets());
   } catch (error) {
-    Alert.alert('Carteira', `Problema ao excluir a carteira ${error.response.data.message}`);
+    Alert.alert(i18n.t('wallets.title'), `${i18n.t('wallets.requestMessages.error.delete')}: ${error.response.data.message}`);
   }
 }
