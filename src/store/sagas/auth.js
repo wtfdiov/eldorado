@@ -1,8 +1,7 @@
 import { config } from '../../../app.json';
 import { Alert } from 'react-native';
 import axios from 'axios';
-import { delay } from 'redux-saga';
-import { put, call } from 'redux-saga/effects';
+import { put, call, delay } from 'redux-saga/effects';
 import { AsyncStorage } from 'react-native';
 
 import startAuth from '../../navigation/startAuth';
@@ -92,8 +91,8 @@ export function* updateTokenSaga(action) {
 export function* updateTokenOnStorageSaga(action) {
   const now = new Date();
   const expirationDate = new Date(now.getTime() + 3600 * 1000);
-  yield AsyncStorage.setItem('@eldorado:auth:token', action.authData.token);
-  yield AsyncStorage.setItem('@eldorado:auth:expirationDate', expirationDate);
+  yield AsyncStorage.setItem('@eldorado:auth:token', action.authData.token.toString());
+  yield AsyncStorage.setItem('@eldorado:auth:expirationDate', expirationDate.toString());
 }
 
 export function* clearAuthDataSaga() {
@@ -128,7 +127,7 @@ export function* getData() {
     while (true) {
       yield put(actions.fetchWallets());
       yield put(actions.fetchAllTransactions());
-      yield call(delay, config.updateMs)
+      yield delay(config.updateMs);
     }
   } finally {}
 }

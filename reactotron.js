@@ -1,15 +1,17 @@
 import Reactotron from 'reactotron-react-native'
-import { reactotronRedux as reduxPlugin } from 'reactotron-redux'
+import { reactotronRedux } from 'reactotron-redux'
 import sagaPlugin from 'reactotron-redux-saga'
 
-Reactotron
+const reactotron = Reactotron
   .configure({
     host: 'localhost'
   }) // controls connection & communication settings
   .useReactNative() // add all built-in react native plugins
-  .use(reduxPlugin())
+  .use(reactotronRedux())
   .use(sagaPlugin())
   .connect()
   .clear();
 
 console.tron = Reactotron
+
+export default reactotron;

@@ -1,4 +1,4 @@
-import { combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import Reactotron from 'reactotron-react-native';
 
@@ -18,9 +18,9 @@ const sagaMonitor = Reactotron.createSagaMonitor();
 const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
 
 const configureStore = () => {
-  const store = Reactotron.createStore(
+  const store = createStore(
     rootReducer,
-    compose(applyMiddleware(sagaMiddleware)),
+    compose(applyMiddleware(sagaMiddleware), Reactotron.createEnhancer()),
   );
   sagaMiddleware.run(watchAuth);
   sagaMiddleware.run(watchTransactions);

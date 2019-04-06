@@ -2,7 +2,7 @@
  * @format
  */
 
-import './ReactotronConfig';
+import './reactotron';
 import { Navigation } from "react-native-navigation";
 
 import { registerScreens } from './src/screens';

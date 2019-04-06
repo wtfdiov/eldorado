@@ -18,6 +18,8 @@ import com.reactcommunity.rnlanguages.RNLanguagesPackage;
 
 import org.reactnative.camera.RNCameraPackage;
 
+import io.invertase.firebase.RNFirebasePackage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,7 +47,8 @@ public class MainApplication extends NavigationApplication {
     return Arrays.<ReactPackage>asList(
       new VectorIconsPackage(),
       new RNLanguagesPackage(),
-      new RNCameraPackage()
+      new RNCameraPackage(),
+      new RNFirebasePackage()
     );
   }
 

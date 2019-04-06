@@ -55,3 +55,5 @@ release.keystore.properties
 
 # Bundle artifact
 *.jsbundle
+
+google-services.json

@@ -12,6 +12,5 @@
     "defaultLocale": "en-us",
     "explorerHash":"http://explorer.niobiocash.com/?hash=@{hash}#blockchain_transaction",
     "updateMs": 45000,
-    "locales": ["pt-br", "en-us"]
   }
 }

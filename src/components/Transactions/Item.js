@@ -1,8 +1,5 @@
-import { config } from '../../../app.json';
 import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-import RNLanguages from 'react-native-languages';
-import 'moment/locale/pt-br';
 import Moment from 'react-moment';
 
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -13,7 +10,6 @@ import NBR from '../common/DisplayValue/NBR';
 import GridItem from '../common/TGridItem';
 
 const transactionItem = (props) => {
-  const locale = config.locales.includes(RNLanguages.language.toLowerCase())
   return (
     <TouchableOpacity onPress={() => props.onTouch(props.transaction.id)} style={{alignSelf: 'center', flexDirection: 'row', flex: 1}}>
       <GridItem bgColor="white">
@@ -33,7 +29,7 @@ const transactionItem = (props) => {
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Icon name="ios-calendar" size={18} />
             <Text> </Text>
-            <Moment locale={locale ? RNLanguages.language.toLowerCase() : 'pt-br'} element={Text} format="D MMM YYYY HH:mm">{props.transaction.createdAt}</Moment>
+            <Moment element={Text} format="D MMM YYYY HH:mm">{props.transaction.createdAt}</Moment>
           </View>
         </View>
       </GridItem>

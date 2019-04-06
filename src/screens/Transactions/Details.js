@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Linking, View, Text } from 'react-native';
-import RNLanguages from 'react-native-languages';
 import i18n from '../../../i18n';
 
 import { config } from '../../../app.json';
@@ -10,7 +9,6 @@ import { stringFromHex } from '../../helpers/hexTool';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Container, Content, Card, CardItem } from 'native-base';
-import 'moment/locale/pt-br';
 import Moment from 'react-moment';
 import Pills from '../../components/common/TPills';
 import AddressBox from '../../components/common/AddressBox';
@@ -57,7 +55,6 @@ class Details extends Component {
       createdAt
     } = this.state.transaction;
 
-    const locale = config.locales.includes(RNLanguages.language.toLowerCase())
     return (
       <Container>
         <Content>
@@ -94,7 +91,7 @@ class Details extends Component {
               <Text>{i18n.t('common.status')}</Text><DisplayStatus status={status} />
             </CardItem>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
-              <Text>{i18n.t('common.createdAt')}</Text><Text style={{fontSize: 12}}><Moment locale={locale ? RNLanguages.language.toLowerCase() : 'pt-br'} element={Text} format="LLLL">{createdAt}</Moment></Text>
+              <Text>{i18n.t('common.createdAt')}</Text><Text style={{fontSize: 12}}><Moment element={Text} format="LLLL">{createdAt}</Moment></Text>
             </CardItem>
             <CardItem bordered style={{justifyContent: 'space-between'}}>
               <Text>BTC</Text><ConvertNBR to="BTC" amount={amount} />
