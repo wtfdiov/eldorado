@@ -1,4 +1,6 @@
-/** @format */
+/**
+ * @format
+ */
 
 import './ReactotronConfig';
 import { Navigation } from "react-native-navigation";
