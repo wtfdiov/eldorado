@@ -4832,10 +4832,10 @@ react-native-languages@^3.0.1:
   resolved "https://registry.yarnpkg.com/react-native-languages/-/react-native-languages-3.0.1.tgz#a35cf89e69e6722205d96cf418411444c328e6c2"
   integrity sha512-D9L3WZLci0L/XZLhzKKiBisj17VQQvEW29FgaTJBV3gnITYy7uxdp0Zwi4xd+Rdus5r+cjWkoNKcGks6zMlZkA==
 
-react-native-navigation@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.5.0.tgz#418d9296da5bf38b17b0503f72b0726c663d39fd"
-  integrity sha512-Gzt3NFnxNXvSW1dX7n4agDUFngrN0g5tzN6wEHa0/tkbXXsVu2lMDAEmu5G1Y5v3s5tecCG3+zG4IoHxK9zMXA==
+react-native-navigation@^2.16.0:
+  version "2.16.0"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.16.0.tgz#017e4c6ad58aa979f75742abf9d7dedda55cd268"
+  integrity sha512-2vVsaIxxNYRuGmIvrhGo0lGGHA0JCKEcHTmsY6RoxAmQ4fUuz4/OGmKu12yDjduQWOOYTTWw4J2YT9ZYmDOVag==
   dependencies:
     hoist-non-react-statics "3.x.x"
     lodash "4.17.x"

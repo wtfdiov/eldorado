@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Platform, Linking, StyleSheet, ScrollView, View, Text } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { Button } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons'
 import i18n from '../../../i18n';
@@ -25,27 +26,30 @@ class HomeScreen extends Component {
 
   constructor(props) {
     super(props);
+    this.navigationEventListener = Navigation.events().bindComponent(this);
   }
 
-  componentDidMount() {
-    this.props.getBallance();
-
+  componentDidAppear() {
     if (Platform.OS === 'android') {
       Linking.getInitialURL().then(url => {
-        if (url) {
-          this.handleOpenURL(url);
-        }
+        if (url) this.handleOpenURL(url);
       });
     } else {
       Linking.addEventListener('url', this.handleOpenURL);
     }
   }
 
+  componentDidMount() {
+    this.props.getBallance();
+  }
+
   componentWillUnmount() {
     Linking.removeEventListener('url', this.handleOpenURL);
+    this.navigationEventListener.remove();
   }
 
   handleOpenURL = (event) => {
+    console.tron.log(event)
     return null
   }
 
@@ -64,7 +68,7 @@ class HomeScreen extends Component {
             }
           />
 
-          <TransactionList 
+          <TransactionList
             data={
               this.props.selected
               ?
@@ -98,7 +102,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => { 
+const mapStateToProps = state => {
   return {
     wallets: state.wallets.wallets,
     balance: state.wallets.balance,
