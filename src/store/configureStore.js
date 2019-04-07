@@ -5,13 +5,15 @@ import Reactotron from 'reactotron-react-native';
 import authReducer from './reducers/auth';
 import transactionsReducer from './reducers/transactions';
 import walletsReducer from './reducers/wallets';
+import configReducer from './reducers/config';
 
-import { watchAuth, watchTransactions, watchWallets, watchData } from './sagas';
+import { watchAuth, watchTransactions, watchWallets, watchData, watchConfig } from './sagas';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   transactions: transactionsReducer,
-  wallets: walletsReducer
+  wallets: walletsReducer,
+  config: configReducer
 });
 
 const sagaMonitor = Reactotron.createSagaMonitor();
@@ -26,6 +28,7 @@ const configureStore = () => {
   sagaMiddleware.run(watchTransactions);
   sagaMiddleware.run(watchWallets);
   sagaMiddleware.run(watchData);
+  sagaMiddleware.run(watchConfig);
   return store;
 };
 

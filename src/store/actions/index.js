@@ -28,3 +28,12 @@ export {
   createWallet,
   deleteWallet
 } from './wallets';
+
+export {
+  toggleConfigLoading,
+  check2FA,
+  set2FA,
+  enable2FA,
+  enable2FASuccess,
+  enable2FAError
+} from './config';

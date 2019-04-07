@@ -16,6 +16,7 @@ import SentTransactionsScreen from './Transactions/Sent';
 import ReceivedTransationsScreen from './Transactions/Received';
 import TransactionDetailsScreen from './Transactions/Details';
 import QRScanner from './QRScanner';
+import ConfigScreen from './Config';
 
 const store = configureStore();
 
@@ -32,4 +33,5 @@ export function registerScreens() {
   Navigation.registerComponentWithRedux('eldorado.screens.Transactions.Received', () => ReceivedTransationsScreen, Provider, store);
   Navigation.registerComponentWithRedux('eldorado.screens.Transactions.Details', () => TransactionDetailsScreen, Provider, store);
   Navigation.registerComponentWithRedux('eldorado.screens.QRScanner', () => QRScanner, Provider, store);
+  Navigation.registerComponentWithRedux('eldorado.screens.Config', () => ConfigScreen, Provider, store);
 }

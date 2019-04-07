@@ -4,6 +4,7 @@ import * as actionTypes from '../actionTypes';
 import { signUpSaga, tryAuthSaga, logoutSaga, tryAutoLoginSaga, clearAuthDataSaga, updateTokenOnStorageSaga, updateTokenSaga, getData } from './auth';
 import { fetchTransactionsSaga, newTransactionSaga } from './transactions';
 import { fetchWalletsSaga, fetchWalletsBalanceSaga, createWalletSaga, deleteWalletSaga } from './wallets';
+import { check2FASaga, enable2FASaga } from './config';
 
 export function* watchAuth() {
   yield takeLatest(actionTypes.AUTH_SIGN_UP, signUpSaga);
@@ -33,4 +34,9 @@ export function* watchData() {
       yield take(actionTypes.STOP_DATA_SYNC);
       yield cancel(dataSync);
   }
+}
+
+export function* watchConfig() {
+  yield takeLatest(actionTypes.CONFIG_CHECK_2FA, check2FASaga);
+  yield takeLatest(actionTypes.CONFIG_2FA_ENABLE, enable2FASaga);
 }

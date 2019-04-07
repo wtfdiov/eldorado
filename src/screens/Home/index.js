@@ -9,6 +9,8 @@ import { connect } from 'react-redux';
 
 import { fetchWalletsBalance, logout } from '../../store/actions';
 
+import openModal from '../../navigation/openModal';
+
 import WalletPicker from '../../components/common/WalletPicker';
 import WalletStats from '../../components/Home/WalletStats';
 import TransactionList from '../../components/Transactions/List';
@@ -82,7 +84,10 @@ class HomeScreen extends Component {
             }}
           />
 
-          <View style={{flexDirection: 'row', width: '100%', justifyContent: 'flex-end',paddingHorizontal: 10}}>
+          <View style={{flexDirection: 'row', width: '100%', justifyContent: 'space-between',paddingHorizontal: 10}}>
+            <Button transparent light onPress={() => openModal('eldorado.screens.Config')}>
+              <Icon color="#e4e4e4" name="md-settings" size={36} />
+            </Button>
             <Button transparent light onPress={() => this.props.logOut()}>
               <Icon color="#e4e4e4" name="md-log-out" size={18} />
               <Text style={{color: '#e4e4e4' }}> {i18n.t('home.logOutBtnLabel')}</Text>

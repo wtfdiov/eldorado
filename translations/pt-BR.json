@@ -93,6 +93,13 @@
         }
       }
     },
+    "config": {
+      "2FA": {
+        "secretMessage": "Copie essa chave e cole no seu app favorito.",
+        "copySecret": "Chave copiada, cole no seu app favorito!",
+        "inputKey": "Insira os números exibidos no aplicativo 2FA"
+      }
+    },
     "common": {
         "loading": "Carregando",
         "from": "De",
@@ -112,6 +119,7 @@
         "cancel": "Cancelar",
         "ok": "Ok",
         "anonymous": "Anônimo",
+        "send": "Enviar",
         "components": {
             "walletPicker": {
                 "noWallets": "Sem carteiras",
