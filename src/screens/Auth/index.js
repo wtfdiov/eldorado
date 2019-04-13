@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Dimensions, View, Text, ImageBackground, Image } from 'react-native';
+import { StyleSheet, Dimensions, View, Text, ImageBackground, Image, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Input, Item } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -78,15 +78,15 @@ class AuthScreen extends Component {
           success
             block
             onPress={this.loginHandler}
-            disabled={!this.state.email || !/\S+@\S+\.\S+/.test(this.state.email) || !this.state.password}
+            disabled={!this.state.email || !/\S+@\S+\.\S+/.test(this.state.email) || !this.state.password || this.props.loading}
             style={{
               marginVertical: 20,
             }}
           >
-            <Text style={{
-              color: '#FFFFFF',
-              fontSize: 16
-            }}>{i18n.t('login.signInBtnLabel')}</Text>
+            {this.props.loading
+              ? (<ActivityIndicator color="white" />)
+              : (<Text style={{ color: '#FFFFFF', fontSize: 16}}>{i18n.t('login.signInBtnLabel')}</Text>)
+            }
           </Button>
 
         </View>
@@ -176,10 +176,14 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = state => ({
+  loading: state.auth.loading
+});
+
 const mapDispatchToProps = dispatch => {
   return {
     onLogin: (formData) => dispatch(tryAuth(formData)),
   }
 }
 
-export default connect(null, mapDispatchToProps)(AuthScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthScreen);

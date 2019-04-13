@@ -93,6 +93,18 @@
         }
       }
     },
+    "config": {
+      "2FA": {
+        "title": "Two Factor Auth",
+        "secretMessage": "Copy this secret and paste on your favorite app.",
+        "copySecret": "Secret copied, paste it on your favorite app!",
+        "inputKey": "Input the code shown on 2FA app",
+        "activatedMessage": "The Two Factor auth is activated on this account, you are safe!"
+      },
+      "language": {
+        "title": "Language"
+      }
+    },
     "common": {
         "loading": "Loading",
         "from": "From",
@@ -115,7 +127,8 @@
         "components": {
             "walletPicker": {
                 "noWallets": "No wallets",
-                "newWalletBtnLabel": "New wallet"
+                "newWalletBtnLabel": "New wallet",
+                "addressCopied": "Wallet address copied!",
             },
             "walletStats": {
                 "balance": "BALANCE",

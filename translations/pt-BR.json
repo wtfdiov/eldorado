@@ -95,9 +95,14 @@
     },
     "config": {
       "2FA": {
+        "title": "Autenticação 2 Fatores",
         "secretMessage": "Copie essa chave e cole no seu app favorito.",
         "copySecret": "Chave copiada, cole no seu app favorito!",
-        "inputKey": "Insira os números exibidos no aplicativo 2FA"
+        "inputKey": "Insira os números exibidos no aplicativo 2FA",
+        "activatedMessage": "A autenticação em 2 fatores está ativada em sua conta, você está seguro!"
+      },
+      "language": {
+        "title": "Linguagem"
       }
     },
     "common": {
@@ -123,7 +128,8 @@
         "components": {
             "walletPicker": {
                 "noWallets": "Sem carteiras",
-                "newWalletBtnLabel": "Nova carteira"
+                "newWalletBtnLabel": "Nova carteira",
+                "addressCopied": "Endereço da carteira copiado!"
             },
             "walletStats": {
                 "balance": "SALDO",

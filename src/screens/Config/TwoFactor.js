@@ -4,6 +4,8 @@ import { Button, Item, Input } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 import i18n from '../../../i18n';
 
+import { COLORS } from '../../components/style';
+
 const copyToClipboard = async (secret) => {
   await Clipboard.setString(secret);
   ToastAndroid.show(i18n.t('config.2FA.copySecret'), ToastAndroid.SHORT);
@@ -25,7 +27,12 @@ const twoFactor = ({ isLoading, twoFactorData, enable }) => {
 
   if (isEnabled) {
     return (
-      <Text>2FA Ativado!</Text>
+      <View style={{
+        backgroundColor: COLORS.secondaryGreen,
+        padding: 10
+      }}>
+        <Text style={{ textAlign: 'center' }}>{i18n.t('config.2FA.activatedMessage')}</Text>
+      </View>
     );
   }
 
@@ -51,7 +58,7 @@ const twoFactor = ({ isLoading, twoFactorData, enable }) => {
             success
             block
             onPress={() => enable(twoFactorKey)}
-            disabled={false}
+            disabled={twoFactorKey.length < 3}
           >
             <Text style={{
               color: '#FFFFFF',
