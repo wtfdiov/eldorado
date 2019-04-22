@@ -17,6 +17,11 @@ const smallTextColor = '#B2C3DB'
 const primaryRed = '#FF758C'
 const { headerFontSize, buttonPrimaryTextPadding, buttonBorderedTextPadding } = global
 
+export const COLORS = {
+  primaryGreen: '#498c45',
+  secondaryGreen: '#f4fff4'
+};
+
 export default StyleSheet.create({
   buttonPrimary: {
     width: 270,

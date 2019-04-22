@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Clipboard, View, Picker, Text, Image } from 'react-native';
+import { ToastAndroid, Clipboard, View, Text, Image } from 'react-native';
 import { Button } from 'native-base';
 import { Navigation } from 'react-native-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -23,6 +23,7 @@ class WalletPicker extends Component {
 
   copyToClipboard = async () => {
     await Clipboard.setString(this.props.selected);
+    ToastAndroid.show(i18n.t('common.components.walletPicker.addressCopied'), ToastAndroid.SHORT);
   };
 
   sendButtonHandler = async () => {
@@ -89,9 +90,9 @@ class WalletPicker extends Component {
             :
             null
             }
-            
+
       </View>
- 
+
       </View>
     );
   }

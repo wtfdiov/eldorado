@@ -2,17 +2,15 @@ import React, { Component } from 'react';
 import { StyleSheet, Dimensions, ScrollView, View, Text, Image } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { Label, Input, Item, Button } from 'native-base';
-import axios from 'axios';
 import i18n from '../../../i18n';
-
-import { config } from '../../../app.json';
 
 import * as actions from '../../store/actions';
 
 import componentStyle from '../../components/style';
 
+import Title from '../../components/common/Title';
 import TwoFactor from './TwoFactor';
+import ChooseLanguage from './ChooseLanguage';
 
 class ConfigScreen extends Component {
 
@@ -59,11 +57,14 @@ class ConfigScreen extends Component {
           flex: 1,
           paddingHorizontal: 20
         }}>
-        <TwoFactor
-          isLoading={this.props.isLoading}
-          twoFactorData={this.props.twoFactor}
-          enable={this.props.enable2FA}
-        />
+          <Title title={i18n.t('config.2FA.title')} />
+          <TwoFactor
+            isLoading={this.props.isLoading}
+            twoFactorData={this.props.twoFactor}
+            enable={this.props.enable2FA}
+          />
+          <Title title={i18n.t('config.language.title')} />
+          <ChooseLanguage />
         </ScrollView>
       </View>
     </View>
