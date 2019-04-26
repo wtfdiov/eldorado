@@ -4,11 +4,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 export default () => {
 
   Promise.all([
-    Icon.getImageSource('ios-wallet', 34),
-    Icon.getImageSource('ios-send', 34),
-    Icon.getImageSource('ios-repeat', 34),
-    Icon.getImageSource('ios-contacts', 34),
-    Icon.getImageSource('md-qr-scanner', 34)
+    Icon.getImageSource('ios-wallet', 26),
+    Icon.getImageSource('ios-send', 26),
+    Icon.getImageSource('ios-repeat', 26),
+    Icon.getImageSource('ios-contacts', 26),
+    Icon.getImageSource('md-qr-scanner', 26)
   ])
   .then(assets => {
 
@@ -73,42 +73,8 @@ export default () => {
                     }
                   },
                   {
-                    topTabs: {
-                      children: [
-                        {
-                          component: {
-                            name: 'eldorado.screens.Transactions.All',
-                            options: {
-                              topTab:{
-                                title: 'tab 1'
-                              }
-                            }
-                          },
-                          
-                        },
-                        {
-                          component: {
-                            name: 'eldorado.screens.Transactions.Received',
-                            options: {
-                              topTab:{
-                                title: 'tab 2'
-                              }
-                            }
-                          },
-                          
-                        },
-                        {
-                          component: {
-                            name: 'eldorado.screens.Transactions.Sent',
-                            options: {
-                              topTab:{
-                                title: 'tab 2'
-                              }
-                            }
-                          },
-                          
-                        }
-                      ],
+                    component: {
+                      name: 'eldorado.screens.Transactions.All',
                       options: {
                         bottomTab: {
                           icon: assets[2],
@@ -118,10 +84,11 @@ export default () => {
                         },
                         topBar: {
                           visible: false,
+                          drawBehind: true,
                         }
                       }
-                    },
-                  }
+                    }
+                  },
                 ],
                 options: {
                   bottomTabs: {

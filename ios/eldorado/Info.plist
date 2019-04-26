@@ -83,5 +83,7 @@
 	<false/>
 	<key>NSCameraUsageDescription</key>
 	<string>NBR Wallet needs access to your camera so we can scan QRCodes</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Your message to user when the microphone is accessed for the first time</string>
 </dict>
 </plist>

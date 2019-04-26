@@ -37,8 +37,12 @@ class QRScanner extends Component {
                 this.props.setAddress(data)
                 Navigation.pop(this.props.componentId);
             }}
-            permissionDialogTitle={'Permissão para uso da Câmera'}
-            permissionDialogMessage={'Precisamos de autorização para acessar sua câmera e tornar possível o scan de QRCodes'}
+            androidCameraPermissionOptions={{
+              title: 'Permissão para uso da Câmera',
+              message: 'Precisamos de autorização para acessar sua câmera e tornar possível o scan de QRCodes',
+              buttonPositive: 'Ok',
+              buttonNegative: 'Cancelar',
+            }}
         />
       );
   }

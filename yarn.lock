@@ -5691,10 +5691,10 @@ react-moment@^0.8.4:
   resolved "https://registry.yarnpkg.com/react-moment/-/react-moment-0.8.4.tgz#18eb59e1541c8b216353e23c21e9db50e42e2edb"
   integrity sha512-QhI19OcfhiAn60/O6bMR0w8ApXrPFCjv6+eV0I/P9/AswzjgEAx4L7VxMBCpS/jrythLa12Q9v88req+ys4YpA==
 
-react-native-camera@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-2.2.1.tgz#01331f011048545980463b48c83cf63e0eec0ee0"
-  integrity sha512-N4uwZIXirj2Lk5nQlSz/gXiGKxnouLdpSxYM3jqMUmegwPWIaxvjTqggXjEC2V2Go+8/1Z5ytMCLyoO969inHw==
+react-native-camera@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-2.6.0.tgz#bf97b0fc68aa8732d815e9bbd92e63529f51d598"
+  integrity sha512-g0Hi4yhUg1yBsYbW9aLxVaX+rgl9sKrrDAGF6difiRTvwCUEqlID2DosLCQQPkLSniJHVa8gc+SwCegahU23aA==
   dependencies:
     prop-types "^15.6.2"
 
