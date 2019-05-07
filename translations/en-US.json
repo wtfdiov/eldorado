@@ -105,6 +105,15 @@
         "title": "Language"
       }
     },
+    "qrScanner": {
+      "title": "Scan QR Code",
+      "askPermission": {
+        "title": "Camera permission",
+        "message": "We need access to your camera so we can scan QRCodes",
+        "btnPositive": "Grant",
+        "btnNegative": "Deny"
+      }
+    },
     "common": {
         "loading": "Loading",
         "from": "From",

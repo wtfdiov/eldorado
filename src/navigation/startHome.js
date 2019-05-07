@@ -33,6 +33,9 @@ export default () => {
                         },
                         topBar: {
                           visible: false,
+                          background: {
+                            color: '#006e6e'
+                          }
                         }
                       }
                     },
