@@ -57,3 +57,5 @@ release.keystore.properties
 *.jsbundle
 
 google-services.json
+
+Pods/

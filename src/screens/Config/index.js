@@ -55,7 +55,7 @@ class ConfigScreen extends Component {
       componentStyle.transactionCard, componentStyle.shadow]}>
         <ScrollView contentContainerStyle={{
           flex: 1,
-          paddingHorizontal: 20
+          paddingHorizontal: 10
         }}>
           <Title title={i18n.t('config.2FA.title')} />
           <TwoFactor

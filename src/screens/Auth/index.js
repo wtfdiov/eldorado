@@ -133,8 +133,8 @@ const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   logo: {
-    height: height * 0.3,
-    width: width * 0.4,
+    height: height * 0.35,
+    width: width * 0.6,
     justifyContent: 'center'
   },
 

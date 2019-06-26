@@ -140,6 +140,52 @@
       "transactionsList": {
         "noTransactions": "Não há transações a serem exibidas."
       }
+    },
+    "qrScanner": {
+      "title": "Escanear código QR",
+      "askPermission": {
+        "title": "Permissão para uso da Câmera",
+        "message": "Precisamos de autorização para acessar sua câmera e tornar possível o scan de QRCodes",
+        "btnPositive": "Permitir",
+        "btnNegative": "Cancelar"
+      }
+    },
+    "common": {
+      "loading": "Carregando",
+      "from": "De",
+      "to": "Para",
+      "amount": "Quantidade",
+      "date": "Data",
+      "waitingConfirmation": "Aguardando",
+      "confirmed": "Confirmada",
+      "fee": "Taxa",
+      "hash": "Hash",
+      "paymentId": "ID de Pagamento",
+      "anonymity": "Nível de anonimato",
+      "status": "Status",
+      "createdAt": "Criado em",
+      "na": "N/A",
+      "save": "Salvar",
+      "cancel": "Cancelar",
+      "ok": "Ok",
+      "anonymous": "Anônimo",
+      "send": "Enviar",
+      "components": {
+        "walletPicker": {
+          "noWallets": "Sem carteiras",
+          "newWalletBtnLabel": "Nova carteira",
+          "addressCopied": "Endereço da carteira copiado!"
+        },
+        "walletStats": {
+          "balance": "SALDO",
+          "locked": "BLOQUEADO",
+          "valueUSD": "USD",
+          "valueBTC": "BTC"
+        },
+        "transactionsList": {
+          "noTransactions": "Não há transações a serem exibidas."
+        }
+      }
     }
   }
 }

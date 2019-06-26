@@ -19,11 +19,17 @@ class WalletSelector extends PureComponent {
 
     return (
         <Picker
-          style={{ width: '80%', color: 'white', }}
+          style={{ width: '80%' }}
           selectedValue={this.props.selected}
           onValueChange={(address) => this.props.onSelect(address)}
           itemStyle={{
             flex: 1
+          }}
+          iosHeader="Selecione"
+          headerBackButtonText="Cancelar"
+          placeholder={Text}
+          placeholderStyle={{
+            color: '#FFF'
           }}
         >
           <Picker.Item

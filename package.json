@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "android": "adb reverse tcp:9090 tcp:9090 && react-native run-android",
+    "ios": "react-native run-ios",
     "test": "jest",
     "lint": "eslint ."
   },
@@ -18,7 +19,7 @@
     "react": "16.8.3",
     "react-moment": "^0.8.4",
     "react-native": "0.59.3",
-    "react-native-camera": "^2.2.1",
+    "react-native-camera": "^2.6.0",
     "react-native-firebase": "^5.2.3",
     "react-native-languages": "^3.0.2",
     "react-native-navigation": "^2.16.0",
