@@ -18,20 +18,87 @@ import TransactionDetailsScreen from './Transactions/Details';
 import QRScanner from './QRScanner';
 import ConfigScreen from './Config';
 
+import paperProvider from '../components/common/paperProvider';
+
 const store = configureStore();
 
 export function registerScreens() {
-  Navigation.registerComponentWithRedux('eldorado.screens.Loading', () => LoadingScreen, Provider, store);
-  Navigation.registerComponentWithRedux('eldorado.screens.Auth', () => AuthScreen, Provider, store);
-  Navigation.registerComponentWithRedux('eldorado.screens.Register', () => RegisterScreen, Provider, store);
-  Navigation.registerComponentWithRedux('eldorado.screens.Forgot', () => ForgotScreen, Provider, store);
-  Navigation.registerComponentWithRedux('eldorado.screens.Home', () => HomeScreen, Provider, store);
-  Navigation.registerComponentWithRedux('eldorado.screens.Send', () => SendScreen, Provider, store);
-  Navigation.registerComponentWithRedux('eldorado.screens.Receive', () => ReceiveScreen, Provider, store);
-  Navigation.registerComponentWithRedux('eldorado.screens.Transactions.All', () => AllTransactionsScreen, Provider, store);
-  Navigation.registerComponentWithRedux('eldorado.screens.Transactions.Sent', () => SentTransactionsScreen, Provider, store);
-  Navigation.registerComponentWithRedux('eldorado.screens.Transactions.Received', () => ReceivedTransationsScreen, Provider, store);
-  Navigation.registerComponentWithRedux('eldorado.screens.Transactions.Details', () => TransactionDetailsScreen, Provider, store);
-  Navigation.registerComponentWithRedux('eldorado.screens.QRScanner', () => QRScanner, Provider, store);
-  Navigation.registerComponentWithRedux('eldorado.screens.Config', () => ConfigScreen, Provider, store);
+  Navigation.registerComponentWithRedux(
+    'eldorado.screens.Loading',
+    () => paperProvider(LoadingScreen),
+    Provider,
+    store
+  );
+  Navigation.registerComponentWithRedux(
+    'eldorado.screens.Auth',
+    () => paperProvider(AuthScreen),
+    Provider,
+    store
+  );
+  Navigation.registerComponentWithRedux(
+    'eldorado.screens.Register',
+    () => paperProvider(RegisterScreen),
+    Provider,
+    store
+  );
+  Navigation.registerComponentWithRedux(
+    'eldorado.screens.Forgot',
+    () => paperProvider(ForgotScreen),
+    Provider,
+    store
+  );
+  Navigation.registerComponentWithRedux(
+    'eldorado.screens.Home',
+    () => paperProvider(HomeScreen),
+    Provider,
+    store
+  );
+  Navigation.registerComponentWithRedux(
+    'eldorado.screens.Send',
+    () => paperProvider(SendScreen),
+    Provider,
+    store
+  );
+  Navigation.registerComponentWithRedux(
+    'eldorado.screens.Receive',
+    () => paperProvider(ReceiveScreen),
+    Provider,
+    store
+  );
+  Navigation.registerComponentWithRedux(
+    'eldorado.screens.Transactions.All',
+    () => paperProvider(AllTransactionsScreen),
+    Provider,
+    store
+  );
+  Navigation.registerComponentWithRedux(
+    'eldorado.screens.Transactions.Sent',
+    () => paperProvider(SentTransactionsScreen),
+    Provider,
+    store
+  );
+  Navigation.registerComponentWithRedux(
+    'eldorado.screens.Transactions.Received',
+    () => paperProvider(ReceivedTransationsScreen),
+    Provider,
+    store
+  );
+  Navigation.registerComponentWithRedux(
+    'eldorado.screens.Transactions.Details',
+    () => paperProvider(TransactionDetailsScreen),
+    Provider,
+    store
+  );
+  Navigation.registerComponentWithRedux(
+    'eldorado.screens.QRScanner',
+    () => paperProvider(QRScanner),
+    Provider,
+    store
+  );
+  Navigation.registerComponentWithRedux(
+    'eldorado.screens.Config',
+    () => paperProvider(ConfigScreen),
+    Provider,
+    store
+  );
 }
