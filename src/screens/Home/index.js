@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
-import { Platform, Linking, StyleSheet, ScrollView, View, Text } from 'react-native';
+import {
+  Platform,
+  Linking,
+  StyleSheet,
+  ScrollView,
+  View,
+  Text
+} from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { Button } from 'native-base';
-import Icon from 'react-native-vector-icons/Ionicons'
+import Icon from 'react-native-vector-icons/Ionicons';
 import i18n from '../../../i18n';
 
 import { connect } from 'react-redux';
@@ -16,14 +23,13 @@ import WalletStats from '../../components/Home/WalletStats';
 import TransactionList from '../../components/Transactions/List';
 
 class HomeScreen extends Component {
-
   static options(passProps) {
     return {
       topBar: {
         visible: false,
-        drawBehind: true,
+        drawBehind: true
       }
-    }
+    };
   }
 
   constructor(props) {
@@ -50,47 +56,64 @@ class HomeScreen extends Component {
     this.navigationEventListener.remove();
   }
 
-  handleOpenURL = (event) => {
-    console.tron.log(event)
-    return null
-  }
+  handleOpenURL = event => {
+    console.tron.log(event);
+    return null;
+  };
 
-  render () {
+  render() {
     return (
-      <ScrollView style={{flex: 1}}>
+      <ScrollView style={{ flex: 1 }}>
         <View style={styles.container}>
-
           <WalletPicker />
 
           <WalletStats
             selected={this.props.selected}
-            balance={this.props.selected ?
-              this.props.selectedBalance :
-              this.props.balance
+            balance={
+              this.props.selected
+                ? this.props.selectedBalance
+                : this.props.balance
             }
           />
 
           <TransactionList
             data={
               this.props.selected
-              ?
-                this.props.transactions.filter(transaction => transaction.from === this.props.selected || transaction.to.address === this.props.selected)
-              :
-                this.props.transactions
+                ? this.props.transactions.filter(
+                    transaction =>
+                      transaction.from === this.props.selected ||
+                      transaction.to.address === this.props.selected
+                  )
+                : this.props.transactions
             }
             truncate={3}
             customStyle={{
-              marginTop: 20
+              marginTop: 20,
+              width: '100%'
             }}
           />
 
-          <View style={{flexDirection: 'row', width: '100%', justifyContent: 'space-between',paddingHorizontal: 10}}>
-            <Button transparent light onPress={() => openModal('eldorado.screens.Config')}>
+          <View
+            style={{
+              flexDirection: 'row',
+              width: '100%',
+              justifyContent: 'space-between',
+              paddingHorizontal: 10
+            }}
+          >
+            <Button
+              transparent
+              light
+              onPress={() => openModal('eldorado.screens.Config')}
+            >
               <Icon color="#e4e4e4" name="md-settings" size={36} />
             </Button>
             <Button transparent light onPress={() => this.props.logOut()}>
               <Icon color="#e4e4e4" name="md-log-out" size={18} />
-              <Text style={{color: '#e4e4e4' }}> {i18n.t('home.logOutBtnLabel')}</Text>
+              <Text style={{ color: '#e4e4e4' }}>
+                {' '}
+                {i18n.t('home.logOutBtnLabel')}
+              </Text>
             </Button>
           </View>
         </View>
@@ -121,7 +144,10 @@ const mapDispatchToProps = dispatch => {
   return {
     getBallance: () => dispatch(fetchWalletsBalance()),
     logOut: () => dispatch(logout())
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomeScreen);

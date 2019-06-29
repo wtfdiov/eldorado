@@ -20,7 +20,10 @@ export function* check2FASaga() {
 
     yield put(actions.set2FA(response.data));
   } catch (error) {
-    Alert.alert(i18n.t('transactions.title'), `${i18n.t('transactions.requestMessages.error.generic')}: ${error}`)
+    Alert.alert(
+      i18n.t('transactions.title'),
+      `${i18n.t('transactions.requestMessages.error.generic')}: ${error}`
+    );
   } finally {
     yield put(actions.toggleConfigLoading());
   }
@@ -32,20 +35,26 @@ export function* enable2FASaga({ twoFactorAuthToken }) {
   yield put(actions.toggleConfigLoading());
 
   try {
-    const response = yield axios.post(`${config.api}/users/me/2fa-token`, {
-      action: 'enable',
-      twoFactorAuthToken
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${state.auth.token}`
+    const response = yield axios.post(
+      `${config.api}/users/me/2fa-token`,
+      {
+        action: 'enable',
+        twoFactorAuthToken
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${state.auth.token}`
+        }
       }
-    });
+    );
 
-    yield put(actions.set2FA(response.data));
+    yield put(actions.check2FA());
   } catch (error) {
     yield put(actions.enable2FAError(error.data));
-    Alert.alert(i18n.t('transactions.title'), `${i18n.t('transactions.requestMessages.error.generic')}: ${error}`)
+    Alert.alert(
+      i18n.t('transactions.title'),
+      `${i18n.t('transactions.requestMessages.error.generic')}: ${error}`
+    );
   } finally {
     yield put(actions.toggleConfigLoading());
   }

@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Text, View } from 'react-native'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Text, View } from 'react-native';
+import { Card } from 'react-native-paper';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -9,27 +10,48 @@ import componentStyle from '../../style';
 class IconWithInfo extends Component {
   static propTypes = {
     value: PropTypes.string,
-    title: PropTypes.string,
-  }
+    title: PropTypes.string
+  };
 
   static defaultProps = {
     value: '',
-    title: '',
-  }
+    title: ''
+  };
   render = () => {
-    const { info, title, displayIcon, iconColor, size, titleColor } = this.props
+    const {
+      info,
+      title,
+      displayIcon,
+      iconColor,
+      size,
+      titleColor
+    } = this.props;
     return (
-      <View style={[componentStyle.profileMetrics, componentStyle.shadow, componentStyle.centreItems, {flexDirection: 'row', padding: 10, justifyContent: 'space-between'}]}>
-        <Icon name={displayIcon} color={iconColor} size={parseInt(size)} />
-        <View>
-        <Text style={{color: titleColor, alignSelf: 'flex-end'}}>
-        {title}
-        </Text>
-        {info}
-        </View> 
-      </View>
-    )
-  }
+      <Card style={[componentStyle.profileMetrics, componentStyle.centreItems]}>
+        <Card.Content
+          style={{
+            flexDirection: 'row',
+            width: '90%',
+            justifyContent: 'space-between'
+          }}
+        >
+          <Icon name={displayIcon} color={iconColor} size={parseInt(size)} />
+          <View>
+            <Text
+              style={{
+                color: titleColor,
+                alignSelf: 'flex-end',
+                fontWeight: '500'
+              }}
+            >
+              {title}
+            </Text>
+            {info}
+          </View>
+        </Card.Content>
+      </Card>
+    );
+  };
 }
 
-export default IconWithInfo
+export default IconWithInfo;
