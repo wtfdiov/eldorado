@@ -30,6 +30,8 @@ target 'eldorado' do
   'BarcodeDetectorMLKit'
   ]
 
+  pod 'RNLocalize', :path => '../node_modules/react-native-localize'
+
   target 'eldoradoTests' do
     inherit! :search_paths
     # Pods for testing

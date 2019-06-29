@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import i18n from '../../../i18n';
+import i18n from 'i18n-js';
 
 import IconWithInfo from '../common/IconWithInfo';
 import NBR from '../common/DisplayValue/NBR';
@@ -9,16 +9,16 @@ import ConvertNBR from '../common/DisplayValue/ConvertNBR';
 import componentStyles from '../style';
 
 class WalletStats extends Component {
-  
   constructor(props) {
     super(props);
   }
 
-  render () {
-    const selectedTotal = this.props.balance.available + this.props.balance.locked
+  render() {
+    const selectedTotal =
+      this.props.balance.available + this.props.balance.locked;
     return (
       <View style={componentStyles.profileMetricsContainer}>
-        <IconWithInfo 
+        <IconWithInfo
           title={i18n.t('common.components.walletStats.balance')}
           titleColor="#3E863D"
           displayIcon="ios-wallet"
@@ -42,7 +42,14 @@ class WalletStats extends Component {
           displayIcon="logo-usd"
           iconColor="#adb5bd"
           size={48}
-          info={<ConvertNBR to="USD" amount={this.props.selected ? selectedTotal : this.props.balance.total} />}
+          info={
+            <ConvertNBR
+              to="USD"
+              amount={
+                this.props.selected ? selectedTotal : this.props.balance.total
+              }
+            />
+          }
         />
 
         <IconWithInfo
@@ -51,7 +58,14 @@ class WalletStats extends Component {
           displayIcon="logo-bitcoin"
           iconColor="#adb5bd"
           size={48}
-          info={<ConvertNBR to="BTC" amount={this.props.selected ? selectedTotal : this.props.balance.total} />}
+          info={
+            <ConvertNBR
+              to="BTC"
+              amount={
+                this.props.selected ? selectedTotal : this.props.balance.total
+              }
+            />
+          }
         />
       </View>
     );

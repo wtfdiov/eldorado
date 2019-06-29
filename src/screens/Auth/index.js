@@ -3,14 +3,11 @@ import {
   StyleSheet,
   Dimensions,
   View,
-  Text,
   ImageBackground,
-  Image,
-  ActivityIndicator
+  Image
 } from 'react-native';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/Ionicons';
-import i18n from '../../../i18n';
+import i18n from 'i18n-js';
 import { TextInput, Button } from 'react-native-paper';
 
 import { tryAuth } from '../../store/actions/index';

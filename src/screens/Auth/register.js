@@ -1,13 +1,7 @@
 import React, { PureComponent } from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  View,
-  Dimensions,
-  ActivityIndicator
-} from 'react-native';
+import { StyleSheet, ScrollView, View, Dimensions } from 'react-native';
 import { Navigation } from 'react-native-navigation';
-import i18n from '../../../i18n';
+import i18n from 'i18n-js';
 
 import { connect } from 'react-redux';
 import { signUp } from '../../store/actions/index';

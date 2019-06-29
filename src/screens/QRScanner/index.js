@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Navigation } from 'react-native-navigation';
 import { RNCamera } from 'react-native-camera';
 
-import i18n from '../../../i18n';
+import i18n from 'i18n-js';
 
 class QRScanner extends Component {
   static options(passProps) {
@@ -22,15 +22,15 @@ class QRScanner extends Component {
         backButton: {
           showTitle: false
         }
-      },
-    }
+      }
+    };
   }
 
   constructor(props) {
     super(props);
     this.state = {
       cameraOn: false
-    }
+    };
   }
 
   componentDidMount() {
@@ -46,27 +46,30 @@ class QRScanner extends Component {
   }
 
   render() {
-    return this.state.cameraOn && (
-      <RNCamera
-        ref={camera => { this.camera = camera }}
-        style={{ flex: 1, justifyContent: 'flex-end',
-        alignItems: 'center' }}
-        type={RNCamera.Constants.Type.back}
-        autoFocus={RNCamera.Constants.AutoFocus.on}
-        flashMode={RNCamera.Constants.FlashMode.off}
-        barCodeTypes={[RNCamera.Constants.BarCodeType.qr]}
-        captureAudio={false}
-        onBarCodeRead={({ data }) => {
-          this.props.setAddress(data)
-          Navigation.pop(this.props.componentId);
-        }}
-        androidCameraPermissionOptions={{
-          title: i18n.t('qrScanner.askPermission.title'),
-          message: i18n.t('qrScanner.askPermission.message'),
-          buttonPositive: i18n.t('qrScanner.askPermission.btnPositive'),
-          buttonNegative: i18n.t('qrScanner.askPermission.btnNegative'),
-        }}
-      />
+    return (
+      this.state.cameraOn && (
+        <RNCamera
+          ref={camera => {
+            this.camera = camera;
+          }}
+          style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}
+          type={RNCamera.Constants.Type.back}
+          autoFocus={RNCamera.Constants.AutoFocus.on}
+          flashMode={RNCamera.Constants.FlashMode.off}
+          barCodeTypes={[RNCamera.Constants.BarCodeType.qr]}
+          captureAudio={false}
+          onBarCodeRead={({ data }) => {
+            this.props.setAddress(data);
+            Navigation.pop(this.props.componentId);
+          }}
+          androidCameraPermissionOptions={{
+            title: i18n.t('qrScanner.askPermission.title'),
+            message: i18n.t('qrScanner.askPermission.message'),
+            buttonPositive: i18n.t('qrScanner.askPermission.btnPositive'),
+            buttonNegative: i18n.t('qrScanner.askPermission.btnNegative')
+          }}
+        />
+      )
     );
   }
 }

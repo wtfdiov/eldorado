@@ -10,7 +10,7 @@ import {
 import { Navigation } from 'react-native-navigation';
 import { Button } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
-import i18n from '../../../i18n';
+import i18n from 'i18n-js';
 
 import { connect } from 'react-redux';
 

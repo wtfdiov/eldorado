@@ -3,7 +3,7 @@ import { StyleSheet, ScrollView, Text, View } from 'react-native';
 import { Label, Input, Item, Button } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 import uuidv1 from 'uuid/v1';
-import i18n from '../../../i18n';
+import i18n from 'i18n-js';
 import Slider from '@react-native-community/slider';
 
 import { connect } from 'react-redux';

@@ -3,7 +3,7 @@ import { Alert } from 'react-native';
 import axios from 'axios';
 import { put, call, delay } from 'redux-saga/effects';
 import { AsyncStorage } from 'react-native';
-import i18n from '../../../i18n';
+import i18n from 'i18n-js';
 
 import startAuth from '../../navigation/startAuth';
 import startHome from '../../navigation/startHome';
@@ -17,7 +17,7 @@ export function* signUpSaga(action) {
     const response = yield axios.post(`${config.api}/users`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       name: action.formData.name,
       email: action.formData.email,
@@ -25,9 +25,17 @@ export function* signUpSaga(action) {
       passwordConfirm: action.formData.passwordConfirm
     });
 
-    return Alert.alert(i18n.t('signUp.title'), i18n.t('signUp.requestMessages.success.created'));
+    return Alert.alert(
+      i18n.t('signUp.title'),
+      i18n.t('signUp.requestMessages.success.created')
+    );
   } catch (error) {
-    return Alert.alert(i18n.t('signUp.title'), `${i18n.t('signUp.requestMessages.error.generic')}: ${error.response.data.message}`);
+    return Alert.alert(
+      i18n.t('signUp.title'),
+      `${i18n.t('signUp.requestMessages.error.generic')}: ${
+        error.response.data.message
+      }`
+    );
   } finally {
     yield put(actions.toggleAuthLoading());
   }
@@ -40,7 +48,7 @@ export function* tryAuthSaga(action) {
     const response = yield axios.post(`${config.api}/users/auth`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       email: action.formData.email,
       password: action.formData.password,
@@ -53,7 +61,6 @@ export function* tryAuthSaga(action) {
     yield put(actions.toggleAuthLoading());
     yield put(actions.startDataSync());
     yield call(startHome);
-
   } catch (error) {
     yield put(actions.toggleAuthLoading());
     yield put(actions.logout());
@@ -62,38 +69,55 @@ export function* tryAuthSaga(action) {
       yield call(startAuth);
     }
 
-    return Alert.alert(i18n.t('login.title'), `${i18n.t('login.requestMessages.error.generic')}: ${error.response.data.message}`)
+    return Alert.alert(
+      i18n.t('login.title'),
+      `${i18n.t('login.requestMessages.error.generic')}: ${
+        error.response.data.message
+      }`
+    );
   }
 }
 
 export function* updateTokenSaga(action) {
-
   try {
-    const updateToken = yield axios.post(`${config.api}/users/auth/tokens`, {
-      currentUser: action.oldToken
-    }, {
-      headers: {
-        Authorization: `Bearer ${action.oldToken}`
+    const updateToken = yield axios.post(
+      `${config.api}/users/auth/tokens`,
+      {
+        currentUser: action.oldToken
       },
-    });
+      {
+        headers: {
+          Authorization: `Bearer ${action.oldToken}`
+        }
+      }
+    );
 
     yield put(actions.updateTokenOnStorage(updateToken.data));
     yield put(actions.updateAuthData(updateToken.data));
     yield put(actions.startDataSync());
     yield call(startHome);
-
-  } catch(error) {
+  } catch (error) {
     yield put(actions.clearAuthData());
-    Alert.alert(i18n.t('login.title'), `${i18n.t('login.requestMessages.error.refreshToken')} ${error.response.data.message}`);
+    Alert.alert(
+      i18n.t('login.title'),
+      `${i18n.t('login.requestMessages.error.refreshToken')} ${
+        error.response.data.message
+      }`
+    );
   }
-
 }
 
 export function* updateTokenOnStorageSaga(action) {
   const now = new Date();
   const expirationDate = new Date(now.getTime() + 3600 * 1000);
-  yield AsyncStorage.setItem('@eldorado:auth:token', action.authData.token.toString());
-  yield AsyncStorage.setItem('@eldorado:auth:expirationDate', expirationDate.toString());
+  yield AsyncStorage.setItem(
+    '@eldorado:auth:token',
+    action.authData.token.toString()
+  );
+  yield AsyncStorage.setItem(
+    '@eldorado:auth:expirationDate',
+    expirationDate.toString()
+  );
 }
 
 export function* clearAuthDataSaga() {
@@ -119,8 +143,7 @@ export function* tryAutoLoginSaga() {
         yield put(actions.updateToken(tokenFromStorage[0][1]));
       }
     }
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 
 export function* getData() {
@@ -130,7 +153,8 @@ export function* getData() {
       yield put(actions.fetchAllTransactions());
       yield delay(config.updateMs);
     }
-  } finally {}
+  } finally {
+  }
 }
 
 export function* logoutSaga() {

@@ -2,7 +2,7 @@ import { config } from '../../../app.json';
 import { Alert } from 'react-native';
 import axios from 'axios';
 import { put, select } from 'redux-saga/effects';
-import i18n from '../../../i18n';
+import i18n from 'i18n-js';
 
 import * as actions from '../actions';
 

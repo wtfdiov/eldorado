@@ -14,13 +14,15 @@ import com.reactnativenavigation.react.ReactGateway;
 
 import com.oblador.vectoricons.VectorIconsPackage;
 
-import com.reactcommunity.rnlanguages.RNLanguagesPackage;
+import com.reactcommunity.rnlocalize.RNLocalizePackage;
 
 import org.reactnative.camera.RNCameraPackage;
 
 import io.invertase.firebase.RNFirebasePackage;
 
 import com.reactnativecommunity.slider.ReactSliderPackage;
+
+import com.avishayil.rnrestart.ReactNativeRestartPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -48,10 +50,11 @@ public class MainApplication extends NavigationApplication {
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
       new VectorIconsPackage(),
-      new RNLanguagesPackage(),
+      new RNLocalizePackage(),
       new RNCameraPackage(),
       new RNFirebasePackage(),
-      new ReactSliderPackage()
+      new ReactSliderPackage(),
+      new ReactNativeRestartPackage()
     );
   }
 

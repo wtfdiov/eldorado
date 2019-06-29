@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { StyleSheet, Dimensions, ScrollView, View } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import axios from 'axios';
-import i18n from '../../../i18n';
+import i18n from 'i18n-js';
 
 import { Surface, Text, Headline, Button, TextInput } from 'react-native-paper';
 
