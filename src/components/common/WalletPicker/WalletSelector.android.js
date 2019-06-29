@@ -22,20 +22,20 @@ class WalletSelector extends PureComponent {
 
     return (
       <Picker
-        style={{ width: '80%' }}
+        style={{ width: '80%', color: '#FFF' }}
         selectedValue={this.props.selected}
         onValueChange={address => this.props.onSelect(address)}
         itemStyle={{
           flex: 1
         }}
-        iosHeader="Selecione"
-        headerBackButtonText="Cancelar"
-        placeholder={Text}
-        placeholderStyle={{
-          color: '#FFF'
-        }}
+        iosHeader={i18n.t('common.select')}
+        headerBackButtonText={i18n.t('common.cancel')}
       >
-        <Picker.Item key="9999" label={`Todas as carteiras`} value={null} />
+        <Picker.Item
+          key="9999"
+          label={i18n.t('common.components.walletPicker.allWallets')}
+          value={null}
+        />
         {this.props.wallets.map(wallet => (
           <Picker.Item
             key={wallet.id}

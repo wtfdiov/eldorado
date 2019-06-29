@@ -8,7 +8,7 @@ import {
   Text
 } from 'react-native';
 import { Navigation } from 'react-native-navigation';
-import { Button } from 'native-base';
+import { Button } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 import i18n from 'i18n-js';
 
@@ -102,18 +102,14 @@ class HomeScreen extends Component {
             }}
           >
             <Button
-              transparent
-              light
+              icon="settings"
               onPress={() => openModal('eldorado.screens.Config')}
             >
-              <Icon color="#e4e4e4" name="md-settings" size={36} />
+              {i18n.t('config.title')}
             </Button>
-            <Button transparent light onPress={() => this.props.logOut()}>
-              <Icon color="#e4e4e4" name="md-log-out" size={18} />
-              <Text style={{ color: '#e4e4e4' }}>
-                {' '}
-                {i18n.t('home.logOutBtnLabel')}
-              </Text>
+
+            <Button icon="exit-to-app" onPress={() => this.props.logOut()}>
+              {i18n.t('home.logOutBtnLabel')}
             </Button>
           </View>
         </View>

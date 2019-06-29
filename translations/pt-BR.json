@@ -94,6 +94,7 @@
     }
   },
   "config": {
+    "title": "Configurações",
     "2FA": {
       "title": "Autenticação 2 Fatores",
       "secretMessage": "Copie essa chave e cole no seu app favorito.",
@@ -135,11 +136,13 @@
     "ok": "Ok",
     "anonymous": "Anônimo",
     "send": "Enviar",
+    "select": "Selecione",
     "components": {
       "walletPicker": {
         "noWallets": "Sem carteiras",
         "newWalletBtnLabel": "Nova carteira",
-        "addressCopied": "Endereço da carteira copiado!"
+        "addressCopied": "Endereço da carteira copiado!",
+        "allWallets": "Todas as carteiras"
       },
       "walletStats": {
         "balance": "SALDO",

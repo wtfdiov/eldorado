@@ -1,25 +1,30 @@
 //by TrixieUi Kit
 // github.com//Trixieapp/react-virgin
-import { StyleSheet, Dimensions } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native';
 
 function vw(percentageWidth) {
-  return Dimensions.get('window').width * (percentageWidth / 100)
+  return Dimensions.get('window').width * (percentageWidth / 100);
 }
 
-const COLUMNS = 2
-const MARGIN = vw(1)
-const SPACING = (COLUMNS + 1) / COLUMNS * MARGIN
-const backgroundPrimary = '#F2F6FE'
-const primaryBlue = '#4990E2'
-const borderColor = '#fff'
-const primaryTextColor = '#444444'
-const smallTextColor = '#B2C3DB'
-const primaryRed = '#FF758C'
-const { headerFontSize, buttonPrimaryTextPadding, buttonBorderedTextPadding } = global
+const COLUMNS = 2;
+const MARGIN = vw(1);
+const SPACING = ((COLUMNS + 1) / COLUMNS) * MARGIN;
+const backgroundPrimary = '#F2F6FE';
+const primaryBlue = '#4990E2';
+const borderColor = '#fff';
+const primaryTextColor = '#444444';
+const smallTextColor = '#B2C3DB';
+const primaryRed = '#FF758C';
+const {
+  headerFontSize,
+  buttonPrimaryTextPadding,
+  buttonBorderedTextPadding
+} = global;
 
 export const COLORS = {
   primaryGreen: '#498c45',
-  secondaryGreen: '#f4fff4'
+  secondaryGreen: '#f4fff4',
+  lightGreen: '#44bd32'
 };
 
 export default StyleSheet.create({
@@ -31,15 +36,15 @@ export default StyleSheet.create({
     marginTop: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: backgroundPrimary,
+    backgroundColor: backgroundPrimary
   },
   smallerButton: {
-    width: 220,
+    width: 220
   },
   buttonSecondary: {
     width: 270,
@@ -47,13 +52,13 @@ export default StyleSheet.create({
     padding: 10,
     backgroundColor: borderColor,
     borderRadius: 10,
-    marginTop: 10,
+    marginTop: 10
   },
   title: {
     fontSize: headerFontSize,
     marginBottom: 20,
     color: primaryBlue,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   buttonBordered: {
     width: 270,
@@ -64,7 +69,7 @@ export default StyleSheet.create({
     marginTop: 10,
     borderColor: primaryRed,
     borderWidth: 1,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   buttonPrimaryText: {
     color: '#fafafa',
@@ -72,43 +77,43 @@ export default StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     fontSize: 15,
-    paddingTop: buttonPrimaryTextPadding,
+    paddingTop: buttonPrimaryTextPadding
   },
   buttonSecondaryText: {
     color: primaryBlue,
     textAlign: 'center',
-    fontSize: 15,
+    fontSize: 15
   },
   buttonBorderedText: {
     color: primaryRed,
     textAlign: 'center',
     fontSize: 15,
-    paddingTop: buttonBorderedTextPadding,
+    paddingTop: buttonBorderedTextPadding
   },
   buttonText: {
     fontSize: 22,
     color: '#FFF',
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   footerIcons: {
     height: 30,
     width: 30,
     marginLeft: 5,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   footerText: {
     alignSelf: 'center',
     paddingBottom: 5,
     color: smallTextColor,
     fontSize: 10,
-    marginLeft: 5,
+    marginLeft: 5
   },
   footer: {
     flex: 0.3,
     paddingTop: 5,
     backgroundColor: 'white',
     borderTopWidth: 1,
-    borderTopColor: borderColor,
+    borderTopColor: borderColor
   },
   footerWrapper: {
     shadowColor: '#000',
@@ -119,13 +124,13 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     borderTopColor: '#f1f1f1',
-    borderTopWidth: 1,
+    borderTopWidth: 1
   },
   selected: {
     color: primaryBlue,
     alignSelf: 'center',
     fontSize: 10,
-    marginLeft: 5,
+    marginLeft: 5
   },
 
   profileCard: {
@@ -140,97 +145,95 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     marginTop: 20,
     paddingBottom: 20,
-    paddingTop: 20,
+    paddingTop: 20
   },
   profileCardInner: {
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   profileMetricsContainer: {
     flex: 1,
     flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    paddingLeft: 2 * SPACING,
+    paddingLeft: 2 * SPACING
   },
   profileMetrics: {
     marginLeft: MARGIN,
     marginTop: MARGIN,
-    borderRadius: 10,
-    backgroundColor: 'white',
-    width: vw(100) / COLUMNS - SPACING - 2 * SPACING,
+    width: vw(100) / COLUMNS - SPACING - 2 * SPACING
   },
   profileIcon: {
     height: 32,
     width: 32,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   profilePicContainer: {
     flex: 0.7,
-    paddingLeft: 15,
+    paddingLeft: 15
   },
   profileDetailContainer: {
     paddingLeft: 10,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   profilePic: {
     height: 64,
     width: 64,
     alignSelf: 'center',
     borderRadius: 32,
-    marginTop: 5,
+    marginTop: 5
   },
   profileValues: {
     fontSize: 32,
     textAlign: 'center',
     marginTop: 10,
-    color: primaryBlue,
+    color: primaryBlue
   },
   profieText: {
     fontSize: 12,
     color: primaryBlue,
     textAlign: 'center',
     marginTop: 10,
-    marginBottom: 10,
+    marginBottom: 10
   },
   textCenter: {
-    textAlign: 'center',
+    textAlign: 'center'
   },
   alignCenter: {
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   padding20: {
-    padding: 20,
+    padding: 20
   },
   padding10: {
-    padding: 10,
+    padding: 10
   },
   mt20: {
-    marginTop: 20,
+    marginTop: 20
   },
   mt10: {
-    marginTop: 10,
+    marginTop: 10
   },
   mt100: {
-    marginTop: 100,
+    marginTop: 100
   },
   mb20: {
-    marginBottom: 20,
+    marginBottom: 20
   },
   mb10: {
-    marginBottom: 10,
+    marginBottom: 10
   },
   smallText: {
     color: primaryTextColor,
     fontSize: 12,
     alignSelf: 'center',
-    marginTop: 5,
+    marginTop: 5
   },
   small: {
     fontSize: 12,
-    color: primaryTextColor,
+    color: primaryTextColor
   },
   lh2: {
-    lineHeight: 20,
+    lineHeight: 20
   },
   pills: {
     padding: 5,
@@ -240,18 +243,18 @@ export default StyleSheet.create({
     borderWidth: 1,
     marginTop: 5,
     marginRight: 5,
-    width: 100,
+    width: 100
   },
   pillText: {
     color: primaryRed,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   shadow: {
     shadowColor: '#444',
     shadowOffset: { width: 5, height: 5 },
     shadowOpacity: 0.2,
     shadowRadius: 8,
-    elevation: 1,
+    elevation: 1
   },
   conversationContainer: {
     maxWidth: 310,
@@ -261,7 +264,7 @@ export default StyleSheet.create({
     borderBottomLeftRadius: 0,
     borderTopLeftRadius: 10,
     padding: 10,
-    marginTop: 10,
+    marginTop: 10
   },
   convRight: {
     alignSelf: 'flex-end',
@@ -271,21 +274,21 @@ export default StyleSheet.create({
     borderBottomRightRadius: 0,
     borderTopRightRadius: 10,
     borderBottomLeftRadius: 10,
-    borderTopLeftRadius: 10,
+    borderTopLeftRadius: 10
   },
   convRightText: {
     color: 'white',
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   conversationText: {
     lineHeight: 20,
-    alignSelf: 'flex-start',
+    alignSelf: 'flex-start'
   },
   actionButtonsContainer: {
     flex: 1,
     flexDirection: 'row',
     paddingTop: 10,
-    flexWrap: 'wrap',
+    flexWrap: 'wrap'
   },
   actionButton: {
     backgroundColor: primaryRed,
@@ -293,12 +296,12 @@ export default StyleSheet.create({
     padding: 10,
     marginRight: 10,
     marginBottom: 10,
-    width: 100,
+    width: 100
   },
   actionButtonText: {
     color: 'white',
     fontSize: 12,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   inputField: {
     backgroundColor: 'white',
@@ -310,16 +313,16 @@ export default StyleSheet.create({
     paddingLeft: 10,
     fontSize: 18,
     borderRadius: 10,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   loading: {
     height: 75,
     width: 75,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   centreItems: {
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   transactionCard: {
     marginLeft: MARGIN,
@@ -335,6 +338,6 @@ export default StyleSheet.create({
     borderRadius: 30,
     padding: 5,
     marginRight: 5,
-    marginBottom: 10,
-  },
-})
+    marginBottom: 10
+  }
+});

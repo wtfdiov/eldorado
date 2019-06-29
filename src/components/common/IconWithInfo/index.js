@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Text, View } from 'react-native';
-import { Card } from 'react-native-paper';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Text, View } from "react-native";
+import { Card } from "react-native-paper";
 
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from "react-native-vector-icons/Ionicons";
 
-import componentStyle from '../../style';
+import componentStyle from "../../style";
 
 class IconWithInfo extends Component {
   static propTypes = {
@@ -14,8 +14,8 @@ class IconWithInfo extends Component {
   };
 
   static defaultProps = {
-    value: '',
-    title: ''
+    value: "",
+    title: ""
   };
   render = () => {
     const {
@@ -27,12 +27,12 @@ class IconWithInfo extends Component {
       titleColor
     } = this.props;
     return (
-      <Card style={[componentStyle.profileMetrics, componentStyle.centreItems]}>
+      <Card style={[componentStyle.profileMetrics]}>
         <Card.Content
           style={{
-            flexDirection: 'row',
-            width: '90%',
-            justifyContent: 'space-between'
+            flexDirection: "row",
+            width: "100%",
+            justifyContent: "space-between"
           }}
         >
           <Icon name={displayIcon} color={iconColor} size={parseInt(size)} />
@@ -40,8 +40,8 @@ class IconWithInfo extends Component {
             <Text
               style={{
                 color: titleColor,
-                alignSelf: 'flex-end',
-                fontWeight: '500'
+                alignSelf: "flex-end",
+                fontWeight: "500"
               }}
             >
               {title}

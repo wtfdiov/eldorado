@@ -4,7 +4,8 @@ import {
   Dimensions,
   View,
   ImageBackground,
-  Image
+  Image,
+  Text
 } from 'react-native';
 import { connect } from 'react-redux';
 import i18n from 'i18n-js';
@@ -15,6 +16,8 @@ import openModal from '../../navigation/openModal';
 
 import Background from '../../assets/Background.png';
 import NBRLogoLogin from '../../assets/NBRLogoLogin.png';
+
+import { COLORS } from '../../components/style';
 
 class AuthScreen extends Component {
   static navigatorStyle = {
@@ -86,11 +89,11 @@ class AuthScreen extends Component {
           <Button
             icon="input"
             mode="contained"
-            onPress={() => console.log('Pressed')}
             style={{ marginVertical: 12 }}
             onPress={this.loginHandler}
             loading={this.props.loading}
             contentStyle={{ height: 48 }}
+            color={COLORS.lightGreen}
             disabled={
               !this.state.email ||
               !/\S+@\S+\.\S+/.test(this.state.email) ||

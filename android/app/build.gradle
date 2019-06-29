@@ -116,8 +116,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
         missingDimensionStrategy "react-native-camera", "mlkit"
-        versionCode 101001
-        versionName "1.1.1"
+        versionCode 102000
+        versionName "1.2.0"
         multiDexEnabled true
     }
 

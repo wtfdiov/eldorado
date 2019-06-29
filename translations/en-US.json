@@ -1,153 +1,156 @@
 {
-    "login": {
-        "title": "Login",
-        "emailInputLabel": "Type your email",
-        "passwordInputLabel": "Password",
-        "2FAInputLabel": "2FA Code (If activated)",
-        "signInBtnLabel": "LOGIN",
-        "signUpBtnLabel": "New account",
-        "resetPasswordBtnLabel": "Reset password",
-        "requestMessages": {
-          "error": {
-            "generic": "Problem on attempt to login",
-            "refreshToken": "Can't find your session, please login again."
-          }
-        }
-    },
-    "signUp": {
-        "title": "Sign Up",
-        "desc": "Sign Up for NBR Wallet, it`s free and only takes a minute!",
-        "nameInputLabel": "Name",
-        "emailInputLabel": "Email",
-        "passwordInputLabel": "Password",
-        "confirmPasswordInputLabel": "Confirm",
-        "signUpBtnLabel": "SIGN UP",
-        "requestMessages": {
-          "success": {
-            "created": "You account was created successfully!"
-          },
-          "error": {
-            "generic": "Failed to sign-up"
-          }
-        }
-    },
-    "resetPassword": {
-        "title": "Reset password",
-        "desc": "To reset your password, type your email in the field below.",
-        "emailInputLabel": "Email",
-        "resetPasswordBtnLabel": "RESET PASSWORD",
-        "requestMessages": {
-            "resetPasswordSuccess": "We have sent you an email with the instructions to reset your password."
-        }
-    },
-    "home": {
-        "title": "My wallet",
-        "logOutBtnLabel": "LOGOUT",
-        "configBtnLabel": "CONFIGS"
-    },
-    "send": {
-        "title": "Send NBR",
-        "selectWalletLabel": "Withdraw address",
-        "destinationInputLabel": "Destination address",
-        "selectAnWallet": "Select a wallet",
-        "sendBtnLabel": "SEND",
-        "requestMessages": {
-            "error": {
-                "addressNotFound": "Origin address was not found.",
-                "badAddress": "Destination address not found.",
-                "wrongAmount": "Insufficient amount for this transaction",
-                "smallFee": "Insufficient fee amount.",
-                "critical": "There is a problem in ours servers, try again later.",
-                "conflict": "We had a problem processing your request, check your data."
-            },
-            "success": "Transaction was sent!"
-        }
-    },
-    "receive": {
-        "title": "Receive NBR",
-        "noWalletMsg": "Select an address to share",
-        "walletQRDesc": "Share this code to receive NBR into your wallet!",
-        "shareBtnLabel": "SHARE",
-        "shareDialogTitle": "NBR Mobile Wallet",
-        "shareDefaultMessage": "This is my NBR wallet, you can send me NBR through it."
-    },
-    "transactions": {
-        "title": "Transactions",
-        "details": {
-            "title": "Details"
-        },
-        "requestMessages": {
-          "error": {
-            "generic": "Problem getting transactions"
-          }
-        }
-    },
-    "wallets": {
-      "title": "Wallets",
-      "requestMessages": {
-        "error": {
-          "address": "Problem getting wallets addresses",
-          "balance": "Problem getting wallets balances",
-          "create": "Problem creating new address, please try again later",
-          "delete": "Could not delete this address, please try again later"
-        }
+  "login": {
+    "title": "Login",
+    "emailInputLabel": "Type your email",
+    "passwordInputLabel": "Password",
+    "2FAInputLabel": "2FA Code (If activated)",
+    "signInBtnLabel": "LOGIN",
+    "signUpBtnLabel": "New account",
+    "resetPasswordBtnLabel": "Reset password",
+    "requestMessages": {
+      "error": {
+        "generic": "Problem on attempt to login",
+        "refreshToken": "Can't find your session, please login again."
       }
-    },
-    "config": {
-      "2FA": {
-        "title": "Two Factor Auth",
-        "secretMessage": "Copy this secret and paste on your favorite app.",
-        "copySecret": "Secret copied, paste it on your favorite app!",
-        "inputKey": "Input the code shown on 2FA app",
-        "activatedMessage": "The Two Factor auth is activated on this account, you are safe!"
-      },
-      "language": {
-        "title": "Language"
-      }
-    },
-    "qrScanner": {
-      "title": "Scan QR Code",
-      "askPermission": {
-        "title": "Camera permission",
-        "message": "We need access to your camera so we can scan QRCodes",
-        "btnPositive": "Grant",
-        "btnNegative": "Deny"
-      }
-    },
-    "common": {
-        "loading": "Loading",
-        "from": "From",
-        "to": "To",
-        "amount": "Amount",
-        "date": "Date",
-        "waitingConfirmation": "Waiting",
-        "confirmed": "Confirmed",
-        "fee": "Fee",
-        "hash": "Hash",
-        "paymentId": "Payment ID",
-        "anonymity": "Anonymity",
-        "status": "Status",
-        "createdAt": "Created at",
-        "na": "N/A",
-        "save": "Save",
-        "cancel": "Cancel",
-        "ok": "Ok",
-        "anonymous": "Anonymous",
-        "components": {
-            "walletPicker": {
-                "noWallets": "No wallets",
-                "newWalletBtnLabel": "New wallet",
-                "addressCopied": "Wallet address copied!",
-            },
-            "walletStats": {
-                "balance": "BALANCE",
-                "locked": "LOCKED",
-                "valueUSD": "USD",
-                "valueBTC": "BTC"
-            },
-            "transactionsList": {
-                "noTransactions": "There are no transactions to be seen."
-            }
-        }
     }
+  },
+  "signUp": {
+    "title": "Sign Up",
+    "desc": "Sign Up for NBR Wallet, it`s free and only takes a minute!",
+    "nameInputLabel": "Name",
+    "emailInputLabel": "Email",
+    "passwordInputLabel": "Password",
+    "confirmPasswordInputLabel": "Confirm",
+    "signUpBtnLabel": "SIGN UP",
+    "requestMessages": {
+      "success": {
+        "created": "You account was created successfully!"
+      },
+      "error": {
+        "generic": "Failed to sign-up"
+      }
+    }
+  },
+  "resetPassword": {
+    "title": "Reset password",
+    "desc": "To reset your password, type your email in the field below.",
+    "emailInputLabel": "Email",
+    "resetPasswordBtnLabel": "RESET PASSWORD",
+    "requestMessages": {
+      "resetPasswordSuccess": "We have sent you an email with the instructions to reset your password."
+    }
+  },
+  "home": {
+    "title": "My wallet",
+    "logOutBtnLabel": "LOGOUT",
+    "configBtnLabel": "CONFIGS"
+  },
+  "send": {
+    "title": "Send NBR",
+    "selectWalletLabel": "Withdraw address",
+    "destinationInputLabel": "Destination address",
+    "selectAnWallet": "Select a wallet",
+    "sendBtnLabel": "SEND",
+    "requestMessages": {
+      "error": {
+        "addressNotFound": "Origin address was not found.",
+        "badAddress": "Destination address not found.",
+        "wrongAmount": "Insufficient amount for this transaction",
+        "smallFee": "Insufficient fee amount.",
+        "critical": "There is a problem in ours servers, try again later.",
+        "conflict": "We had a problem processing your request, check your data."
+      },
+      "success": "Transaction was sent!"
+    }
+  },
+  "receive": {
+    "title": "Receive NBR",
+    "noWalletMsg": "Select an address to share",
+    "walletQRDesc": "Share this code to receive NBR into your wallet!",
+    "shareBtnLabel": "SHARE",
+    "shareDialogTitle": "NBR Mobile Wallet",
+    "shareDefaultMessage": "This is my NBR wallet, you can send me NBR through it."
+  },
+  "transactions": {
+    "title": "Transactions",
+    "details": {
+      "title": "Details"
+    },
+    "requestMessages": {
+      "error": {
+        "generic": "Problem getting transactions"
+      }
+    }
+  },
+  "wallets": {
+    "title": "Wallets",
+    "requestMessages": {
+      "error": {
+        "address": "Problem getting wallets addresses",
+        "balance": "Problem getting wallets balances",
+        "create": "Problem creating new address, please try again later",
+        "delete": "Could not delete this address, please try again later"
+      }
+    }
+  },
+  "config": {
+    "title": "Configurations",
+    "2FA": {
+      "title": "Two Factor Auth",
+      "secretMessage": "Copy this secret and paste on your favorite app.",
+      "copySecret": "Secret copied, paste it on your favorite app!",
+      "inputKey": "Input the code shown on 2FA app",
+      "activatedMessage": "The Two Factor auth is activated on this account, you are safe!"
+    },
+    "language": {
+      "title": "Language"
+    }
+  },
+  "qrScanner": {
+    "title": "Scan QR Code",
+    "askPermission": {
+      "title": "Camera permission",
+      "message": "We need access to your camera so we can scan QRCodes",
+      "btnPositive": "Grant",
+      "btnNegative": "Deny"
+    }
+  },
+  "common": {
+    "loading": "Loading",
+    "from": "From",
+    "to": "To",
+    "amount": "Amount",
+    "date": "Date",
+    "waitingConfirmation": "Waiting",
+    "confirmed": "Confirmed",
+    "fee": "Fee",
+    "hash": "Hash",
+    "paymentId": "Payment ID",
+    "anonymity": "Anonymity",
+    "status": "Status",
+    "createdAt": "Created at",
+    "na": "N/A",
+    "save": "Save",
+    "cancel": "Cancel",
+    "ok": "Ok",
+    "anonymous": "Anonymous",
+    "select": "Select",
+    "components": {
+      "walletPicker": {
+        "noWallets": "No wallets",
+        "newWalletBtnLabel": "New wallet",
+        "addressCopied": "Wallet address copied!",
+        "allWallets": "All wallets"
+      },
+      "walletStats": {
+        "balance": "BALANCE",
+        "locked": "LOCKED",
+        "valueUSD": "USD",
+        "valueBTC": "BTC"
+      },
+      "transactionsList": {
+        "noTransactions": "There are no transactions to be seen."
+      }
+    }
+  }
 }
