@@ -32,6 +32,10 @@ target 'eldorado' do
 
   pod 'RNLocalize', :path => '../node_modules/react-native-localize'
 
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
   target 'eldoradoTests' do
     inherit! :search_paths
     # Pods for testing

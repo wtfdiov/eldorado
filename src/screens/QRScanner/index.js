@@ -33,10 +33,6 @@ class QRScanner extends Component {
     };
   }
 
-  componentDidMount() {
-    this.navigationEventListener = Navigation.events().bindComponent(this);
-  }
-
   componentDidAppear() {
     this.setState({ cameraOn: true });
   }

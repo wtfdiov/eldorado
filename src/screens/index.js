@@ -1,5 +1,6 @@
 /* eslint-disable import/no-named-as-default */
 import { Navigation } from 'react-native-navigation';
+import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 
 import configureStore from '../store/configureStore';
 import { Provider } from 'react-redux';
@@ -49,7 +50,7 @@ export function registerScreens() {
   );
   Navigation.registerComponentWithRedux(
     'eldorado.screens.Home',
-    () => paperProvider(HomeScreen),
+    () => gestureHandlerRootHOC(paperProvider(HomeScreen)),
     Provider,
     store
   );

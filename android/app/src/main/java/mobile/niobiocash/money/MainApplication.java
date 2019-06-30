@@ -24,6 +24,9 @@ import com.reactnativecommunity.slider.ReactSliderPackage;
 
 import com.avishayil.rnrestart.ReactNativeRestartPackage;
 
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.swmansion.reanimated.ReanimatedPackage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,7 +57,9 @@ public class MainApplication extends NavigationApplication {
       new RNCameraPackage(),
       new RNFirebasePackage(),
       new ReactSliderPackage(),
-      new ReactNativeRestartPackage()
+      new ReactNativeRestartPackage(),
+      new RNGestureHandlerPackage(),
+      new ReanimatedPackage()
     );
   }
 
