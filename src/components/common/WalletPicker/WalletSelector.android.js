@@ -8,10 +8,6 @@ import formatNBR from '../../../helpers/formatNBR';
 
 class WalletSelector extends PureComponent {
   render() {
-    if (this.props.loading) {
-      return <ActivityIndicator />;
-    }
-
     if (!Object.keys(this.props.wallets).length > 0) {
       return (
         <Text style={{ color: 'white' }}>
@@ -24,7 +20,7 @@ class WalletSelector extends PureComponent {
       <Picker
         style={{ width: '80%', color: '#FFF' }}
         selectedValue={this.props.selected}
-        onValueChange={address => this.props.onSelect(address)}
+        onValueChange={address => this.props.selectWallet(address)}
         itemStyle={{
           flex: 1
         }}

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
-import { Navigation } from 'react-native-navigation';
 import { Button } from 'react-native-paper';
 import i18n from 'i18n-js';
 
@@ -20,55 +19,54 @@ class SummaryScreen extends Component {
 
   render() {
     return (
-      <>
-        <ScrollView contentContainerStyle={styles.container}>
-          <WalletStats
-            selected={this.props.selected}
-            balance={
-              this.props.selected
-                ? this.props.selectedBalance
-                : this.props.balance
-            }
-          />
+      <ScrollView style={styles.container}>
+        <WalletStats
+          selected={this.props.selected}
+          balance={
+            this.props.selected
+              ? this.props.selectedBalance
+              : this.props.balance
+          }
+        />
 
-          <TransactionList
-            data={
-              this.props.selected
-                ? this.props.transactions.filter(
-                    transaction =>
-                      transaction.from === this.props.selected ||
-                      transaction.to.address === this.props.selected
-                  )
-                : this.props.transactions
-            }
-            truncate={3}
-            customStyle={{
-              marginTop: 20,
-              width: '100%'
-            }}
-          />
+        <TransactionList
+          data={
+            this.props.selected
+              ? this.props.transactions.filter(
+                  transaction =>
+                    transaction.from === this.props.selected.address ||
+                    transaction.to.address === this.props.selected.address
+                )
+              : this.props.transactions
+          }
+          truncate={3}
+          customStyle={{
+            marginTop: 12,
+            width: '100%',
+            flexWrap: 'wrap'
+          }}
+        />
 
-          <View
-            style={{
-              flexDirection: 'row',
-              width: '100%',
-              justifyContent: 'space-between',
-              paddingHorizontal: 10
-            }}
+        <View
+          style={{
+            flexDirection: 'row',
+            width: '100%',
+            justifyContent: 'space-between',
+            paddingHorizontal: 10
+          }}
+        >
+          <Button
+            icon="settings"
+            onPress={() => openModal('eldorado.screens.Config')}
           >
-            <Button
-              icon="settings"
-              onPress={() => openModal('eldorado.screens.Config')}
-            >
-              {i18n.t('config.title')}
-            </Button>
+            {i18n.t('config.title')}
+          </Button>
 
-            <Button icon="exit-to-app" onPress={() => this.props.logOut()}>
-              {i18n.t('home.logOutBtnLabel')}
-            </Button>
-          </View>
-        </ScrollView>
-      </>
+          <Button icon="exit-to-app" onPress={() => this.props.logOut()}>
+            {i18n.t('home.logOutBtnLabel')}
+          </Button>
+        </View>
+      </ScrollView>
     );
   }
 }
@@ -77,10 +75,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    alignItems: 'center'
-  },
-  scene: {
-    flex: 1
+    backgroundColor: '#f2f2f2'
   }
 });
 

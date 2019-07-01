@@ -34,7 +34,7 @@ class SendScreen extends Component {
 
   validateForm() {
     return (
-      !this.props.selected ||
+      !(this.props.selected && this.props.selected.address) ||
       !this.state.toAddress ||
       !this.state.amount ||
       !this.state.fee
@@ -43,8 +43,8 @@ class SendScreen extends Component {
 
   createTransaction() {
     const transaction = {
-      changeAddress: this.props.selected,
-      from: this.props.selected,
+      changeAddress: this.props.selected ? this.props.selected.address : '',
+      from: this.props.selected ? this.props.selected.address : '',
       fee: parseFloat(this.state.fee * config.defaultUnit),
       to: {
         address: this.state.toAddress.toString(),
@@ -70,11 +70,6 @@ class SendScreen extends Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <Text>{i18n.t('send.selectWalletLabel')}</Text>
-        <Text style={{ fontSize: 10, textAlign: 'center', marginBottom: 10 }}>
-          {this.props.selected ? this.props.selected : i18n.t('common.na')}
-        </Text>
-
         <View style={{ flexDirection: 'row' }}>
           <Item regular style={{ flex: 1, paddingLeft: 10 }}>
             <Icon name="ios-wallet" size={21} />

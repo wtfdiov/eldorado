@@ -17,9 +17,14 @@ export function* fetchWalletsSaga() {
       }
     });
 
-    yield put(actions.storeWallets(response.data));
-    if (response.data.length && response.data.length === 1) {
-      yield put(actions.selectWallet(response.data[0].address));
+    const wallets = response.data.map(wallet => ({
+      ...wallet,
+      canDelete: !wallet.balance.available && !wallet.balance.locked
+    }));
+
+    yield put(actions.storeWallets(wallets));
+    if (wallets.length && wallets.length === 1) {
+      yield put(actions.selectWallet(wallets[0]));
     }
   } catch (error) {
     Alert.alert(
@@ -69,7 +74,7 @@ export function* createWalletSaga() {
     );
 
     yield put(actions.fetchWallets());
-    yield put(actions.selectWallet(response.address));
+    yield put(actions.selectWallet(response));
   } catch (error) {
     Alert.alert(
       i18n.t('wallets.title'),
@@ -85,7 +90,7 @@ export function* deleteWalletSaga(action) {
 
   try {
     const response = yield axios.delete(
-      `${config.api}/addresses/${action.address}`,
+      `${config.api}/addresses/${action.wallet.address}`,
       {
         headers: {
           Authorization: `Bearer ${state.auth.token}`

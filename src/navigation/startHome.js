@@ -4,6 +4,7 @@ export default () => {
   Navigation.setRoot({
     root: {
       stack: {
+        id: 'main',
         options: {
           topBar: {
             visible: false

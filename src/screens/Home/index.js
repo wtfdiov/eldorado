@@ -30,15 +30,18 @@ class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.navigationEventListener = Navigation.events().bindComponent(this);
+    this.routes = [
+      { key: 'summary', title: 'First' },
+      { key: 'send', title: 'Second' },
+      { key: 'receive', title: 'Second' },
+      { key: 'transactions', title: 'Second' }
+    ];
     this.state = {
       index: 0,
-      routes: [
-        { key: 'summary', title: 'First' },
-        { key: 'send', title: 'Second' },
-        { key: 'receive', title: 'Second' },
-        { key: 'transactions', title: 'Second' }
-      ]
+      routes: this.routes
     };
+
+    this.selectTab = this.selectTab.bind(this);
   }
 
   componentDidAppear() {
@@ -60,6 +63,11 @@ class HomeScreen extends Component {
     console.tron.log(event);
     return null;
   };
+
+  selectTab(key) {
+    const index = this.routes.findIndex(tab => tab.key === key);
+    this.setState({ index });
+  }
 
   renderIcon({ route, focused }) {
     let name = '';
@@ -108,23 +116,11 @@ class HomeScreen extends Component {
             />
           )}
           onIndexChange={index => this.setState({ index })}
-          initialLayout={{ width: 400 }}
         />
       </>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: '100%',
-    alignItems: 'center'
-  },
-  scene: {
-    flex: 1
-  }
-});
 
 const mapStateToProps = state => {
   return {

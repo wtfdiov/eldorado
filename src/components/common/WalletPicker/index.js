@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
-import { ToastAndroid, Clipboard, View, Text, Image } from 'react-native';
+import {
+  ToastAndroid,
+  Clipboard,
+  View,
+  Text,
+  Image,
+  ActivityIndicator
+} from 'react-native';
 import { Button } from 'native-base';
 import { Navigation } from 'react-native-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 import i18n from 'i18n-js';
+import { IconButton } from 'react-native-paper';
 
 import { connect } from 'react-redux';
 
@@ -21,11 +29,11 @@ class WalletPicker extends Component {
   constructor(props) {
     super(props);
 
-    this.props.onSelect = this.props.onSelect.bind(this);
+    this.selectWallet = this.selectWallet.bind(this);
   }
 
   copyToClipboard = async () => {
-    await Clipboard.setString(this.props.selected);
+    await Clipboard.setString(this.props.selected.address);
     ToastAndroid.show(
       i18n.t('common.components.walletPicker.addressCopied'),
       ToastAndroid.SHORT
@@ -40,70 +48,79 @@ class WalletPicker extends Component {
     });
   };
 
+  selectWallet(address) {
+    const wallet = this.props.wallets.find(
+      wallet => wallet.address === address
+    );
+    this.props.onSelect(wallet);
+  }
+
   render = () => {
     const primaryColor = '#006e6e';
     return (
-      <View style={{ width: '100%' }}>
+      <View
+        style={{
+          width: '100%',
+          height: 80,
+          flexDirection: 'row',
+          backgroundColor: primaryColor,
+          paddingHorizontal: 5
+        }}
+      >
         <View
-          style={[
-            {
-              flexDirection: 'row',
-              backgroundColor: primaryColor,
-              justifyContent: 'space-around',
-              alignItems: 'center'
-            }
-          ]}
+          style={{
+            width: '30%',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
         >
-          <Image source={logo} style={{ height: 38, width: 32, margin: 5 }} />
-          <WalletSelector
-            loading={this.props.loading}
-            wallets={this.props.wallets}
-            selected={this.props.selected}
-            onSelect={this.props.onSelect}
-          />
+          {this.props.loading ? (
+            <ActivityIndicator size="large" />
+          ) : (
+            <Image source={logo} style={{ height: 48, width: 42 }} />
+          )}
         </View>
         <View
           style={{
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            paddingHorizontal: 5
+            width: '70%',
+            justifyContent: 'space-around'
           }}
         >
-          <Button transparent light onPress={() => this.props.onNewWallet()}>
-            <Icon color={primaryColor} name="md-add" size={24} />
-            <Text style={{ color: primaryColor }}>
-              {' '}
-              {i18n.t('common.components.walletPicker.newWalletBtnLabel')}
-            </Text>
-          </Button>
-
-          {this.props.selected ? (
-            <Button transparent light onPress={() => this.copyToClipboard()}>
-              <Icon color={primaryColor} name="ios-copy" size={24} />
+          <WalletSelector
+            loading={this.props.loading}
+            wallets={this.props.wallets}
+            selected={this.props.selected && this.props.selected.address}
+            selectWallet={this.selectWallet}
+          />
+          <View
+            style={{ flexDirection: 'row', justifyContent: 'space-around' }}
+          >
+            <Button transparent light onPress={() => this.props.onNewWallet()}>
+              <Icon name="md-add" size={24} />
+              <Text>
+                {' '}
+                {i18n.t('common.components.walletPicker.newWalletBtnLabel')}
+              </Text>
             </Button>
-          ) : null}
 
-          {this.props.selected ? (
-            <Button transparent light onPress={() => this.sendButtonHandler()}>
-              <Icon color={primaryColor} name="ios-send" size={24} />
-            </Button>
-          ) : null}
+            {this.props.selected ? (
+              <IconButton
+                icon="content-copy"
+                color="white"
+                size={24}
+                onPress={() => this.copyToClipboard()}
+              />
+            ) : null}
 
-          {this.props.selected &&
-          !this.props.wallets.find(
-            wallet => wallet.address === this.props.selected
-          ).balance.available &&
-          !this.props.wallets.find(
-            wallet => wallet.address === this.props.selected
-          ).balance.locked ? (
-            <Button
-              transparent
-              light
-              onPress={() => this.props.onDeleteWallet(this.props.selected)}
-            >
-              <Icon color={primaryColor} name="ios-trash" size={24} />
-            </Button>
-          ) : null}
+            {this.props.selected && this.props.selected.canDelete && (
+              <IconButton
+                icon="delete-forever"
+                color="white"
+                size={24}
+                onPress={() => this.props.onDeleteWallet(this.props.selected)}
+              />
+            )}
+          </View>
         </View>
       </View>
     );
@@ -122,7 +139,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onSelect: wallet => dispatch(selectWallet(wallet)),
     onNewWallet: () => dispatch(createWallet()),
-    onDeleteWallet: address => dispatch(deleteWallet(address))
+    onDeleteWallet: wallet => dispatch(deleteWallet(wallet))
   };
 };
 

@@ -15,8 +15,8 @@ class SendScreen extends Component {
   shareHandler = () => {
     Share.share(
       {
-        message: `${this.props.selected}`,
-        url: `${this.props.selected}`,
+        message: `${this.props.selected.address}`,
+        url: `${this.props.selected.address}`,
         title: i18n.t('receive.shareDialogTitle')
       },
       {
@@ -29,7 +29,7 @@ class SendScreen extends Component {
     return (
       <ScrollView contentContainerStyle={styles.container}>
         {this.props.selected ? (
-          <QRCode value={this.props.selected} fgColor="#000" />
+          <QRCode value={this.props.selected.address} fgColor="#000" />
         ) : (
           <Fragment>
             <Icon name="ios-qr-scanner" size={120} color="#006e6e" />
