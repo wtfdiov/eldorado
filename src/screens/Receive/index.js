@@ -7,6 +7,8 @@ import i18n from 'i18n-js';
 
 import { connect } from 'react-redux';
 
+import { COLORS } from '../../components/style';
+
 class SendScreen extends Component {
   constructor(props) {
     super(props);
@@ -67,7 +69,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-around',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: COLORS.grayBg
   }
 });
 

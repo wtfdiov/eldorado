@@ -56,14 +56,12 @@ class WalletPicker extends Component {
   }
 
   render = () => {
-    const primaryColor = '#006e6e';
     return (
       <View
         style={{
           width: '100%',
           height: 80,
           flexDirection: 'row',
-          backgroundColor: primaryColor,
           paddingHorizontal: 5
         }}
       >

@@ -93,7 +93,7 @@ class AuthScreen extends Component {
             onPress={this.loginHandler}
             loading={this.props.loading}
             contentStyle={{ height: 48 }}
-            color={COLORS.lightGreen}
+            color={COLORS.secondaryGreen}
             disabled={
               !this.state.email ||
               !/\S+@\S+\.\S+/.test(this.state.email) ||

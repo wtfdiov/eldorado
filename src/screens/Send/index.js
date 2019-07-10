@@ -17,6 +17,7 @@ import { stringToHex } from '../../helpers/hexTool';
 import formatNBR from '../../helpers/formatNBR';
 
 import BlocksInfo from '../../components/common/BlocksInfo';
+import { COLORS } from '../../components/style';
 
 class SendScreen extends Component {
   constructor(props) {
@@ -214,7 +215,8 @@ class SendScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 10
+    margin: 10,
+    backgroundColor: COLORS.grayBg
   }
 });
 

@@ -27,6 +27,8 @@ import com.avishayil.rnrestart.ReactNativeRestartPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 
+import com.BV.LinearGradient.LinearGradientPackage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -59,7 +61,8 @@ public class MainApplication extends NavigationApplication {
       new ReactSliderPackage(),
       new ReactNativeRestartPackage(),
       new RNGestureHandlerPackage(),
-      new ReanimatedPackage()
+      new ReanimatedPackage(),
+      new LinearGradientPackage()
     );
   }
 

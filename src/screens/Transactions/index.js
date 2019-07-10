@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { fetchAllTransactions } from '../../store/actions';
 
 import TransactionList from '../../components/Transactions/List';
+import { COLORS } from '../../components/style';
 
 class TransactionsAllScreen extends Component {
   constructor(props) {
@@ -23,7 +24,8 @@ class TransactionsAllScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%'
+    width: '100%',
+    backgroundColor: COLORS.grayBg
   }
 });
 

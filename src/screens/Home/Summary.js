@@ -12,6 +12,8 @@ import openModal from '../../navigation/openModal';
 import WalletStats from '../../components/Home/WalletStats';
 import TransactionList from '../../components/Transactions/List';
 
+import { COLORS } from '../../components/style';
+
 class SummaryScreen extends Component {
   componentDidMount() {
     this.props.getBallance();
@@ -75,7 +77,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    backgroundColor: '#f2f2f2'
+    backgroundColor: COLORS.grayBg
   }
 });
 

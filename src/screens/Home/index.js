@@ -3,6 +3,7 @@ import { Platform, Linking, StyleSheet, View } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
+import LinearGradient from 'react-native-linear-gradient';
 
 import { connect } from 'react-redux';
 
@@ -96,7 +97,10 @@ class HomeScreen extends Component {
 
   render() {
     return (
-      <>
+      <LinearGradient
+        colors={[COLORS.secondaryGreen, COLORS.primaryGreen]}
+        style={{ flex: 1 }}
+      >
         <WalletPicker />
         <TabView
           navigationState={this.state}
@@ -110,14 +114,14 @@ class HomeScreen extends Component {
             <TabBar
               {...props}
               indicatorStyle={{ backgroundColor: 'white' }}
-              style={{ backgroundColor: COLORS.lightGreen }}
+              style={{ backgroundColor: 'transparent' }}
               renderIcon={this.renderIcon}
               renderLabel={() => null}
             />
           )}
           onIndexChange={index => this.setState({ index })}
         />
-      </>
+      </LinearGradient>
     );
   }
 }
