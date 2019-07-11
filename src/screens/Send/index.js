@@ -12,11 +12,10 @@ import { newTransaction } from '../../store/actions';
 import { config } from '../../../app.json';
 
 import openQRScanner from '../../navigation/qrScanner';
-import shortifyAddress from '../../helpers/shortfyAddress';
 import { stringToHex } from '../../helpers/hexTool';
-import formatNBR from '../../helpers/formatNBR';
 
 import BlocksInfo from '../../components/common/BlocksInfo';
+import NoData from '../../components/common/NoData';
 import { COLORS } from '../../components/style';
 
 class SendScreen extends Component {
@@ -69,6 +68,15 @@ class SendScreen extends Component {
   };
 
   render() {
+    if (!this.props.selected) {
+      return (
+        <View style={styles.container}>
+          <NoData message={i18n.t('send.selectAnWallet')}>
+            <Icon name="md-wallet" size={72} />
+          </NoData>
+        </View>
+      );
+    }
     return (
       <ScrollView style={styles.container}>
         <View style={{ flexDirection: 'row' }}>
@@ -215,7 +223,7 @@ class SendScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 10,
+    padding: 12,
     backgroundColor: COLORS.grayBg
   }
 });

@@ -80,7 +80,7 @@ class WalletPicker extends Component {
         </View>
         <View
           style={{
-            width: '70%',
+            width: '80%',
             justifyContent: 'space-around'
           }}
         >
@@ -91,7 +91,11 @@ class WalletPicker extends Component {
             selectWallet={this.selectWallet}
           />
           <View
-            style={{ flexDirection: 'row', justifyContent: 'space-around' }}
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              paddingHorizontal: 12
+            }}
           >
             <Button transparent light onPress={() => this.props.onNewWallet()}>
               <Icon name="md-add" size={24} />

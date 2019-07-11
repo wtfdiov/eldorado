@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Share, StyleSheet, ScrollView, Text } from 'react-native';
+import { View, Share, StyleSheet, ScrollView, Text } from 'react-native';
 import { Button } from 'native-base';
 import QRCode from 'react-qr-code';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -7,6 +7,7 @@ import i18n from 'i18n-js';
 
 import { connect } from 'react-redux';
 
+import NoData from '../../components/common/NoData';
 import { COLORS } from '../../components/style';
 
 class SendScreen extends Component {
@@ -28,6 +29,15 @@ class SendScreen extends Component {
   };
 
   render() {
+    if (!this.props.selected) {
+      return (
+        <View style={styles.container}>
+          <NoData message={i18n.t('send.selectAnWallet')}>
+            <Icon name="md-wallet" size={72} />
+          </NoData>
+        </View>
+      );
+    }
     return (
       <ScrollView contentContainerStyle={styles.container}>
         {this.props.selected ? (
