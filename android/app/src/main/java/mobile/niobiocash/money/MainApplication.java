@@ -1,7 +1,11 @@
 package mobile.niobiocash.money;
 
 import android.app.Application;
+import android.util.Log;
 
+import com.facebook.react.PackageList;
+import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
+import com.facebook.react.bridge.JavaScriptExecutorFactory;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -51,19 +55,20 @@ public class MainApplication extends NavigationApplication {
   }
 
   protected List<ReactPackage> getPackages() {
-    // Add additional packages you require here
-    // No need to add RnnPackage and MainReactPackage
-    return Arrays.<ReactPackage>asList(
-      new VectorIconsPackage(),
-      new RNLocalizePackage(),
-      new RNCameraPackage(),
-      new RNFirebasePackage(),
-      new ReactSliderPackage(),
-      new ReactNativeRestartPackage(),
-      new RNGestureHandlerPackage(),
-      new ReanimatedPackage(),
-      new LinearGradientPackage()
-    );
+    @SuppressWarnings("UnnecessaryLocalVariable")
+      List<ReactPackage> packages = new PackageList(this).getPackages();
+      // Packages that cannot be autolinked yet can be added manually here, for example:
+      // packages.add(new MyReactNativePackage());
+      packages.add(new VectorIconsPackage());
+      packages.add(new RNLocalizePackage());
+      packages.add(new RNCameraPackage());
+      packages.add(new RNFirebasePackage());
+      packages.add(new ReactSliderPackage());
+      packages.add(new ReactNativeRestartPackage());
+      packages.add(new RNGestureHandlerPackage());
+      packages.add(new ReanimatedPackage());
+      packages.add(new LinearGradientPackage());
+      return packages;
   }
 
   @Override

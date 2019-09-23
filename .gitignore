@@ -58,4 +58,5 @@ release.keystore.properties
 
 google-services.json
 
-Pods/
+# CocoaPods
+/ios/Pods/
