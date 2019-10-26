@@ -12,7 +12,6 @@ import i18n from 'i18n-js';
 import { TextInput, Button } from 'react-native-paper';
 
 import { tryAuth } from '../../store/actions/index';
-import openModal from '../../navigation/openModal';
 
 import Background from '../../assets/Background.png';
 import NBRLogoLogin from '../../assets/NBRLogoLogin.png';
@@ -20,10 +19,6 @@ import NBRLogoLogin from '../../assets/NBRLogoLogin.png';
 import { COLORS } from '../../components/style';
 
 class AuthScreen extends Component {
-  static navigatorStyle = {
-    navBarHidden: true,
-    backgroundColor: '#0be881'
-  };
 
   state = {
     email: '',
@@ -109,7 +104,7 @@ class AuthScreen extends Component {
               mode="text"
               icon="person-add"
               color="white"
-              onPress={() => openModal('eldorado.screens.Register')}
+              onPress={() => {}}
             >
               {i18n.t('login.signUpBtnLabel')}
             </Button>
@@ -118,7 +113,7 @@ class AuthScreen extends Component {
               mode="text"
               icon="vpn-key"
               color="white"
-              onPress={() => openModal('eldorado.screens.Forgot')}
+              onPress={() => {}}
             >
               {i18n.t('login.resetPasswordBtnLabel')}
             </Button>

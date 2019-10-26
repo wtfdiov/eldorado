@@ -4,9 +4,7 @@ import axios from 'axios';
 import { put, call, delay } from 'redux-saga/effects';
 import { AsyncStorage } from 'react-native';
 import i18n from 'i18n-js';
-
-import startAuth from '../../navigation/startAuth';
-import startHome from '../../navigation/startHome';
+import { useNavigation } from '@react-navigation/core';
 
 import * as actions from '../actions';
 
@@ -42,6 +40,7 @@ export function* signUpSaga(action) {
 }
 
 export function* tryAuthSaga(action) {
+  const navigation = useNavigation();
   yield put(actions.toggleAuthLoading());
 
   try {
@@ -60,13 +59,13 @@ export function* tryAuthSaga(action) {
 
     yield put(actions.toggleAuthLoading());
     yield put(actions.startDataSync());
-    yield call(startHome);
+    yield navigation.navigate('Home');
   } catch (error) {
     yield put(actions.toggleAuthLoading());
     yield put(actions.logout());
 
     if (!action.formData.login) {
-      yield call(startAuth);
+      yield navigation.navigate('Login');
     }
 
     return Alert.alert(
@@ -95,7 +94,7 @@ export function* updateTokenSaga(action) {
     yield put(actions.updateTokenOnStorage(updateToken.data));
     yield put(actions.updateAuthData(updateToken.data));
     yield put(actions.startDataSync());
-    yield call(startHome);
+//ABRIR HOME
   } catch (error) {
     yield put(actions.clearAuthData());
     Alert.alert(
@@ -126,6 +125,7 @@ export function* clearAuthDataSaga() {
 }
 
 export function* tryAutoLoginSaga() {
+  const navigation = useNavigation();
   try {
     const tokenFromStorage = yield AsyncStorage.multiGet([
       '@eldorado:auth:token',
@@ -133,12 +133,12 @@ export function* tryAutoLoginSaga() {
     ]);
 
     if (!tokenFromStorage[0][1]) {
-      yield call(startAuth);
+      navigation.navigate('Login');
     } else {
       const now = new Date();
       if (now >= Date.parse(tokenFromStorage[1][1])) {
         yield put(actions.logout());
-        call(startAuth);
+        navigation.navigate('Login');
       } else {
         yield put(actions.updateToken(tokenFromStorage[0][1]));
       }
@@ -160,5 +160,5 @@ export function* getData() {
 export function* logoutSaga() {
   yield put(actions.clearAuthData());
   yield put(actions.stopDataSync());
-  yield call(startAuth);
+  //ABRIR AUTH
 }

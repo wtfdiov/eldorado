@@ -1,5 +1,4 @@
 import { Platform } from 'react-native';
-import { Navigation } from 'react-native-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export default (screen, props = null) => {

@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { StyleSheet, ScrollView, View, Dimensions } from 'react-native';
-import { Navigation } from 'react-native-navigation';
 import i18n from 'i18n-js';
 
 import { connect } from 'react-redux';
