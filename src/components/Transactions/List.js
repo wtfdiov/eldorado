@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { FlatList, Text } from 'react-native';
-import { Navigation } from 'react-native-navigation';
 import i18n from 'i18n-js';
 
 import TransactionItem from './Item';
@@ -11,14 +10,7 @@ class TransactionList extends Component {
   }
 
   openDetails = transactionId => {
-    Navigation.push('main', {
-      component: {
-        name: 'eldorado.screens.Transactions.Details',
-        passProps: {
-          transactionId
-        }
-      }
-    });
+    // TODO: push details screen
   };
 
   _keyExtractor = item => item.id;

@@ -9,7 +9,8 @@ export {
   logout,
   clearAuthData,
   startDataSync,
-  stopDataSync
+  stopDataSync,
+  toggleAutoLoginLoading
 } from './auth';
 
 export {

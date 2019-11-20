@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, Linking, StyleSheet, View } from 'react-native';
-import { Navigation } from 'react-native-navigation';
+import { Platform, Linking } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import LinearGradient from 'react-native-linear-gradient';
@@ -30,7 +29,6 @@ class HomeScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.navigationEventListener = Navigation.events().bindComponent(this);
     this.routes = [
       { key: 'summary', title: 'First' },
       { key: 'send', title: 'Second' },
@@ -45,7 +43,7 @@ class HomeScreen extends Component {
     this.selectTab = this.selectTab.bind(this);
   }
 
-  componentDidAppear() {
+  componentDidMount() {
     if (Platform.OS === 'android') {
       Linking.getInitialURL().then(url => {
         if (url) this.handleOpenURL(url);
@@ -57,7 +55,6 @@ class HomeScreen extends Component {
 
   componentWillUnmount() {
     Linking.removeEventListener('url', this.handleOpenURL);
-    this.navigationEventListener.remove();
   }
 
   handleOpenURL = event => {

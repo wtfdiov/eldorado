@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions, ScrollView, View } from 'react-native';
-import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import i18n from 'i18n-js';
 
@@ -30,13 +29,6 @@ class ConfigScreen extends Component {
     this.state = {
       email: ''
     };
-    Navigation.events().bindComponent(this);
-  }
-
-  navigationButtonPressed({ buttonId }) {
-    if (buttonId === 'closeModal') {
-      Navigation.dismissModal(this.props.componentId);
-    }
   }
 
   componentDidMount() {

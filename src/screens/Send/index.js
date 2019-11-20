@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, ScrollView, Text, View } from 'react-native';
+import { withNavigation } from 'react-navigation';
 import { Label, Input, Item, Button } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 import uuidv1 from 'uuid/v1';
@@ -11,7 +12,6 @@ import { newTransaction } from '../../store/actions';
 
 import { config } from '../../../app.json';
 
-import openQRScanner from '../../navigation/qrScanner';
 import { stringToHex } from '../../helpers/hexTool';
 
 import BlocksInfo from '../../components/common/BlocksInfo';
@@ -91,7 +91,7 @@ class SendScreen extends Component {
           </Item>
           <Button
             rounded
-            onPress={() => openQRScanner({ setAddress: this.setDestination })}
+            onPress={() => this.props.navigation.navigate('QRScanner')}
             style={{ padding: 15, marginLeft: 5, backgroundColor: '#006e6e' }}
           >
             <Icon name="md-qr-scanner" color="white" size={21} />

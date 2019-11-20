@@ -27,13 +27,6 @@ class ForgotScreen extends PureComponent {
     this.state = {
       email: ''
     };
-    Navigation.events().bindComponent(this);
-  }
-
-  navigationButtonPressed({ buttonId }) {
-    if (buttonId === 'closeModal') {
-      Navigation.dismissModal(this.props.componentId);
-    }
   }
 
   forgotHandler = () => {

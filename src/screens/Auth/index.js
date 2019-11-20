@@ -5,7 +5,6 @@ import {
   View,
   ImageBackground,
   Image,
-  Text
 } from 'react-native';
 import { connect } from 'react-redux';
 import i18n from 'i18n-js';
@@ -26,13 +25,13 @@ class AuthScreen extends Component {
     twoFactorAuthToken: ''
   };
 
-  loginHandler = () => {
+  loginHandler = async () => {
     const formData = {
       email: this.state.email,
       password: this.state.password,
       twoFactorAuthToken: this.state.twoFactorAuthToken
     };
-    this.props.onLogin(formData);
+    await this.props.onLogin(formData);
   };
 
   render() {
@@ -82,7 +81,7 @@ class AuthScreen extends Component {
           />
 
           <Button
-            icon="input"
+            icon="login"
             mode="contained"
             style={{ marginVertical: 12 }}
             onPress={this.loginHandler}
@@ -102,18 +101,18 @@ class AuthScreen extends Component {
           <View style={styles.containerButtonsBottom}>
             <Button
               mode="text"
-              icon="person-add"
+              icon="account-plus"
               color="white"
-              onPress={() => {}}
+              onPress={() => this.props.navigation.navigate('Register')}
             >
               {i18n.t('login.signUpBtnLabel')}
             </Button>
 
             <Button
               mode="text"
-              icon="vpn-key"
+              icon="lock-reset"
               color="white"
-              onPress={() => {}}
+              onPress={() => this.props.navigation.navigate('Forgot')}
             >
               {i18n.t('login.resetPasswordBtnLabel')}
             </Button>
@@ -128,8 +127,8 @@ const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   logo: {
-    height: height * 0.42,
-    width: width * 0.6,
+    height: height * 0.24,
+    width: width * 0.4,
     justifyContent: 'center'
   },
 
@@ -150,7 +149,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogin: formData => dispatch(tryAuth(formData))
+    onLogin: (formData, successCallback, errorCallback) => dispatch(tryAuth(formData, successCallback, errorCallback))
   };
 };
 

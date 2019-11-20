@@ -31,13 +31,6 @@ class RegisterScreen extends PureComponent {
       passwordConfirm: ''
     };
     this.initialState = this.state;
-    Navigation.events().bindComponent(this);
-  }
-
-  navigationButtonPressed({ buttonId }) {
-    if (buttonId === 'closeModal') {
-      Navigation.dismissModal(this.props.componentId);
-    }
   }
 
   registerHandler = () => {

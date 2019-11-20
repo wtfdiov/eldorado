@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Navigation } from 'react-native-navigation';
 import { RNCamera } from 'react-native-camera';
 
 import i18n from 'i18n-js';
@@ -56,7 +55,7 @@ class QRScanner extends Component {
           captureAudio={false}
           onBarCodeRead={({ data }) => {
             this.props.setAddress(data);
-            Navigation.pop(this.props.componentId);
+            // TODO: pop navigation
           }}
           androidCameraPermissionOptions={{
             title: i18n.t('qrScanner.askPermission.title'),

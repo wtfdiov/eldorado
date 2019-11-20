@@ -8,7 +8,6 @@ import {
   ActivityIndicator
 } from 'react-native';
 import { Button } from 'native-base';
-import { Navigation } from 'react-native-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 import i18n from 'i18n-js';
 import { IconButton } from 'react-native-paper';
@@ -41,11 +40,7 @@ class WalletPicker extends Component {
   };
 
   sendButtonHandler = async () => {
-    Navigation.mergeOptions('mainTabs', {
-      bottomTabs: {
-        currentTabId: 'SEND_TAB'
-      }
-    });
+    //navigate to send tab
   };
 
   selectWallet(address) {
@@ -62,7 +57,6 @@ class WalletPicker extends Component {
           width: '100%',
           height: 80,
           flexDirection: 'row',
-          paddingHorizontal: 5
         }}
       >
         <View
@@ -94,7 +88,7 @@ class WalletPicker extends Component {
             style={{
               flexDirection: 'row',
               justifyContent: 'space-between',
-              paddingHorizontal: 12
+              paddingRight: 30
             }}
           >
             <Button transparent light onPress={() => this.props.onNewWallet()}>

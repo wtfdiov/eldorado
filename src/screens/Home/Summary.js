@@ -7,8 +7,6 @@ import { connect } from 'react-redux';
 
 import { fetchWalletsBalance, logout } from '../../store/actions';
 
-import openModal from '../../navigation/openModal';
-
 import WalletStats from '../../components/Home/WalletStats';
 import TransactionList from '../../components/Transactions/List';
 
@@ -59,7 +57,9 @@ class SummaryScreen extends Component {
         >
           <Button
             icon="settings"
-            onPress={() => openModal('eldorado.screens.Config')}
+            onPress={() => {
+              // TODO: OPEN CONFIG
+            }}
           >
             {i18n.t('config.title')}
           </Button>

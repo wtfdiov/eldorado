@@ -70,3 +70,9 @@ export const stopDataSync = () => {
     type: actionTypes.STOP_DATA_SYNC
   }
 }
+
+export const toggleAutoLoginLoading = () => {
+  return {
+    type: actionTypes.AUTH_TOGGLE_AUTOLOGIN_LOADING
+  };
+}
