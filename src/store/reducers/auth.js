@@ -8,8 +8,8 @@ const initialState = {
   token: '',
   expirationDate: '',
   loading: false,
-  autoLoginLoading: true,
-}
+  autoLoginLoading: true
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -21,24 +21,24 @@ const reducer = (state = initialState, action) => {
         role: action.authData.role,
         token: action.authData.token,
         expirationDate: action.authData.expirationDate
-      }
+      };
     case actionTypes.AUTH_TOGGLE_LOADING:
       return {
         ...state,
         loading: !state.loading
-      }
+      };
     case actionTypes.AUTH_LOGOUT:
       return {
         ...initialState
-      }
+      };
     case actionTypes.AUTH_TOGGLE_AUTOLOGIN_LOADING:
       return {
         ...state,
-        autoLoginLoading: !state.loading
-      }
+        autoLoginLoading: !state.autoLoginLoading
+      };
     default:
       return state;
   }
-}
+};
 
 export default reducer;

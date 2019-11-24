@@ -1,120 +1,103 @@
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, ScrollView, View, Dimensions } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 import i18n from 'i18n-js';
-
-import { connect } from 'react-redux';
-import { signUp } from '../../store/actions/index';
-
 import { Surface, Text, Headline, Button, TextInput } from 'react-native-paper';
+
+import { signUp } from '../../store/actions';
 
 const { height, width } = Dimensions.get('window');
 
-class RegisterScreen extends PureComponent {
-  static options() {
-    return {
-      topBar: {
-        drawBehind: true,
-        elevation: 0,
-        background: {
-          color: 'transparent'
-        }
-      }
-    };
-  }
+function RegisterScreen() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      email: '',
-      password: '',
-      passwordConfirm: ''
-    };
-    this.initialState = this.state;
-  }
+  const dispatch = useDispatch();
+  const isLoading = useSelector(state => state.auth.loading);
 
   registerHandler = () => {
-    this.props.onRegister(this.state);
-    this.resetForm();
+    const formData = {
+      name,
+      email,
+      password,
+      passwordConfirm
+    };
+    dispatch(signUp(formData));
+    resetForm();
   };
 
-  resetForm() {
-    this.setState(this.initialState);
+  function resetForm() {
+    setName('');
+    setEmail('');
+    setPassword('');
+    setPasswordConfirm('');
   }
 
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Surface style={styles.surface}>
-          <Headline>{i18n.t('signUp.title').toUpperCase()}</Headline>
-          <ScrollView
-            contentContainerStyle={{
-              flex: 1,
-              justifyContent: 'center'
-            }}
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Surface style={styles.surface}>
+        <Headline>{i18n.t('signUp.title').toUpperCase()}</Headline>
+        <ScrollView
+          contentContainerStyle={{
+            flex: 1,
+            justifyContent: 'center'
+          }}
+        >
+          <Text>{i18n.t('signUp.desc')}</Text>
+
+          <TextInput
+            mode="outlined"
+            label={i18n.t('signUp.nameInputLabel')}
+            onChangeText={name => setName(name)}
+            value={name}
+            style={{ marginTop: 12 }}
+          />
+
+          <TextInput
+            autoCorrect={false}
+            autoCapitalize="none"
+            mode="outlined"
+            label={i18n.t('signUp.emailInputLabel')}
+            onChangeText={email => setEmail(email)}
+            value={email}
+            style={{ marginTop: 12 }}
+          />
+
+          <TextInput
+            autoCorrect={false}
+            autoCapitalize="none"
+            secureTextEntry
+            mode="outlined"
+            label={i18n.t('signUp.passwordInputLabel')}
+            onChangeText={password => setPassword(password)}
+            value={password}
+            style={{ marginTop: 12 }}
+          />
+
+          <TextInput
+            autoCorrect={false}
+            autoCapitalize="none"
+            secureTextEntry
+            mode="outlined"
+            label={i18n.t('signUp.confirmPasswordInputLabel')}
+            onChangeText={passwordConfirm => setPasswordConfirm(passwordConfirm)}
+            value={passwordConfirm}
+            style={{ marginVertical: 12 }}
+          />
+
+          <Button
+            onPress={registerHandler}
+            loading={isLoading}
+            disabled={!name || !email || !/\S+@\S+\.\S+/.test(email) || !password || !passwordConfirm}
           >
-            <Text>{i18n.t('signUp.desc')}</Text>
-
-            <TextInput
-              mode="outlined"
-              label={i18n.t('signUp.nameInputLabel')}
-              onChangeText={name => this.setState({ name })}
-              value={this.state.name.toString()}
-              style={{ marginTop: 12 }}
-            />
-
-            <TextInput
-              autoCorrect={false}
-              autoCapitalize="none"
-              mode="outlined"
-              label={i18n.t('signUp.emailInputLabel')}
-              onChangeText={email => this.setState({ email })}
-              value={this.state.email.toString()}
-              style={{ marginTop: 12 }}
-            />
-
-            <TextInput
-              autoCorrect={false}
-              autoCapitalize="none"
-              secureTextEntry
-              mode="outlined"
-              label={i18n.t('signUp.passwordInputLabel')}
-              onChangeText={password => this.setState({ password })}
-              value={this.state.password.toString()}
-              style={{ marginTop: 12 }}
-            />
-
-            <TextInput
-              autoCorrect={false}
-              autoCapitalize="none"
-              secureTextEntry
-              mode="outlined"
-              label={i18n.t('signUp.confirmPasswordInputLabel')}
-              onChangeText={passwordConfirm =>
-                this.setState({ passwordConfirm })
-              }
-              value={this.state.passwordConfirm.toString()}
-              style={{ marginVertical: 12 }}
-            />
-
-            <Button
-              onPress={this.registerHandler}
-              loading={this.props.loading}
-              disabled={
-                !this.state.name ||
-                !this.state.email ||
-                !/\S+@\S+\.\S+/.test(this.state.email) ||
-                !this.state.password ||
-                !this.state.passwordConfirm
-              }
-            >
-              {i18n.t('signUp.signUpBtnLabel')}
-            </Button>
-          </ScrollView>
-        </Surface>
-      </View>
-    );
-  }
+            {i18n.t('signUp.signUpBtnLabel')}
+          </Button>
+        </ScrollView>
+      </Surface>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -129,19 +112,4 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => {
-  return {
-    loading: state.auth.loading
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onRegister: formData => dispatch(signUp(formData))
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(RegisterScreen);
+export default RegisterScreen;

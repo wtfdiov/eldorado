@@ -4,7 +4,6 @@ import axios from 'axios';
 import { put, call, delay } from 'redux-saga/effects';
 import { AsyncStorage } from 'react-native';
 import i18n from 'i18n-js';
-import { navigationRef } from '../../navigation/NavigationService';
 
 import * as actions from '../actions';
 
@@ -23,23 +22,18 @@ export function* signUpSaga(action) {
       passwordConfirm: action.formData.passwordConfirm
     });
 
-    return Alert.alert(
-      i18n.t('signUp.title'),
-      i18n.t('signUp.requestMessages.success.created')
-    );
+    return Alert.alert(i18n.t('signUp.title'), i18n.t('signUp.requestMessages.success.created'));
   } catch (error) {
     return Alert.alert(
       i18n.t('signUp.title'),
-      `${i18n.t('signUp.requestMessages.error.generic')}: ${
-        error.response.data.message
-      }`
+      `${i18n.t('signUp.requestMessages.error.generic')}: ${error.response.data.message}`
     );
   } finally {
     yield put(actions.toggleAuthLoading());
   }
 }
 
-export function* tryAuthSaga(action, successCallback = () => {}, errorCallback = () => {}) {
+export function* tryAuthSaga(action) {
   yield put(actions.toggleAuthLoading());
 
   try {
@@ -57,20 +51,12 @@ export function* tryAuthSaga(action, successCallback = () => {}, errorCallback =
     yield put(actions.updateTokenOnStorage(response.data));
 
     yield put(actions.startDataSync());
-    successCallback();
   } catch (error) {
-
     yield put(actions.logout());
 
-    if (!action.formData.login) {
-      errorCallback();
-    }
-
-     Alert.alert(
+    Alert.alert(
       i18n.t('login.title'),
-      `${i18n.t('login.requestMessages.error.generic')}: ${
-        error.response.data.message
-      }`
+      `${i18n.t('login.requestMessages.error.generic')}: ${error.response.data.message}`
     );
   } finally {
     yield put(actions.toggleAuthLoading());
@@ -94,29 +80,16 @@ export function* updateTokenSaga(action) {
     yield put(actions.updateTokenOnStorage(updateToken.data));
     yield put(actions.updateAuthData(updateToken.data));
     yield put(actions.startDataSync());
-    // TODO: ABRIR HOME
   } catch (error) {
     yield put(actions.clearAuthData());
-    Alert.alert(
-      i18n.t('login.title'),
-      `${i18n.t('login.requestMessages.error.refreshToken')} ${
-        error.response.data.message
-      }`
-    );
   }
 }
 
 export function* updateTokenOnStorageSaga(action) {
   const now = new Date();
   const expirationDate = new Date(now.getTime() + 3600 * 1000);
-  yield AsyncStorage.setItem(
-    '@eldorado:auth:token',
-    action.authData.token.toString()
-  );
-  yield AsyncStorage.setItem(
-    '@eldorado:auth:expirationDate',
-    expirationDate.toString()
-  );
+  yield AsyncStorage.setItem('@eldorado:auth:token', action.authData.token.toString());
+  yield AsyncStorage.setItem('@eldorado:auth:expirationDate', expirationDate.toString());
 }
 
 export function* clearAuthDataSaga() {
@@ -126,18 +99,19 @@ export function* clearAuthDataSaga() {
 
 export function* tryAutoLoginSaga() {
   try {
-    const tokenFromStorage = yield AsyncStorage.multiGet([
-      '@eldorado:auth:token',
-      '@eldorado:auth:expirationDate'
-    ]);
+    const tokenFromStorage = yield AsyncStorage.multiGet(['@eldorado:auth:token', '@eldorado:auth:expirationDate']);
 
     const now = new Date();
-    if (tokenFromStorage[0][1] && now >= Date.parse(tokenFromStorage[1][1])) {
+
+    if (!tokenFromStorage[0][1]) {
+      return;
+    } else if (tokenFromStorage[0][1] && now >= Date.parse(tokenFromStorage[1][1])) {
       yield put(actions.logout());
     } else {
       yield put(actions.updateToken(tokenFromStorage[0][1]));
     }
-  } catch (error) {}  finally {
+  } catch (error) {
+  } finally {
     yield put(actions.toggleAutoLoginLoading());
   }
 }

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useCallback } from 'react';
 import { StyleSheet, Dimensions, ScrollView, View } from 'react-native';
 import axios from 'axios';
 import i18n from 'i18n-js';
@@ -9,76 +9,47 @@ import { config } from '../../../app.json';
 
 const { height, width } = Dimensions.get('window');
 
-class ForgotScreen extends PureComponent {
-  static options() {
-    return {
-      topBar: {
-        drawBehind: true,
-        elevation: 0,
-        background: {
-          color: 'transparent'
-        }
-      }
-    };
-  }
+function ForgotScreen() {
+  const [email, setEmail] = useState('');
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: ''
-    };
-  }
-
-  forgotHandler = () => {
+  const forgotHandler = useCallback(() => {
     axios
       .post(`${config.api}/notifications`, {
-        email: this.state.email,
+        email,
         type: 'reset-password'
       })
-      .then(resp =>
-        alert(
-          i18n.t('resetPassword.title'),
-          i18n.t('resetPassword.requestMessages.resetPasswordSuccess')
-        )
-      )
+      .then(resp => alert(i18n.t('resetPassword.title'), i18n.t('resetPassword.requestMessages.resetPasswordSuccess')))
       .catch(error => alert(error.message));
-  };
+  });
 
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Surface style={styles.surface}>
-          <Headline>{i18n.t('resetPassword.title').toUpperCase()}</Headline>
-          <ScrollView
-            contentContainerStyle={{
-              flex: 1,
-              justifyContent: 'center'
-            }}
-          >
-            <Text>{i18n.t('resetPassword.desc')}</Text>
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Surface style={styles.surface}>
+        <Headline>{i18n.t('resetPassword.title').toUpperCase()}</Headline>
+        <ScrollView
+          contentContainerStyle={{
+            flex: 1,
+            justifyContent: 'center'
+          }}
+        >
+          <Text>{i18n.t('resetPassword.desc')}</Text>
 
-            <TextInput
-              mode="outlined"
-              autoCapitalize="none"
-              label={i18n.t('resetPassword.emailInputLabel')}
-              onChangeText={email => this.setState({ email })}
-              value={this.state.email.toString()}
-              style={{ marginVertical: 12 }}
-            />
+          <TextInput
+            mode="outlined"
+            autoCapitalize="none"
+            label={i18n.t('resetPassword.emailInputLabel')}
+            onChangeText={email => setEmail(email)}
+            value={email}
+            style={{ marginVertical: 12 }}
+          />
 
-            <Button
-              onPress={this.forgotHandler}
-              disabled={
-                !this.state.email || !/\S+@\S+\.\S+/.test(this.state.email)
-              }
-            >
-              {i18n.t('resetPassword.resetPasswordBtnLabel')}
-            </Button>
-          </ScrollView>
-        </Surface>
-      </View>
-    );
-  }
+          <Button onPress={forgotHandler} disabled={!email || !/\S+@\S+\.\S+/.test(email)}>
+            {i18n.t('resetPassword.resetPasswordBtnLabel')}
+          </Button>
+        </ScrollView>
+      </Surface>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -92,11 +63,5 @@ const styles = StyleSheet.create({
     borderRadius: 10
   }
 });
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onForgot: () => null
-  };
-};
 
 export default ForgotScreen;
