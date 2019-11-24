@@ -13,6 +13,7 @@ import { selectWallet, createWallet, deleteWallet } from '../../../store/actions
 import logo from '../../../assets/logo-nbr.png';
 
 import WalletSelector from './WalletSelector';
+import { COLORS } from '../../style';
 
 function WalletPicker() {
   const navigation = useNavigation();
@@ -54,11 +55,15 @@ function WalletPicker() {
           justifyContent: 'center'
         }}
       >
-        {isLoading ? <ActivityIndicator size="large" /> : <Image source={logo} style={{ height: 48, width: 42 }} />}
+        {isLoading ? (
+          <ActivityIndicator size="large" color={COLORS.primaryGreen} />
+        ) : (
+          <Image source={logo} style={{ height: 48, width: 42 }} />
+        )}
       </View>
       <View
         style={{
-          width: '80%',
+          width: '70%',
           justifyContent: 'space-around'
         }}
       >
@@ -70,14 +75,14 @@ function WalletPicker() {
         />
         <View
           style={{
+            width: '100%',
             flexDirection: 'row',
-            justifyContent: 'space-between',
-            paddingRight: 30
+            justifyContent: 'space-between'
           }}
         >
           <Button transparent light onPress={createWalletHandler}>
-            <Icon name="md-add" size={24} />
-            <Text> {i18n.t('common.components.walletPicker.newWalletBtnLabel')}</Text>
+            <Icon name="md-add" size={24} color="#FFF" />
+            <Text style={{ color: '#FFF' }}> {i18n.t('common.components.walletPicker.newWalletBtnLabel')}</Text>
           </Button>
 
           {selected ? <IconButton icon="content-copy" color="white" size={24} onPress={copyToClipboard} /> : null}

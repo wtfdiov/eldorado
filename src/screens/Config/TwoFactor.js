@@ -4,7 +4,7 @@ import { Button, Item, Input } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 import i18n from 'i18n-js';
 
-import { COLORS } from '../../components/style';
+import { COLORS, GAP } from '../../components/style';
 
 function TwoFactor({ isLoading, twoFactorData, enable }) {
   const [twoFactorKey, setState] = useState('');
@@ -29,7 +29,7 @@ function TwoFactor({ isLoading, twoFactorData, enable }) {
       <View
         style={{
           backgroundColor: COLORS.secondaryGreen,
-          padding: 10
+          padding: GAP.default
         }}
       >
         <Text style={{ textAlign: 'center' }}>{i18n.t('config.2FA.activatedMessage')}</Text>
@@ -52,7 +52,7 @@ function TwoFactor({ isLoading, twoFactorData, enable }) {
         </View>
         <View style={{ flex: 2 }}>
           <Text style={{ textAlign: 'center' }}>{i18n.t('config.2FA.inputKey')}</Text>
-          <Item regular style={{ marginVertical: 5 }}>
+          <Item regular style={{ marginVertical: GAP.small }}>
             <Input keyboardType="numeric" value={twoFactorKey} onChangeText={twoFactorKey => setState(twoFactorKey)} />
           </Item>
           <Button success block onPress={() => enable(twoFactorKey)} disabled={twoFactorKey.length < 3}>
@@ -67,10 +67,10 @@ function TwoFactor({ isLoading, twoFactorData, enable }) {
           </Button>
         </View>
       </View>
-      <Text style={{ textAlign: 'center', marginBottom: 5 }}>{i18n.t('config.2FA.secretMessage')}</Text>
+      <Text style={{ textAlign: 'center', marginVertical: GAP.default }}>{i18n.t('config.2FA.secretMessage')}</Text>
       <Item regular style={{ backgroundColor: '#f2f2f2' }}>
         <Input value={secret} style={{ backgroundColor: '#f7f7f7' }} disabled />
-        <TouchableOpacity style={{ marginHorizontal: 10 }} onPress={() => copyToClipboard(secret)}>
+        <TouchableOpacity style={{ marginHorizontal: GAP.default }} onPress={() => copyToClipboard(secret)}>
           <Icon name="ios-copy" size={24} />
         </TouchableOpacity>
       </Item>

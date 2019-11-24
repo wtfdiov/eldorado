@@ -5,8 +5,8 @@
     "passwordInputLabel": "Password",
     "2FAInputLabel": "2FA Code (If activated)",
     "signInBtnLabel": "LOGIN",
-    "signUpBtnLabel": "New account",
-    "resetPasswordBtnLabel": "Reset password",
+    "signUpBtnLabel": "Register",
+    "resetPasswordBtnLabel": "Reset pass",
     "requestMessages": {
       "error": {
         "generic": "Problem on attempt to login",
@@ -134,11 +134,12 @@
     "cancel": "Cancel",
     "ok": "Ok",
     "anonymous": "Anonymous",
+    "send": "Send",
     "select": "Select",
     "components": {
       "walletPicker": {
         "noWallets": "No wallets",
-        "newWalletBtnLabel": "New wallet",
+        "newWalletBtnLabel": "WALLET",
         "addressCopied": "Wallet address copied!",
         "allWallets": "All wallets"
       },

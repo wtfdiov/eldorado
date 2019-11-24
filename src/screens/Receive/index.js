@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Share, StyleSheet, ScrollView, Text } from 'react-native';
-import { Button } from 'native-base';
+import { Button } from 'react-native-paper';
 import QRCode from 'react-qr-code';
 import Icon from 'react-native-vector-icons/Ionicons';
 import i18n from 'i18n-js';
@@ -30,36 +30,20 @@ function SendScreen() {
     return (
       <View style={styles.container}>
         <NoData message={i18n.t('send.selectAnWallet')}>
-          <Icon name="md-wallet" size={72} />
+          <Icon name="md-wallet" size={72} color={COLORS.primaryGreen} />
         </NoData>
       </View>
     );
   }
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {selected ? (
-        <QRCode value={selected.address} fgColor="#000" />
-      ) : (
-        <Fragment>
-          <Icon name="ios-qr-scanner" size={120} color="#006e6e" />
-        </Fragment>
-      )}
+      <QRCode value={selected.address} fgColor="#000" />
 
       <Text style={{ textAlign: 'center' }}>
         {' '}
         {selected ? i18n.t('receive.walletQRDesc') : i18n.t('receive.noWalletMsg')}{' '}
       </Text>
-      <Button
-        iconLeft
-        onPress={shareHandler}
-        disabled={!selected}
-        style={{
-          padding: 10,
-          alignSelf: 'center',
-          backgroundColor: '#006e6e'
-        }}
-      >
-        <Icon name="md-share" size={18} color="white" />
+      <Button icon="share" mode="contained" color={COLORS.primaryGreen} disabled={!selected} onPress={shareHandler}>
         <Text style={{ color: 'white', fontWeight: '600' }}> {i18n.t('receive.shareBtnLabel')}</Text>
       </Button>
     </ScrollView>

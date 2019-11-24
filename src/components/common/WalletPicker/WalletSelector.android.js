@@ -13,7 +13,7 @@ function WalletSelector({ wallets, selected, selectWallet }) {
 
   return (
     <Picker
-      style={{ width: '80%', color: '#FFF' }}
+      style={{ width: '100%', color: '#FFF' }}
       selectedValue={selected}
       onValueChange={address => selectWallet(address)}
       itemStyle={{

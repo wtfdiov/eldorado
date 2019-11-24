@@ -7,7 +7,7 @@ import i18n from 'i18n-js';
 import shortfyAddress from '../../../helpers/shortfyAddress';
 import formatNBR from '../../../helpers/formatNBR';
 
-function WalletSelector({ wallets, selected, onSelect }) {
+function WalletSelector({ wallets, selected, selectWallet }) {
   if (!Object.keys(wallets).length > 0) {
     return <Text style={{ color: 'white' }}>{i18n.t('common.components.walletPicker.noWallets')}</Text>;
   }
@@ -16,9 +16,9 @@ function WalletSelector({ wallets, selected, onSelect }) {
     <Picker
       note
       mode="dropdown"
-      style={{ width: '80%', color: 'white' }}
+      style={{ width: '100%', color: 'white' }}
       selectedValue={selected}
-      onValueChange={address => onSelect(address)}
+      onValueChange={address => selectWallet(address)}
       itemStyle={{
         flex: 1
       }}
