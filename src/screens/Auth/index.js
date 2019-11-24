@@ -9,7 +9,7 @@ import { tryAuth } from '../../store/actions';
 import Background from '../../assets/Background.png';
 import NBRLogoLogin from '../../assets/NBRLogoLogin.png';
 
-import { COLORS } from '../../components/style';
+import { COLORS, GAP } from '../../components/style';
 
 function AuthScreen({ navigation }) {
   const [email, setEmail] = useState('');
@@ -59,7 +59,7 @@ function AuthScreen({ navigation }) {
           label={i18n.t('login.passwordInputLabel')}
           value={password}
           onChangeText={password => setPassword(password)}
-          style={{ marginTop: 12 }}
+          style={{ marginTop: GAP.default }}
         />
 
         <TextInput
@@ -68,17 +68,17 @@ function AuthScreen({ navigation }) {
           value={twoFactorAuthToken}
           onChangeText={twoFactorAuthToken => setTwoFactorAuthToken(twoFactorAuthToken)}
           keyboardType="numeric"
-          style={{ marginTop: 12 }}
+          style={{ marginTop: GAP.default }}
         />
 
         <Button
           icon="login"
           mode="contained"
-          style={{ marginVertical: 12 }}
+          style={{ marginVertical: GAP.default }}
           onPress={loginHandler}
           loading={isLoading}
           contentStyle={{ height: 48 }}
-          color={COLORS.secondaryGreen}
+          color={COLORS.primaryGreen}
           disabled={!email || !/\S+@\S+\.\S+/.test(email) || !password || isLoading}
         >
           {i18n.t('login.signInBtnLabel')}

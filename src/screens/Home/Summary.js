@@ -54,11 +54,11 @@ function SummaryScreen() {
           paddingHorizontal: 10
         }}
       >
-        <Button icon="settings" onPress={() => navigation.navigate('Config')}>
+        <Button icon="settings" color={COLORS.primaryGreen} onPress={() => navigation.navigate('Config')}>
           {i18n.t('config.title')}
         </Button>
 
-        <Button icon="exit-to-app" onPress={() => dispatch(logOut())}>
+        <Button icon="exit-to-app" color={COLORS.primaryGreen} onPress={() => dispatch(logout())}>
           {i18n.t('home.logOutBtnLabel')}
         </Button>
       </View>

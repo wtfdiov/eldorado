@@ -140,7 +140,7 @@
     "components": {
       "walletPicker": {
         "noWallets": "Sem carteiras",
-        "newWalletBtnLabel": "Nova carteira",
+        "newWalletBtnLabel": "CARTEIRA",
         "addressCopied": "Endereço da carteira copiado!",
         "allWallets": "Todas as carteiras"
       },

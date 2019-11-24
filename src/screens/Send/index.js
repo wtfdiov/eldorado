@@ -28,7 +28,6 @@ function SendScreen() {
   const [anonymity, setAnonymity] = useState(1);
 
   const dispatch = useDispatch();
-  const wallets = useSelector(state => state.wallets.wallets);
   const selected = useSelector(state => state.wallets.selected);
   const selectedBalance = useSelector(state => state.wallets.selectedBalance);
 
@@ -92,7 +91,7 @@ function SendScreen() {
         <Button
           rounded
           onPress={() => navigation.navigate('QRScanner', { setDestination })}
-          style={{ padding: 15, marginLeft: 5, backgroundColor: '#006e6e' }}
+          style={{ padding: 15, marginLeft: 5, backgroundColor: COLORS.primaryGreen }}
         >
           <Icon name="md-qr-scanner" color="white" size={21} />
         </Button>
@@ -117,9 +116,9 @@ function SendScreen() {
             <Input onChangeText={amount => setAmount(amount)} value={amount} keyboardType="number-pad" />
             <Label
               style={{
-                backgroundColor: '#c6f2f2',
+                backgroundColor: `${COLORS.primaryGreen}30`,
                 fontSize: 12,
-                color: '#65b4b4',
+                color: COLORS.primaryGreen,
                 height: '100%',
                 textAlignVertical: 'center',
                 paddingHorizontal: 5
@@ -135,9 +134,9 @@ function SendScreen() {
             <Input onChangeText={fee => setFee(fee)} value={fee} keyboardType="number-pad" />
             <Label
               style={{
-                backgroundColor: '#c6f2f2',
+                backgroundColor: `${COLORS.primaryGreen}30`,
                 fontSize: 12,
-                color: '#65b4b4',
+                color: COLORS.primaryGreen,
                 height: '100%',
                 textAlignVertical: 'center',
                 alignContent: 'center',
@@ -172,7 +171,7 @@ function SendScreen() {
                 .replace(/-/g, '')
             )
           }
-          style={{ padding: 15, marginLeft: 5, backgroundColor: '#006e6e' }}
+          style={{ padding: 15, marginLeft: 5, backgroundColor: COLORS.primaryGreen }}
         >
           <Icon name="md-add" color="white" size={21} />
         </Button>
@@ -189,7 +188,8 @@ function SendScreen() {
           style={{
             flex: 1
           }}
-          thumbTintColor="#006e6e"
+          thumbTintColor={COLORS.primaryGreen}
+          maximumTrackTintColor={COLORS.primaryGreen}
         />
         <Text>{anonymity}</Text>
       </View>
