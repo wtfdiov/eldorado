@@ -2,21 +2,11 @@
  * @format
  */
 
-import './reactotron';
-import { Navigation } from 'react-native-navigation';
+import "./reactotron";
+import App from "./App";
+import { AppRegistry } from "react-native";
+import configureLanguage from "./i18n";
 
-import { registerScreens } from './src/screens';
-import configureLanguage from './i18n';
-
-registerScreens();
 configureLanguage();
 
-Navigation.events().registerAppLaunchedListener(() => {
-  Navigation.setRoot({
-    root: {
-      component: {
-        name: 'eldorado.screens.Loading'
-      }
-    }
-  });
-});
+AppRegistry.registerComponent("App", () => App);

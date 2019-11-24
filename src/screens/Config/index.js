@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import { StyleSheet, Dimensions, ScrollView, View } from 'react-native';
-import { Navigation } from 'react-native-navigation';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { Dimensions, ScrollView, View } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 import i18n from 'i18n-js';
 
 import * as actions from '../../store/actions';
@@ -12,96 +11,47 @@ import Title from '../../components/common/Title';
 import TwoFactor from './TwoFactor';
 import ChooseLanguage from './ChooseLanguage';
 
-class ConfigScreen extends Component {
-  static options(passProps) {
-    return {
-      topBar: {
-        drawBehind: true,
-        elevation: 0,
-        background: {
-          color: 'transparent'
-        }
-      }
-    };
+function ConfigScreen() {
+  useEffect(() => {
+    dispatch(actions.check2FA());
+  }, []);
+
+  const dispatch = useDispatch();
+  const isLoading = useSelector(state => state.config.isLoading);
+  const twoFactor = useSelector(state => state.config.twoFactor);
+
+  function enable2FA(twoFactorAuthToken) {
+    dispatch(actions.enable2FA(twoFactorAuthToken));
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: ''
-    };
-    Navigation.events().bindComponent(this);
-  }
-
-  navigationButtonPressed({ buttonId }) {
-    if (buttonId === 'closeModal') {
-      Navigation.dismissModal(this.props.componentId);
-    }
-  }
-
-  componentDidMount() {
-    this.props.check2fa();
-  }
-
-  render() {
-    const { height, width } = Dimensions.get('window');
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <View
-          style={[
-            {
-              height: height * 0.8,
-              width: width * 0.9,
-              backgroundColor: 'white'
-            },
-            componentStyle.transactionCard,
-            componentStyle.shadow
-          ]}
+  const { height, width } = Dimensions.get('window');
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View
+        style={[
+          {
+            height: height * 0.8,
+            width: width * 0.9,
+            backgroundColor: 'white'
+          },
+          componentStyle.transactionCard,
+          componentStyle.shadow
+        ]}
+      >
+        <ScrollView
+          contentContainerStyle={{
+            flex: 1,
+            paddingHorizontal: 10
+          }}
         >
-          <ScrollView
-            contentContainerStyle={{
-              flex: 1,
-              paddingHorizontal: 10
-            }}
-          >
-            <Title title={i18n.t('config.2FA.title')} />
-            <TwoFactor
-              isLoading={this.props.isLoading}
-              twoFactorData={this.props.twoFactor}
-              enable={this.props.enable2FA}
-            />
-            <Title
-              title={`${i18n.t('config.language.title')} (${i18n.locale})`}
-            />
-            <ChooseLanguage />
-          </ScrollView>
-        </View>
+          <Title title={i18n.t('config.2FA.title')} />
+          <TwoFactor isLoading={isLoading} twoFactorData={twoFactor} enable={enable2FA} />
+          <Title title={`${i18n.t('config.language.title')} (${i18n.locale})`} />
+          <ChooseLanguage />
+        </ScrollView>
       </View>
-    );
-  }
+    </View>
+  );
 }
 
-const styles = StyleSheet.create({
-  labels: {
-    marginLeft: 5,
-    fontSize: 12
-  }
-});
-
-const mapStateToProps = state => ({
-  isLoading: state.config.isLoading,
-  twoFactor: state.config.twoFactor
-});
-
-const mapDispatchToProps = dispatch => {
-  return {
-    check2fa: () => dispatch(actions.check2FA()),
-    enable2FA: twoFactorAuthToken =>
-      dispatch(actions.enable2FA(twoFactorAuthToken))
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ConfigScreen);
+export default ConfigScreen;

@@ -2,7 +2,7 @@
   "name": "NBRApp",
   "displayName": "NBRApp",
   "config": {
-    "api": "https://wallet.niobiocash.money/api/v1",
+    "api": "https://wallet-qa.niobiocash.money/api/v1",
     "symbol": "NBR",
     "name": "Nióbio Cash",
     "decimals": 8,

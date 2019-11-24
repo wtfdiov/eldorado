@@ -8,7 +8,15 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import AddressBox from '../common/AddressBox';
 import NBR from '../common/DisplayValue/NBR';
 
-const transactionItem = props => {
+function TransactionItem({ transaction, onTouch }) {
+  const {
+    id,
+    from,
+    to: { address },
+    status,
+    amount,
+    createdAt
+  } = transaction;
   return (
     <Card
       style={{
@@ -17,7 +25,7 @@ const transactionItem = props => {
         marginVertical: 6,
         paddingVertical: 12
       }}
-      onPress={() => props.onTouch(props.transaction.id)}
+      onPress={() => onTouch(id)}
     >
       <View
         style={{
@@ -27,9 +35,9 @@ const transactionItem = props => {
           marginVertical: 5
         }}
       >
-        <AddressBox address={props.transaction.from} />
+        <AddressBox address={from} />
         <Icon name="ios-arrow-round-forward" size={32} />
-        <AddressBox address={props.transaction.to.address} />
+        <AddressBox address={address} />
       </View>
       <View
         style={{
@@ -38,25 +46,23 @@ const transactionItem = props => {
         }}
       >
         <Icon
-          name={
-            props.transaction.status === 2 ? 'ios-checkmark-circle' : 'ios-time'
-          }
-          color={props.transaction.status === 2 ? '#3E863D' : '#F49917'}
+          name={status === 2 ? 'ios-checkmark-circle' : 'ios-time'}
+          color={status === 2 ? '#3E863D' : '#F49917'}
           size={18}
         />
 
-        <NBR transaction symbol value={props.transaction.amount} />
+        <NBR transaction symbol value={amount} />
 
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Icon name="ios-calendar" size={18} />
           <Text> </Text>
           <Moment element={Text} format="D MMM YYYY HH:mm">
-            {props.transaction.createdAt}
+            {createdAt}
           </Moment>
         </View>
       </View>
     </Card>
   );
-};
+}
 
-export default transactionItem;
+export default TransactionItem;

@@ -1,65 +1,79 @@
 package mobile.niobiocash.money;
 
 import android.app.Application;
-
+import android.content.Context;
+import com.facebook.react.PackageList;
+import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
+import com.facebook.react.bridge.JavaScriptExecutorFactory;
 import com.facebook.react.ReactApplication;
+import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
-import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-
-import com.reactnativenavigation.NavigationApplication;
-import com.reactnativenavigation.react.NavigationReactNativeHost;
-import com.reactnativenavigation.react.ReactGateway;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 import com.oblador.vectoricons.VectorIconsPackage;
 
-import com.reactcommunity.rnlocalize.RNLocalizePackage;
+public class MainApplication extends Application implements ReactApplication {
 
-import org.reactnative.camera.RNCameraPackage;
+  private final ReactNativeHost mReactNativeHost =
+      new ReactNativeHost(this) {
+        @Override
+        public boolean getUseDeveloperSupport() {
+          return BuildConfig.DEBUG;
+        }
 
-import io.invertase.firebase.RNFirebasePackage;
+        @Override
+        protected List<ReactPackage> getPackages() {
+          @SuppressWarnings("UnnecessaryLocalVariable")
+          List<ReactPackage> packages = new PackageList(this).getPackages();
+          // Packages that cannot be autolinked yet can be added manually here, for example:
+          // packages.add(new MyReactNativePackage());
+          return packages;
+        }
 
-import com.reactnativecommunity.slider.ReactSliderPackage;
-
-import com.avishayil.rnrestart.ReactNativeRestartPackage;
-
-import java.util.Arrays;
-import java.util.List;
-
-public class MainApplication extends NavigationApplication {
+        @Override
+        protected String getJSMainModuleName() {
+          return "index";
+        }
+      };
 
   @Override
-  protected ReactGateway createReactGateway() {
-    ReactNativeHost host = new NavigationReactNativeHost(this, isDebug(), createAdditionalReactPackages()) {
-      @Override
-      protected String getJSMainModuleName() {
-        return "index";
+  public ReactNativeHost getReactNativeHost() {
+    return mReactNativeHost;
+  }
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    SoLoader.init(this, /* native exopackage */ false);
+    initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+  }
+
+  /**
+   * Loads Flipper in React Native templates.
+   *
+   * @param context
+   */
+  private static void initializeFlipper(Context context, ReactInstanceManager reactInstanceManager) {
+    if (BuildConfig.DEBUG) {
+      try {
+        /*
+         We use reflection here to pick up the class that initializes Flipper,
+        since Flipper library is not available in release mode
+        */
+        Class<?> aClass = Class.forName("mobile.niobiocash.money");
+        aClass.getMethod("initializeFlipper", Context.class, ReactInstanceManager.class).invoke(null, context, reactInstanceManager);
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      } catch (NoSuchMethodException e) {
+        e.printStackTrace();
+      } catch (IllegalAccessException e) {
+        e.printStackTrace();
+      } catch (InvocationTargetException e) {
+        e.printStackTrace();
       }
-    };
-    return new ReactGateway(this, isDebug(), host);
-  }
-
-  @Override
-  public boolean isDebug() {
-    return BuildConfig.DEBUG;
-  }
-
-  protected List<ReactPackage> getPackages() {
-    // Add additional packages you require here
-    // No need to add RnnPackage and MainReactPackage
-    return Arrays.<ReactPackage>asList(
-      new VectorIconsPackage(),
-      new RNLocalizePackage(),
-      new RNCameraPackage(),
-      new RNFirebasePackage(),
-      new ReactSliderPackage(),
-      new ReactNativeRestartPackage()
-    );
-  }
-
-  @Override
-  public List<ReactPackage> createAdditionalReactPackages() {
-    return getPackages();
+    }
   }
 }

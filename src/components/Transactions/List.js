@@ -1,55 +1,37 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { FlatList, Text } from 'react-native';
-import { Navigation } from 'react-native-navigation';
+import { useNavigation } from '@react-navigation/core';
 import i18n from 'i18n-js';
 
 import TransactionItem from './Item';
 
-class TransactionList extends Component {
-  constructor(props) {
-    super(props);
+function TransactionList({ data, truncate, customStyle }) {
+  const navigation = useNavigation();
+
+  function openDetails(transactionId) {
+    navigation.navigate('TransactionDetails', { transactionId });
   }
 
-  openDetails = transactionId => {
-    Navigation.push('main', {
-      component: {
-        name: 'eldorado.screens.Transactions.Details',
-        passProps: {
-          transactionId
-        }
-      }
-    });
-  };
+  function _keyExtractor(item) {
+    return item.id;
+  }
 
-  _keyExtractor = item => item.id;
-
-  render() {
-    if (Object.keys(this.props.data).length === 0) {
-      return (
-        <Text style={{ alignSelf: 'center', textAlign: 'center', margin: 10 }}>
-          {i18n.t('common.components.transactionsList.noTransactions')}
-        </Text>
-      );
-    }
-
+  if (Object.keys(data).length === 0) {
     return (
-      <FlatList
-        data={
-          this.props.truncate
-            ? this.props.data.slice(0, this.props.truncate)
-            : this.props.data
-        }
-        keyExtractor={this._keyExtractor}
-        renderItem={transactions => (
-          <TransactionItem
-            transaction={transactions.item}
-            onTouch={this.openDetails}
-          />
-        )}
-        style={{ ...this.props.customStyle }}
-      />
+      <Text style={{ alignSelf: 'center', textAlign: 'center', margin: 10 }}>
+        {i18n.t('common.components.transactionsList.noTransactions')}
+      </Text>
     );
   }
+
+  return (
+    <FlatList
+      data={truncate ? data.slice(0, truncate) : data}
+      keyExtractor={_keyExtractor}
+      renderItem={transactions => <TransactionItem transaction={transactions.item} onTouch={openDetails} />}
+      style={{ ...customStyle }}
+    />
+  );
 }
 
 export default TransactionList;

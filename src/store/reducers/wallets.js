@@ -4,17 +4,17 @@ const initialState = {
   loading: false,
   wallets: [],
   balance: {
-    available: .0,
-    locked: .0,
-    total: .0
+    available: 0.0,
+    locked: 0.0,
+    total: 0.0
   },
   selectedBalance: {
-    available: .0,
-    locked: .0,
-    total: .0
+    available: 0.0,
+    locked: 0.0,
+    total: 0.0
   },
-  selected: null,
-}
+  selected: null
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -22,26 +22,25 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: !state.loading
-      }
+      };
     case actionTypes.WALLETS_STORE:
       return {
         ...state,
-        wallets: action.wallets,
-      }
+        wallets: action.wallets
+      };
     case actionTypes.WALLETS_FETCH_BALLANCE_SUCCESS:
       return {
         ...state,
         balance: action.balance
-      }
+      };
     case actionTypes.WALLETS_SELECT:
-        return {
-          ...state,
-          selected: action.wallet,
-          selectedBalance: action.wallet ? state.wallets.find(wallet => wallet.address === action.wallet).balance : initialState.selectedBalance
-        }
+      return {
+        ...state,
+        selected: action.selectedWallet
+      };
     default:
       return state;
   }
-}
+};
 
 export default reducer;

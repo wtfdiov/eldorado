@@ -1,4 +1,4 @@
-import { AUTH_UPDATE_DATA, AUTH_LOGOUT, AUTH_TOGGLE_LOADING } from '../actionTypes';
+import * as actionTypes from '../actionTypes';
 
 const initialState = {
   email: '',
@@ -7,12 +7,13 @@ const initialState = {
   role: '',
   token: '',
   expirationDate: '',
-  loading: false
-}
+  loading: false,
+  autoLoginLoading: true
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case AUTH_UPDATE_DATA:
+    case actionTypes.AUTH_UPDATE_DATA:
       return {
         email: action.authData.email,
         id: action.authData.id,
@@ -20,19 +21,24 @@ const reducer = (state = initialState, action) => {
         role: action.authData.role,
         token: action.authData.token,
         expirationDate: action.authData.expirationDate
-      }
-    case AUTH_TOGGLE_LOADING:
+      };
+    case actionTypes.AUTH_TOGGLE_LOADING:
       return {
         ...state,
         loading: !state.loading
-      }
-    case AUTH_LOGOUT:
+      };
+    case actionTypes.AUTH_LOGOUT:
       return {
         ...initialState
-      }
+      };
+    case actionTypes.AUTH_TOGGLE_AUTOLOGIN_LOADING:
+      return {
+        ...state,
+        autoLoginLoading: !state.autoLoginLoading
+      };
     default:
       return state;
   }
-}
+};
 
 export default reducer;

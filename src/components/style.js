@@ -22,9 +22,9 @@ const {
 } = global;
 
 export const COLORS = {
-  primaryGreen: '#498c45',
-  secondaryGreen: '#f4fff4',
-  lightGreen: '#44bd32'
+  primaryGreen: '#009432',
+  secondaryGreen: '#44bd32',
+  grayBg: '#f2f2f2'
 };
 
 export default StyleSheet.create({
