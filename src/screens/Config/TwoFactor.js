@@ -1,26 +1,18 @@
-import React, { useState } from 'react';
-import {
-  Clipboard,
-  View,
-  Image,
-  Text,
-  ActivityIndicator,
-  TouchableOpacity,
-  ToastAndroid
-} from 'react-native';
+import React, { useState, useCallback } from 'react';
+import { Clipboard, View, Image, Text, ActivityIndicator, TouchableOpacity, ToastAndroid } from 'react-native';
 import { Button, Item, Input } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 import i18n from 'i18n-js';
 
 import { COLORS } from '../../components/style';
 
-const copyToClipboard = async secret => {
-  await Clipboard.setString(secret);
-  ToastAndroid.show(i18n.t('config.2FA.copySecret'), ToastAndroid.SHORT);
-};
-
-const twoFactor = ({ isLoading, twoFactorData, enable }) => {
+function TwoFactor({ isLoading, twoFactorData, enable }) {
   const [twoFactorKey, setState] = useState('');
+
+  const copyToClipboard = useCallback(async secret => {
+    await Clipboard.setString(secret);
+    ToastAndroid.show(i18n.t('config.2FA.copySecret'), ToastAndroid.SHORT);
+  });
 
   if (!twoFactorData) {
     return null;
@@ -40,9 +32,7 @@ const twoFactor = ({ isLoading, twoFactorData, enable }) => {
           padding: 10
         }}
       >
-        <Text style={{ textAlign: 'center' }}>
-          {i18n.t('config.2FA.activatedMessage')}
-        </Text>
+        <Text style={{ textAlign: 'center' }}>{i18n.t('config.2FA.activatedMessage')}</Text>
       </View>
     );
   }
@@ -61,22 +51,11 @@ const twoFactor = ({ isLoading, twoFactorData, enable }) => {
           />
         </View>
         <View style={{ flex: 2 }}>
-          <Text style={{ textAlign: 'center' }}>
-            {i18n.t('config.2FA.inputKey')}
-          </Text>
+          <Text style={{ textAlign: 'center' }}>{i18n.t('config.2FA.inputKey')}</Text>
           <Item regular style={{ marginVertical: 5 }}>
-            <Input
-              keyboardType="numeric"
-              value={twoFactorKey}
-              onChangeText={twoFactorKey => setState(twoFactorKey)}
-            />
+            <Input keyboardType="numeric" value={twoFactorKey} onChangeText={twoFactorKey => setState(twoFactorKey)} />
           </Item>
-          <Button
-            success
-            block
-            onPress={() => enable(twoFactorKey)}
-            disabled={twoFactorKey.length < 3}
-          >
+          <Button success block onPress={() => enable(twoFactorKey)} disabled={twoFactorKey.length < 3}>
             <Text
               style={{
                 color: '#FFFFFF',
@@ -88,20 +67,15 @@ const twoFactor = ({ isLoading, twoFactorData, enable }) => {
           </Button>
         </View>
       </View>
-      <Text style={{ textAlign: 'center', marginBottom: 5 }}>
-        {i18n.t('config.2FA.secretMessage')}
-      </Text>
+      <Text style={{ textAlign: 'center', marginBottom: 5 }}>{i18n.t('config.2FA.secretMessage')}</Text>
       <Item regular style={{ backgroundColor: '#f2f2f2' }}>
         <Input value={secret} style={{ backgroundColor: '#f7f7f7' }} disabled />
-        <TouchableOpacity
-          style={{ marginHorizontal: 10 }}
-          onPress={() => copyToClipboard(secret)}
-        >
+        <TouchableOpacity style={{ marginHorizontal: 10 }} onPress={() => copyToClipboard(secret)}>
           <Icon name="ios-copy" size={24} />
         </TouchableOpacity>
       </Item>
     </View>
   );
-};
+}
 
-export default twoFactor;
+export default TwoFactor;

@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import { Button } from 'react-native-paper';
 import i18n from 'i18n-js';
+import { useNavigation } from '@react-navigation/core';
 
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchWalletsBalance, logout } from '../../store/actions';
 
@@ -12,65 +13,57 @@ import TransactionList from '../../components/Transactions/List';
 
 import { COLORS } from '../../components/style';
 
-class SummaryScreen extends Component {
-  componentDidMount() {
-    this.props.getBallance();
-  }
+function SummaryScreen() {
+  useEffect(() => {
+    dispatch(fetchWalletsBalance());
+  }, []);
 
-  render() {
-    return (
-      <ScrollView style={styles.container}>
-        <WalletStats
-          selected={this.props.selected}
-          balance={
-            this.props.selected
-              ? this.props.selectedBalance
-              : this.props.balance
-          }
-        />
+  const navigation = useNavigation();
 
-        <TransactionList
-          data={
-            this.props.selected
-              ? this.props.transactions.filter(
-                  transaction =>
-                    transaction.from === this.props.selected.address ||
-                    transaction.to.address === this.props.selected.address
-                )
-              : this.props.transactions
-          }
-          truncate={3}
-          customStyle={{
-            marginTop: 12,
-            width: '100%',
-            flexWrap: 'wrap'
-          }}
-        />
+  const dispatch = useDispatch();
+  const balance = useSelector(state => state.wallets.balance);
+  const selected = useSelector(state => state.wallets.selected);
+  const selectedBalance = useSelector(state => state.wallets.selectedBalance);
+  const transactions = useSelector(state => state.transactions.transactions);
 
-        <View
-          style={{
-            flexDirection: 'row',
-            width: '100%',
-            justifyContent: 'space-between',
-            paddingHorizontal: 10
-          }}
-        >
-          <Button
-            icon="settings"
-            onPress={() => {
-              // TODO: OPEN CONFIG
-            }}
-          >
-            {i18n.t('config.title')}
-          </Button>
+  return (
+    <ScrollView style={styles.container}>
+      <WalletStats selected={selected} balance={selected ? selectedBalance : balance} />
 
-          <Button icon="exit-to-app" onPress={() => this.props.logOut()}>
-            {i18n.t('home.logOutBtnLabel')}
-          </Button>
-        </View>
-      </ScrollView>
-    );
-  }
+      <TransactionList
+        data={
+          selected
+            ? transactions.filter(
+                transaction => transaction.from === selected.address || transaction.to.address === selected.address
+              )
+            : transactions
+        }
+        truncate={3}
+        customStyle={{
+          marginTop: 12,
+          width: '100%',
+          flexWrap: 'wrap'
+        }}
+      />
+
+      <View
+        style={{
+          flexDirection: 'row',
+          width: '100%',
+          justifyContent: 'space-between',
+          paddingHorizontal: 10
+        }}
+      >
+        <Button icon="settings" onPress={() => navigation.navigate('Config')}>
+          {i18n.t('config.title')}
+        </Button>
+
+        <Button icon="exit-to-app" onPress={() => dispatch(logOut())}>
+          {i18n.t('home.logOutBtnLabel')}
+        </Button>
+      </View>
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -81,24 +74,4 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => {
-  return {
-    wallets: state.wallets.wallets,
-    balance: state.wallets.balance,
-    selected: state.wallets.selected,
-    selectedBalance: state.wallets.selectedBalance,
-    transactions: state.transactions.transactions
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getBallance: () => dispatch(fetchWalletsBalance()),
-    logOut: () => dispatch(logout())
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SummaryScreen);
+export default SummaryScreen;

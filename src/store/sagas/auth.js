@@ -130,5 +130,4 @@ export function* getData() {
 export function* logoutSaga() {
   yield put(actions.clearAuthData());
   yield put(actions.stopDataSync());
-  // TODO: ABRIR AUTH
 }

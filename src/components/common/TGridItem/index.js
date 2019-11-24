@@ -1,17 +1,10 @@
-import React, { Component } from 'react'
-import { View } from 'react-native'
+import React from 'react';
+import { View } from 'react-native';
 
 import componentStyle from '../../style';
 
-class GridItem extends Component {
-
-  render = () => {
-    return (
-      <View style={[componentStyle.transactionCard, componentStyle.shadow]}>
-       {this.props.children}
-      </View>
-    )
-  }
+function GridItem({ children }) {
+  return <View style={[componentStyle.transactionCard, componentStyle.shadow]}>{children}</View>;
 }
 
-export default GridItem
+export default GridItem;

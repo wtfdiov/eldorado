@@ -1,9 +1,7 @@
 import React from 'react';
 
 // Navigation
-import { NavigationNativeContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { navigationRef } from './NavigationService';
 
 // Stack screens
 import Login from '../screens/Auth';
@@ -15,14 +13,12 @@ const LoginStack = createStackNavigator();
 
 function AuthStack() {
   return (
-
     <LoginStack.Navigator initialRouteName="Login" headerMode="none">
       <LoginStack.Screen name="Login" component={Login} />
       <LoginStack.Screen name="Register" component={Register} />
       <LoginStack.Screen name="Forgot" component={Forgot} />
       <LoginStack.Screen name="Home" component={Home} />
     </LoginStack.Navigator>
-
   );
 }
 

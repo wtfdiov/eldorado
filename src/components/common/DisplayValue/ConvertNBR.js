@@ -1,58 +1,34 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Text } from 'react-native';
 import axios from 'axios';
 
 import { config } from '../../../../app.json';
 import { roundToken } from '../../../helpers/roundToken';
 
-class ConvertNBR extends Component {
+function ConvertNBR({ to, amount, decimals }) {
+  useEffect(() => {
+    convert(config.symbol, to, amount / config.defaultUnit);
+  }, [amount]);
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: 0
+  const convert = useCallback(async (from, to, amount) => {
+    try {
+      const response = await axios.post(`${config.api}/conversions`, {
+        ticker: {
+          from,
+          to
+        },
+        amount
+      });
+      const value = response.data.price.toFixed(decimals || roundToken(response.data.price));
+      setValue(value);
+    } catch (e) {
+      console.log(`Problem trying to convert ${from} to ${to}.`, error);
     }
+  });
 
-    this.config = {
-      symbol: 'NBR',
-      name: 'Nióbio Cash',
-      decimals: 8,
-      defaultUnit: 100000000
-    }
-  }
+  const [value, setValue] = useState(0);
 
-  convert = (from, to, amount) => {
-    return axios.post(`${config.api}/conversions`, {
-      ticker: {
-        from,
-        to
-      },
-      amount
-    })
-    .then(({ data }) => data.price.toFixed(this.props.decimals || roundToken(data.price)))
-  }
-
-  componentDidMount() {
-    if (this.props.amount) {
-      this.convert(this.config.symbol, this.props.to, this.props.amount / this.config.defaultUnit)
-      .then(convertedValue => this.setState({value: convertedValue}))
-      .catch(error => console.log(`Problem trying to convert ${from} to ${to}.`, error));
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.amount !== this.props.amount) {
-      this.convert(this.config.symbol, this.props.to, this.props.amount / this.config.defaultUnit)
-      .then(convertedValue => this.setState({value: convertedValue}))
-      .catch(error => console.log(`Problem trying to convert ${from} to ${to}.`, error));
-    }
-  }
-    
-  render () {
-    return <Text> {this.state.value} </Text>
-  }
-
+  return <Text> {value} </Text>;
 }
 
 export default ConvertNBR;

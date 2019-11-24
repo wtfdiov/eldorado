@@ -1,145 +1,94 @@
-import React, { Component } from 'react';
-import {
-  ToastAndroid,
-  Clipboard,
-  View,
-  Text,
-  Image,
-  ActivityIndicator
-} from 'react-native';
+import React from 'react';
+import { ToastAndroid, Clipboard, View, Text, Image, ActivityIndicator } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 import { Button } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 import i18n from 'i18n-js';
 import { IconButton } from 'react-native-paper';
 
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import {
-  selectWallet,
-  createWallet,
-  deleteWallet
-} from '../../../store/actions';
+import { selectWallet, createWallet, deleteWallet } from '../../../store/actions';
 
 import logo from '../../../assets/logo-nbr.png';
 
 import WalletSelector from './WalletSelector';
 
-class WalletPicker extends Component {
-  constructor(props) {
-    super(props);
+function WalletPicker() {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const isLoading = useSelector(state => state.wallets.loading);
+  const wallets = useSelector(state => state.wallets.wallets);
+  const selected = useSelector(state => state.wallets.selected);
 
-    this.selectWallet = this.selectWallet.bind(this);
+  async function copyToClipboard() {
+    await Clipboard.setString(selected.address);
+    ToastAndroid.show(i18n.t('common.components.walletPicker.addressCopied'), ToastAndroid.SHORT);
   }
 
-  copyToClipboard = async () => {
-    await Clipboard.setString(this.props.selected.address);
-    ToastAndroid.show(
-      i18n.t('common.components.walletPicker.addressCopied'),
-      ToastAndroid.SHORT
-    );
-  };
-
-  sendButtonHandler = async () => {
-    //navigate to send tab
-  };
-
-  selectWallet(address) {
-    const wallet = this.props.wallets.find(
-      wallet => wallet.address === address
-    );
-    this.props.onSelect(wallet);
+  function selectWalletHandler(address) {
+    const wallet = wallets.find(wallet => wallet.address === address);
+    dispatch(selectWallet(wallet));
   }
 
-  render = () => {
-    return (
+  function createWalletHandler() {
+    dispatch(createWallet());
+  }
+
+  function deleteWalletHandler(wallet) {
+    dispatch(deleteWallet(wallet));
+  }
+
+  return (
+    <View
+      style={{
+        width: '100%',
+        height: 80,
+        flexDirection: 'row'
+      }}
+    >
       <View
         style={{
-          width: '100%',
-          height: 80,
-          flexDirection: 'row',
+          width: '30%',
+          alignItems: 'center',
+          justifyContent: 'center'
         }}
       >
+        {isLoading ? <ActivityIndicator size="large" /> : <Image source={logo} style={{ height: 48, width: 42 }} />}
+      </View>
+      <View
+        style={{
+          width: '80%',
+          justifyContent: 'space-around'
+        }}
+      >
+        <WalletSelector
+          loading={isLoading}
+          wallets={wallets}
+          selected={selected && selected.address}
+          selectWallet={selectWalletHandler}
+        />
         <View
           style={{
-            width: '30%',
-            alignItems: 'center',
-            justifyContent: 'center'
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            paddingRight: 30
           }}
         >
-          {this.props.loading ? (
-            <ActivityIndicator size="large" />
-          ) : (
-            <Image source={logo} style={{ height: 48, width: 42 }} />
+          <Button transparent light onPress={createWalletHandler}>
+            <Icon name="md-add" size={24} />
+            <Text> {i18n.t('common.components.walletPicker.newWalletBtnLabel')}</Text>
+          </Button>
+
+          {selected ? <IconButton icon="content-copy" color="white" size={24} onPress={copyToClipboard} /> : null}
+
+          {selected && selected.canDelete && (
+            <IconButton icon="delete-forever" color="white" size={24} onPress={() => deleteWalletHandler(selected)} />
           )}
         </View>
-        <View
-          style={{
-            width: '80%',
-            justifyContent: 'space-around'
-          }}
-        >
-          <WalletSelector
-            loading={this.props.loading}
-            wallets={this.props.wallets}
-            selected={this.props.selected && this.props.selected.address}
-            selectWallet={this.selectWallet}
-          />
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingRight: 30
-            }}
-          >
-            <Button transparent light onPress={() => this.props.onNewWallet()}>
-              <Icon name="md-add" size={24} />
-              <Text>
-                {' '}
-                {i18n.t('common.components.walletPicker.newWalletBtnLabel')}
-              </Text>
-            </Button>
-
-            {this.props.selected ? (
-              <IconButton
-                icon="content-copy"
-                color="white"
-                size={24}
-                onPress={() => this.copyToClipboard()}
-              />
-            ) : null}
-
-            {this.props.selected && this.props.selected.canDelete && (
-              <IconButton
-                icon="delete-forever"
-                color="white"
-                size={24}
-                onPress={() => this.props.onDeleteWallet(this.props.selected)}
-              />
-            )}
-          </View>
-        </View>
       </View>
-    );
-  };
+    </View>
+  );
 }
 
-const mapStateToProps = state => {
-  return {
-    loading: state.wallets.loading,
-    wallets: state.wallets.wallets,
-    selected: state.wallets.selected
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onSelect: wallet => dispatch(selectWallet(wallet)),
-    onNewWallet: () => dispatch(createWallet()),
-    onDeleteWallet: wallet => dispatch(deleteWallet(wallet))
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(WalletPicker);
+export default WalletPicker;

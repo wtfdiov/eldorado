@@ -1,24 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
-import { connect } from 'react-redux';
-
-import { fetchAllTransactions } from '../../store/actions';
+import { useSelector } from 'react-redux';
 
 import TransactionList from '../../components/Transactions/List';
 import { COLORS } from '../../components/style';
 
-class TransactionsAllScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <ScrollView style={styles.container}>
-        <TransactionList data={this.props.transactions} />
-      </ScrollView>
-    );
-  }
+function TransactionsAllScreen() {
+  const transactions = useSelector(state => state.transactions.transactions);
+  return (
+    <ScrollView style={styles.container}>
+      <TransactionList data={transactions} />
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -29,17 +22,4 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => {
-  return {
-    transactions: state.transactions.transactions
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {};
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TransactionsAllScreen);
+export default TransactionsAllScreen;
