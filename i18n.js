@@ -1,29 +1,21 @@
-import { AsyncStorage } from 'react-native';
-import * as RNLocalize from 'react-native-localize';
+import AsyncStorage from '@react-native-community/async-storage';
 import i18n from 'i18n-js';
 
 import ptBR from './translations/pt-BR.json';
-import enUS from './translations/en-US.json';
+import en from './translations/en.json';
 
 export default async () => {
   let languageTag = await AsyncStorage.getItem('eldorado.language');
 
+  i18n.defaultLocale = 'pt-BR';
+  i18n.fallbacks = true;
+
   i18n.translations = {
     'pt-BR': ptBR,
-    'en-US': enUS
+    en
   };
 
-  i18n.defaultLocale = 'pt-BR';
-  i18n.fallbacks = false;
-
-  const fallback = { languageTag: 'pt-BR', isRTL: false };
-
-  if (!languageTag) {
-    const bestAvailable = await RNLocalize.findBestAvailableLanguage(
-      Object.keys(i18n.translations)
-    );
-    languageTag = bestAvailable.languageTag || fallback;
+  if (languageTag) {
+    i18n.locale = languageTag;
   }
-
-  i18n.locale = languageTag;
 };

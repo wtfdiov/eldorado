@@ -3,9 +3,6 @@ import React from 'react';
 // Navigation
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-// I18n
-import i18n from 'i18n-js';
-
 // Stack screens
 import Home from '../screens/Home';
 import Config from '../screens/Config';
@@ -14,13 +11,15 @@ import TransactionDetails from '../screens/Transactions/Details';
 
 import { basicHeader } from '../components/style';
 
+import { LocalizationContext } from '../../App';
+
 const MainStack = createNativeStackNavigator();
 
-const configHeaderOptions = basicHeader(i18n.t('config.title'));
-const qrHeaderOptions = basicHeader(i18n.t('qrScanner.title'));
-const transactionsDetailsHeaderOptions = basicHeader(i18n.t('transactions.details.title'));
-
 function HomeStack() {
+  const { t } = React.useContext(LocalizationContext);
+  const configHeaderOptions = basicHeader(t('config.title'));
+  const qrHeaderOptions = basicHeader(t('qrScanner.title'));
+  const transactionsDetailsHeaderOptions = basicHeader(t('transactions.details.title'));
   return (
     <MainStack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
       <MainStack.Screen name="Home" component={Home} />

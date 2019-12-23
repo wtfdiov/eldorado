@@ -32,7 +32,7 @@ export const GAP = {
 
 export const basicHeader = headerTitle => ({
   headerShown: true,
-  headerTitle,
+  title: headerTitle,
   headerStyle: {
     backgroundColor: COLORS.primaryGreen
   },

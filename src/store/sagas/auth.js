@@ -1,8 +1,8 @@
 import { config } from '../../../app.json';
 import { Alert } from 'react-native';
 import axios from 'axios';
-import { put, call, delay } from 'redux-saga/effects';
-import { AsyncStorage } from 'react-native';
+import { put, delay } from 'redux-saga/effects';
+import AsyncStorage from '@react-native-community/async-storage';
 import i18n from 'i18n-js';
 
 import * as actions from '../actions';
