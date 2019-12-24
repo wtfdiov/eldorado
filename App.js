@@ -8,6 +8,9 @@ import configureLanguage from './i18n';
 
 import SplashScreen from './src/navigation/SplashScreen';
 
+import { COLORS } from './src/components/style';
+import { StatusBar } from 'react-native';
+
 enableScreens();
 const store = configureStore();
 
@@ -32,13 +35,16 @@ function App() {
   );
 
   return (
-    <Provider store={store}>
-      <LocalizationContext.Provider value={localizationContext}>
-        <NavigationNativeContainer>
-          <SplashScreen />
-        </NavigationNativeContainer>
-      </LocalizationContext.Provider>
-    </Provider>
+    <>
+      <StatusBar backgroundColor={COLORS.secondaryGreen} />
+      <Provider store={store}>
+        <LocalizationContext.Provider value={localizationContext}>
+          <NavigationNativeContainer>
+            <SplashScreen />
+          </NavigationNativeContainer>
+        </LocalizationContext.Provider>
+      </Provider>
+    </>
   );
 }
 

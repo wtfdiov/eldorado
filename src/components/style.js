@@ -20,7 +20,8 @@ const { headerFontSize, buttonPrimaryTextPadding, buttonBorderedTextPadding } = 
 export const COLORS = {
   primaryGreen: '#009432',
   secondaryGreen: '#44bd32',
-  grayBg: '#f2f2f2'
+  grayBg: '#f2f2f2',
+  loginGreen: '#6c9d52'
 };
 
 export const GAP = {
@@ -34,7 +35,7 @@ export const basicHeader = headerTitle => ({
   headerShown: true,
   title: headerTitle,
   headerStyle: {
-    backgroundColor: COLORS.primaryGreen
+    backgroundColor: COLORS.secondaryGreen
   },
   headerTintColor: '#fff'
 });

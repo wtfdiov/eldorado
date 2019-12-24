@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Dimensions, View, ImageBackground, Image } from 'react-native';
+import { StyleSheet, Dimensions, View, ImageBackground, Image, StatusBar } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import i18n from 'i18n-js';
 import { TextInput, Button } from 'react-native-paper';
@@ -29,72 +29,75 @@ function AuthScreen({ navigation }) {
   }
 
   return (
-    <ImageBackground
-      source={Background}
-      style={{
-        width: '100%',
-        height: '100%',
-        justifyContent: 'space-around',
-        alignItems: 'center'
-      }}
-    >
-      <View style={{ alignItems: 'center' }}>
-        <Image style={styles.logo} source={NBRLogoLogin} />
-      </View>
-
-      <View style={styles.formContainer}>
-        <TextInput
-          autoCorrect={false}
-          label={i18n.t('login.emailInputLabel')}
-          value={email}
-          onChangeText={email => setEmail(email)}
-          autoCapitalize="none"
-          keyboardType="email-address"
-        />
-
-        <TextInput
-          autoCorrect={false}
-          autoCapitalize="none"
-          secureTextEntry
-          label={i18n.t('login.passwordInputLabel')}
-          value={password}
-          onChangeText={password => setPassword(password)}
-          style={{ marginTop: GAP.default }}
-        />
-
-        <TextInput
-          autoCorrect={false}
-          label={i18n.t('login.2FAInputLabel')}
-          value={twoFactorAuthToken}
-          onChangeText={twoFactorAuthToken => setTwoFactorAuthToken(twoFactorAuthToken)}
-          keyboardType="numeric"
-          style={{ marginTop: GAP.default }}
-        />
-
-        <Button
-          icon="login"
-          mode="contained"
-          style={{ marginVertical: GAP.default }}
-          onPress={loginHandler}
-          loading={isLoading}
-          contentStyle={{ height: 48 }}
-          color={COLORS.primaryGreen}
-          disabled={!email || !/\S+@\S+\.\S+/.test(email) || !password || isLoading}
-        >
-          {i18n.t('login.signInBtnLabel')}
-        </Button>
-
-        <View style={styles.containerButtonsBottom}>
-          <Button mode="text" icon="account-plus" color="white" onPress={() => navigation.navigate('Register')}>
-            {i18n.t('login.signUpBtnLabel')}
-          </Button>
-
-          <Button mode="text" icon="lock-reset" color="white" onPress={() => navigation.navigate('Forgot')}>
-            {i18n.t('login.resetPasswordBtnLabel')}
-          </Button>
+    <>
+      <StatusBar backgroundColor={COLORS.loginGreen} />
+      <ImageBackground
+        source={Background}
+        style={{
+          width: '100%',
+          height: '100%',
+          justifyContent: 'space-around',
+          alignItems: 'center'
+        }}
+      >
+        <View style={{ alignItems: 'center' }}>
+          <Image style={styles.logo} source={NBRLogoLogin} />
         </View>
-      </View>
-    </ImageBackground>
+
+        <View style={styles.formContainer}>
+          <TextInput
+            autoCorrect={false}
+            label={i18n.t('login.emailInputLabel')}
+            value={email}
+            onChangeText={email => setEmail(email)}
+            autoCapitalize="none"
+            keyboardType="email-address"
+          />
+
+          <TextInput
+            autoCorrect={false}
+            autoCapitalize="none"
+            secureTextEntry
+            label={i18n.t('login.passwordInputLabel')}
+            value={password}
+            onChangeText={password => setPassword(password)}
+            style={{ marginTop: GAP.default }}
+          />
+
+          <TextInput
+            autoCorrect={false}
+            label={i18n.t('login.2FAInputLabel')}
+            value={twoFactorAuthToken}
+            onChangeText={twoFactorAuthToken => setTwoFactorAuthToken(twoFactorAuthToken)}
+            keyboardType="numeric"
+            style={{ marginTop: GAP.default }}
+          />
+
+          <Button
+            icon="login"
+            mode="contained"
+            style={{ marginVertical: GAP.default }}
+            onPress={loginHandler}
+            loading={isLoading}
+            contentStyle={{ height: 48 }}
+            color={COLORS.primaryGreen}
+            disabled={!email || !/\S+@\S+\.\S+/.test(email) || !password || isLoading}
+          >
+            {i18n.t('login.signInBtnLabel')}
+          </Button>
+
+          <View style={styles.containerButtonsBottom}>
+            <Button mode="text" icon="account-plus" color="white" onPress={() => navigation.navigate('Register')}>
+              {i18n.t('login.signUpBtnLabel')}
+            </Button>
+
+            <Button mode="text" icon="lock-reset" color="white" onPress={() => navigation.navigate('Forgot')}>
+              {i18n.t('login.resetPasswordBtnLabel')}
+            </Button>
+          </View>
+        </View>
+      </ImageBackground>
+    </>
   );
 }
 
