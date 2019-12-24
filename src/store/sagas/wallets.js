@@ -19,7 +19,7 @@ export function* fetchWalletsSaga() {
 
     const wallets = response.data.map(wallet => ({
       ...wallet,
-      canDelete: !wallet.balance.available && !wallet.balance.locked
+      canDelete: !wallet.balance.available && !wallet.balance.locked && Object.keys(response.data).length > 1
     }));
 
     yield put(actions.storeWallets(wallets));
@@ -29,9 +29,7 @@ export function* fetchWalletsSaga() {
   } catch (error) {
     Alert.alert(
       i18n.t('wallets.title'),
-      `${i18n.t('wallets.requestMessages.error.address')}: ${
-        error.response.data.message
-      }`
+      `${i18n.t('wallets.requestMessages.error.address')}: ${error.response.data.message}`
     );
   } finally {
     yield put(actions.toggleWalletsLoading());
@@ -52,9 +50,7 @@ export function* fetchWalletsBalanceSaga() {
   } catch (error) {
     Alert.alert(
       i18n.t('wallets.title'),
-      `${i18n.t('wallets.requestMessages.error.balance')}: ${
-        error.response.data.message
-      }`
+      `${i18n.t('wallets.requestMessages.error.balance')}: ${error.response.data.message}`
     );
   }
 }
@@ -74,13 +70,11 @@ export function* createWalletSaga() {
     );
 
     yield put(actions.fetchWallets());
-    yield put(actions.selectWallet(response));
+    yield put(actions.selectWallet(response.data));
   } catch (error) {
     Alert.alert(
       i18n.t('wallets.title'),
-      `${i18n.t('wallets.requestMessages.error.create')}: ${
-        error.response.data.message
-      }`
+      `${i18n.t('wallets.requestMessages.error.create')}: ${error.response.data.message}`
     );
   }
 }
@@ -89,22 +83,17 @@ export function* deleteWalletSaga(action) {
   const state = yield select();
 
   try {
-    const response = yield axios.delete(
-      `${config.api}/addresses/${action.wallet.address}`,
-      {
-        headers: {
-          Authorization: `Bearer ${state.auth.token}`
-        }
+    const response = yield axios.delete(`${config.api}/addresses/${action.wallet.address}`, {
+      headers: {
+        Authorization: `Bearer ${state.auth.token}`
       }
-    );
+    });
     yield put(actions.selectWallet(null));
     yield put(actions.fetchWallets());
   } catch (error) {
     Alert.alert(
       i18n.t('wallets.title'),
-      `${i18n.t('wallets.requestMessages.error.delete')}: ${
-        error.response.data.message
-      }`
+      `${i18n.t('wallets.requestMessages.error.delete')}: ${error.response.data.message}`
     );
   }
 }

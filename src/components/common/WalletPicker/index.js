@@ -1,6 +1,5 @@
 import React from 'react';
 import { ToastAndroid, Clipboard, View, Text, Image, ActivityIndicator } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
 import { Button } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 import i18n from 'i18n-js';
@@ -16,7 +15,6 @@ import WalletSelector from './WalletSelector';
 import { COLORS } from '../../style';
 
 function WalletPicker() {
-  const navigation = useNavigation();
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.wallets.loading);
   const wallets = useSelector(state => state.wallets.wallets);
