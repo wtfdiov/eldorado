@@ -21,7 +21,8 @@ export const COLORS = {
   primaryGreen: '#009432',
   secondaryGreen: '#44bd32',
   grayBg: '#f2f2f2',
-  loginGreen: '#6c9d52'
+  loginGreen: '#6c9d52',
+  darkGray: '#adb5bd'
 };
 
 export const GAP = {

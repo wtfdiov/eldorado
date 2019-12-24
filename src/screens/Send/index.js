@@ -31,11 +31,16 @@ function SendScreen() {
   const selected = useSelector(state => state.wallets.selected);
   const selectedBalance = useSelector(state => state.wallets.selectedBalance);
 
-  const isFormValid = validateForm();
-
   function validateForm() {
-    return !(selected && selected.address) || !toAddress || amount || !fee;
+    return (
+      toAddress.length > 0 &&
+      parseFloat(amount) > 0 &&
+      parseFloat(amount) <= selectedBalance.available &&
+      parseFloat(fee) > 0
+    );
   }
+
+  const isFormValid = validateForm();
 
   function createTransaction() {
     const transaction = {
@@ -71,7 +76,7 @@ function SendScreen() {
     return (
       <View style={styles.container}>
         <NoData message={i18n.t('send.selectAnWallet')}>
-          <Icon name="md-wallet" size={72} />
+          <Icon name="md-wallet" size={72} color={COLORS.darkGray} />
         </NoData>
       </View>
     );
@@ -194,7 +199,7 @@ function SendScreen() {
         <Text>{anonymity}</Text>
       </View>
 
-      <Button success block disabled={isFormValid} onPress={createTransaction}>
+      <Button success block disabled={!isFormValid} onPress={createTransaction}>
         <Text> {i18n.t('send.sendBtnLabel')} </Text>
       </Button>
     </ScrollView>

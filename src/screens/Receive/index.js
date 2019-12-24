@@ -30,7 +30,7 @@ function SendScreen() {
     return (
       <View style={styles.container}>
         <NoData message={i18n.t('send.selectAnWallet')}>
-          <Icon name="md-wallet" size={72} color={COLORS.primaryGreen} />
+          <Icon name="md-wallet" size={72} color={COLORS.darkGray} />
         </NoData>
       </View>
     );
